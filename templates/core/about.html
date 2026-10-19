@@ -1,0 +1,313 @@
+{% extends "base.html" %}
+
+{% block title %}About Us — {{ site.site_name }}{% endblock %}
+
+{% block content %}
+{# ===== Page header ===== #}
+<section class="bg-brand-blueDark py-16 text-white">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6" data-aos="fade-up">
+    <h1 class="text-4xl font-extrabold sm:text-5xl">About HO-ME</h1>
+    <p class="mt-3 max-w-2xl text-blue-100">{{ site.site_tagline }}</p>
+  </div>
+</section>
+
+{# ===== Mission / Vision / Distinctives ===== #}
+<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6" x-data="{ tab:'mission' }">
+  <div class="flex gap-2 justify-center">
+    <button @click="tab='mission'" :class="tab==='mission' ? 'bg-brand-blue text-white' : 'bg-white text-slate2-800 border border-slate2-200'" class="rounded-full px-5 py-2 text-sm font-semibold transition">Mission</button>
+    <button @click="tab='vision'" :class="tab==='vision' ? 'bg-brand-blue text-white' : 'bg-white text-slate2-800 border border-slate2-200'" class="rounded-full px-5 py-2 text-sm font-semibold transition">Vision</button>
+    <button @click="tab='distinctives'" :class="tab==='distinctives' ? 'bg-brand-blue text-white' : 'bg-white text-slate2-800 border border-slate2-200'" class="rounded-full px-5 py-2 text-sm font-semibold transition">Distinctives</button>
+  </div>
+
+  <div x-show="tab==='mission'" x-transition.feed class="mx-auto mt-8 max-w-3xl text-center" data-aos="fade-up">
+    <i data-lucide="target" class="mx-auto h-10 w-10 text-brand-blue"></i>
+    <p class="mt-4 text-xl text-slate2-700">{{ mv.mission_text|default:site.site_tagline }}</p>
+  </div>
+  <div x-show="tab==='vision'" x-transition class="mx-auto mt-8 max-w-3xl text-center">
+    <i data-lucide="eye" class="mx-auto h-10 w-10 text-brand-blue"></i>
+    <p class="mt-4 text-xl text-slate2-700">{{ mv.vision_text|default:"To see multiplying gospel movements reach every unreached people of the Horn of Africa by 2035." }}</p>
+  </div>
+  <div x-show="tab==='distinctives'" x-transition class="mx-auto mt-8 max-w-3xl text-center">
+    <i data-lucide="sparkles" class="mx-auto h-10 w-10 text-brand-blue"></i>
+    <p class="mt-4 text-xl text-slate2-700">{{ mv.distinctives_text|default:"Locally led. Church-centric. Multiplication-minded. Accountable in MEL." }}</p>
+  </div>
+</section>
+
+{# ===== Core values (4 editable cards) ===== #}
+<section class="bg-white py-16">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <h2 class="text-center text-3xl font-extrabold text-slate2-900" data-aos="fade-up">Our Core Values</h2>
+    <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {% for v in values %}
+      <div class="rounded-2xl bg-blue-50 border border-slate2-200 p-6 hover:shadow-lg transition" data-aos="fade-up" data-aos-delay="{{ forloop.counter0 }}00">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-brand-blue text-white font-bold">{{ v.number }}</span>
+        <i data-lucide="{{ v.icon|default:'heart-handshake' }}" class="mt-4 h-6 w-6 text-brand-blue"></i>
+        <h3 class="mt-2 text-lg font-bold text-slate2-900">{{ v.title }}</h3>
+        <p class="mt-2 text-sm text-slate2-600">{{ v.body }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+```html
+{# ===== Interactive Timeline (2003 → 2030) ===== #}
+<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6"
+         x-data="{ activeYear: null, selectedYear: null }">
+
+  <div class="text-center" data-aos="fade-up">
+    <span class="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-blue">
+      <span class="h-2 w-2 animate-pulse rounded-full bg-brand-blueLight"></span>
+      Our Story
+    </span>
+
+    <h2 class="mt-5 text-3xl font-extrabold tracking-tight text-slate2-900 sm:text-4xl">
+      Our Journey — 2003 to Today
+    </h2>
+
+    <p class="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate2-600 sm:text-base">
+      Every milestone represents a step forward in our story of growth,
+      innovation, and impact.
+    </p>
+  </div>
+
+  <div class="relative mt-14">
+
+    {# Horizontal scroll container #}
+    <div class="relative overflow-x-auto overflow-y-hidden pb-8
+                scroll-smooth timeline-scroll"
+         style="scrollbar-width: thin;">
+
+      {# Timeline track: flex width makes the line span the entire timeline #}
+      <div class="relative w-max min-w-full">
+
+        {# Continuous background line #}
+        <div class="absolute left-0 right-0 top-5 h-1 rounded-full bg-blue-50"></div>
+
+        {# Animated progress line #}
+        <div class="absolute left-0 top-5 h-1 rounded-full bg-brand-blueLight
+                    origin-left animate-timeline-line"
+             style="width: 100%;"></div>
+
+        <div class="relative flex items-start gap-6 sm:gap-8">
+
+          {% for m in milestones %}
+          <article
+            class="group relative flex w-64 shrink-0 cursor-pointer flex-col items-center sm:w-72"
+            data-aos="fade-up"
+            data-aos-delay="{{ forloop.counter0 }}00"
+            data-year="{{ m.year }}"
+            @mouseenter="activeYear = {{ m.year }}"
+            @mouseleave="activeYear = null"
+            @focusin="activeYear = {{ m.year }}"
+            @focusout="activeYear = null"
+            @click="selectedYear = selectedYear === {{ m.year }} ? null : {{ m.year }}"
+            @keydown.enter.prevent="selectedYear = selectedYear === {{ m.year }} ? null : {{ m.year }}"
+            @keydown.space.prevent="selectedYear = selectedYear === {{ m.year }} ? null : {{ m.year }}"
+            tabindex="0"
+            role="button"
+            :aria-expanded="selectedYear === {{ m.year }}">
+
+            {# Milestone marker #}
+            <div class="relative z-10 flex h-11 w-11 items-center justify-center
+                        rounded-full border-4 border-white bg-brand-blue
+                        text-sm font-extrabold text-white shadow-md
+                        ring-2 ring-brand-200
+                        transition-all duration-300 ease-out
+                        group-hover:scale-125 group-hover:bg-brand-blueLight
+                        group-hover:ring-4 group-hover:ring-brand-100"
+                 :class="{
+                   'scale-125 bg-brand-blueLight ring-4 ring-brand-100':
+                     activeYear === {{ m.year }} ||
+                     selectedYear === {{ m.year }}
+                 }">
+
+              {% if m.icon %}
+                <i data-lucide="{{ m.icon }}" class="h-4 w-4"></i>
+              {% else %}
+                {{ m.year|last }}
+              {% endif %}
+
+              {# Marker pulse #}
+              <span class="absolute inset-0 -z-10 rounded-full bg-brand-blueLight
+                           opacity-0 group-hover:animate-ping"></span>
+            </div>
+
+            {# Year label #}
+            <span class="mt-4 text-lg font-extrabold text-slate2-900
+                         transition-colors duration-300
+                         group-hover:text-brand-blue"
+                  :class="{
+                    'text-brand-blue': selectedYear === {{ m.year }}
+                  }">
+              {{ m.year }}
+            </span>
+
+            {# Milestone card #}
+            <div class="relative mt-4 w-full overflow-hidden rounded-2xl
+                        border border-slate2-200 bg-white p-5 shadow-sm
+                        transition-all duration-300 ease-out
+                        group-hover:-translate-y-2 group-hover:border-brand-300
+                        group-hover:shadow-xl"
+                 :class="{
+                   '-translate-y-2 border-brand-300 shadow-xl':
+                     activeYear === {{ m.year }} ||
+                     selectedYear === {{ m.year }}
+                 }">
+
+              {# Decorative accent #}
+              <div class="absolute left-0 top-0 h-1 w-full origin-left
+                          scale-x-0 bg-brand-blueLight transition-transform duration-300
+                          group-hover:scale-x-100"
+                   :class="{
+                     'scale-x-100': selectedYear === {{ m.year }}
+                   }"></div>
+
+              <div class="flex items-start justify-between gap-3">
+                <h3 class="text-sm font-bold leading-6 text-slate2-900">
+                  {{ m.title }}
+                </h3>
+
+                <span class="mt-0.5 shrink-0 text-brand-blue transition-transform
+                             duration-300 group-hover:translate-x-1">
+                  <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
+                </span>
+              </div>
+
+              <p class="mt-3 text-xs leading-6 text-slate2-600">
+                {{ m.description }}
+              </p>
+
+              {# Interactive expanded state #}
+              <div x-cloak
+                   x-show="selectedYear === {{ m.year }}"
+                   x-transition:enter="transition ease-out duration-300"
+                   x-transition:enter-start="opacity-0 -translate-y-2"
+                   x-transition:enter-end="opacity-100 translate-y-0"
+                   x-transition:leave="transition ease-in duration-200"
+                   x-transition:leave-start="opacity-100 translate-y-0"
+                   x-transition:leave-end="opacity-0 -translate-y-2"
+                   class="mt-4 border-t border-blue-100 pt-3">
+
+                <p class="text-xs font-semibold text-brand-blue">
+                  Milestone details
+                </p>
+
+                <p class="mt-1 text-xs leading-5 text-slate2-600">
+                  {{ m.description }}
+                </p>
+
+                <button type="button"
+                        @click.stop="selectedYear = null"
+                        class="mt-3 inline-flex items-center gap-1 text-xs
+                               font-bold text-brand-blue hover:text-brand-blueDark">
+                  Close details
+                  <i data-lucide="x" class="h-3 w-3"></i>
+                </button>
+              </div>
+
+              <div class="mt-4 flex items-center gap-2 text-xs font-semibold
+                          text-brand-blue opacity-70 transition-opacity
+                          group-hover:opacity-100"
+                   x-show="selectedYear !== {{ m.year }}">
+                <span>Explore milestone</span>
+                <i data-lucide="chevron-right" class="h-3 w-3"></i>
+              </div>
+            </div>
+
+            {# Small connector from marker to card #}
+            <div class="h-4 w-px bg-brand-200 transition-colors
+                        duration-300 group-hover:bg-brand-blueLight"></div>
+          </article>
+          {% endfor %}
+
+        </div>
+      </div>
+    </div>
+
+    {# Scroll hint #}
+    <div class="mt-2 flex items-center justify-center gap-2 text-xs
+                font-medium text-slate2-500 sm:justify-end">
+      <i data-lucide="move-horizontal" class="h-4 w-4"></i>
+      Scroll horizontally to explore the journey
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Reveal the connecting line from left to right */
+  @keyframes timelineLineReveal {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  .animate-timeline-line {
+    animation: timelineLineReveal 2s cubic-bezier(.22, 1, .36, 1) both;
+  }
+
+  /* Smooth horizontal scrolling */
+  .timeline-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Prevent Alpine's expanded content flashing on initial load */
+  [x-cloak] {
+    display: none !important;
+  }
+
+  /* Respect accessibility preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-timeline-line {
+      animation: none;
+      transform: scaleX(1);
+    }
+
+    .timeline-scroll {
+      scroll-behavior: auto;
+    }
+
+    .timeline-scroll *,
+    .timeline-scroll *::before,
+    .timeline-scroll *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>
+```
+
+{# ===== Leadership ===== #}
+<section class="bg-white py-16">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <h2 class="text-center text-3xl font-extrabold text-slate2-900" data-aos="fade-up">Leadership</h2>
+    <div class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      {% for l in leaders %}
+      <div class="flex gap-4 rounded-2xl bg-blue-50 border border-slate2-200 p-5" data-aos="fade-up">
+        {% if l.photo %}
+          <img src="{{ l.photo.url }}" class="h-20 w-20 rounded-full object-cover" alt="{{ l.name }}">
+        {% else %}
+          <span class="grid h-20 w-20 place-items-center rounded-full bg-brand-200 text-slate2-700 text-xl font-bold">{{ l.name|slice:":1" }}</span>
+        {% endif %}
+        <div>
+          <h3 class="font-bold text-slate2-900">{{ l.name }}</h3>
+          <p class="text-sm font-medium text-brand-red">{{ l.role }}</p>
+          <p class="mt-2 text-xs text-slate2-600">{{ l.bio|truncatewords:30 }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ===== Tribute ===== #}
+<section class="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6" data-aos="fade-up">
+  <i data-lucide="candle" class="mx-auto h-10 w-10 text-brand-red"></i>
+  <h2 class="mt-4 text-2xl font-bold text-slate2-900">In loving tribute</h2>
+  <p class="mt-3 text-slate2-600">We honour the founders, partners and praying churches whose faithfulness lit this movement. Editable from the admin portal's Tribute card set.</p>
+</section>
+{% endblock %}

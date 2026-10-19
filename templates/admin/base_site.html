@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{# HO-ME: keep the admin's own chrome, but add the language switcher (English / አማርኛ / Afaan Oromoo) to the top-right userlinks row. #}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin_portal:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+{% endblock %}
+
+{% block userlinks %}
+<li style="margin-right: 0.6rem;">
+  <form action="{% url 'set_language' %}" method="post" style="display:inline;" id="lang-switcher">{% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <select name="language" onchange="this.form.submit()"
+            style="font-size:0.78rem; padding:0.15rem 0.35rem; border:1px solid rgba(255,255,255,0.25); border-radius:4px; background:transparent; color:inherit; cursor:pointer;">
+      <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+      <option value="am" {% if LANGUAGE_CODE == 'am' %}selected{% endif %}>አማርኛ</option>
+      <option value="om" {% if LANGUAGE_CODE == 'om' %}selected{% endif %}>Afaan Oromoo</option>
+    </select>
+  </form>
+</li>
+{{ block.super }}
+{% endblock %}

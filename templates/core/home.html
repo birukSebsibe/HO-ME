@@ -1,0 +1,332 @@
+{% extends "base.html" %}
+{% load home_tags %}
+{% load i18n %}
+
+{% block title %}{{ site.site_name }}{% endblock %}
+
+{% block content %}
+{# ================= HERO (reference UI: light gradient + movement card) ================= #}
+{% if site.hero_variant == "A" %}
+<section class="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-slate-100 via-white to-brand-surface pt-12 pb-20">
+  <!-- Background decorative glows -->
+  <div class="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-blue-100/60 blur-3xl"></div>
+  <div class="pointer-events-none absolute -left-20 bottom-0 h-80 w-80 rounded-full bg-red-100/40 blur-3xl"></div>
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
+      <!-- Left column: messaging & CTAs -->
+      <div class="space-y-6 text-left lg:col-span-7" data-aos="fade-up">
+        <!-- Strategic badge -->
+        <div class="inline-flex items-center gap-2.5 rounded-full border border-blue-200/80 bg-blue-50 px-3.5 py-1.5 shadow-sm">
+          <span class="flex h-2 w-2 animate-ping rounded-full bg-brand-red"></span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-brand-blue">Indigenous • Data-Driven • Church-Led</span>
+        </div>
+        <!-- Headline -->
+        <h1 class="text-3xl font-black leading-[1.12] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+          {{ site.active_headline }}
+        </h1>
+        <!-- Subtitle -->
+        <p class="max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">{{ site.subheadline }}</p>
+        <!-- Action CTAs -->
+        <div class="flex flex-wrap items-center gap-4 pt-3">
+          <a href="{{ site.hero_cta_url_1 }}"
+             class="flex items-center gap-2 rounded-xl bg-brand-blue px-6 py-3.5 text-sm font-bold text-white shadow-md transition-all duration-200 hover:bg-brand-blueDark hover:shadow-lg">
+            <span>{{ site.hero_cta_text_1 }}</span>
+            <i class="fa-solid fa-arrow-trend-up"></i>
+          </a>
+          <a href="{{ site.hero_cta_url_2 }}"
+             class="flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-50">
+            <i class="fa-solid fa-diagram-project text-brand-red"></i>
+            <span>{{ site.hero_cta_text_2 }}</span>
+          </a>
+        </div>
+        <!-- Trust indicator -->
+        <div class="flex items-center gap-4 border-t border-slate-200/80 pt-6 text-xs text-slate-500">
+          <div class="flex -space-x-2">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-blue text-xs font-bold text-white ring-2 ring-white">EC</span>
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-red text-xs font-bold text-white ring-2 ring-white">HO</span>
+            <span class="flex h-8 w-8 items-center justify-center rounded-full bg-brand-gold text-xs font-bold text-white ring-2 ring-white">ME</span>
+          </div>
+          <div>
+            <p class="font-semibold text-slate-700">{% trans "Evangelical Churches Fellowship of Ethiopia / ECGBC Partner" %}</p>
+            <p>{% trans "Governed by an active Board of Trustees & compliant with Ethiopian civil society regulations." %}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right column: elevated movement card -->
+      <div class="relative flex justify-center lg:col-span-5" data-aos="fade-left">
+        <div class="relative w-full max-w-md rounded-3xl border border-slate-200 bg-white p-7 shadow-card">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-5">
+            <div class="flex items-center gap-3">
+              {% if site.logo %}
+                <img src="{{ site.logo.url }}" alt="{{ site.site_name }}" class="h-12 w-12 rounded-full border border-slate-100 object-contain shadow-inner">
+              {% else %}
+                <div class="grid h-12 w-12 place-items-center rounded-full bg-brand-blue font-bold text-white">H</div>
+              {% endif %}
+              <div>
+                <h3 class="text-sm font-black leading-tight text-slate-800">{{ site.site_name }}</h3>
+                <p class="text-xs font-semibold text-brand-blue">{{ site.site_tagline }}</p>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1 rounded-md border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-700">
+              <i class="fa-solid fa-circle-check mr-1 text-[9px]"></i>{% now "Y" %}
+            </span>
+          </div>
+          <!-- Interactive stage preview -->
+          <div class="my-6 space-y-3 rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50/70 to-slate-50 p-4" x-data="{ active:'{{ mcms_steps.first.key }}' }">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-700">{% trans "Movement Cycle Status" %}</span>
+              <span class="font-mono font-bold text-brand-blue">{{ mcms_steps.count }} {% trans "Steps" %}</span>
+            </div>
+            <div class="grid grid-cols-4 gap-1 text-center text-[10px] font-bold">
+              {% for step in mcms_steps %}
+              <div class="py-1.5 {% if forloop.first %}rounded bg-brand-blue text-white shadow-sm{% elif forloop.counter == 2 %}rounded bg-brand-blue/80 text-white{% elif forloop.counter == 3 %}rounded bg-sky-600 text-white{% else %}rounded bg-sky-400 text-slate-900{% endif %}">{{ step.name|stringformat:"s"|truncatechars:10 }}</div>
+              {% endfor %}
+            </div>
+            <p class="text-[12px] italic leading-snug text-slate-600">{{ mcms_steps.first.short_line }}</p>
+          </div>
+          <!-- Key metrics quick view -->
+          <div class="grid grid-cols-2 gap-3 text-center">
+            <div class="rounded-xl border border-slate-100 bg-slate-50 p-3">
+              <div class="text-2xl font-black text-brand-blue">{{ site.counter_churches }}+</div>
+              <div class="text-[11px] font-medium text-slate-500">{% trans "Churches Multiplied" %}</div>
+            </div>
+            <div class="rounded-xl border border-slate-100 bg-slate-50 p-3">
+              <div class="text-2xl font-black text-brand-red">{{ site.counter_upgs }} UPGs</div>
+              <div class="text-[11px] font-medium text-slate-500">{% trans "Engaged to Reached" %}</div>
+            </div>
+          </div>
+          <!-- Quick action -->
+          <div class="mt-5 flex items-center justify-between border-t border-slate-100 pt-4">
+            <span class="text-xs font-medium text-slate-500">{% trans "Verified by field MEL team" %}</span>
+            <a class="inline-flex items-center gap-1 text-xs font-bold text-brand-blue hover:text-brand-red" href="{% url 'where-we-work' %}">
+              {% trans "View" %} {{ site.counter_hubs }} {% trans "Hubs" %} <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="relative flex min-h-[70vh] items-center overflow-hidden text-white">
+  <div class="absolute inset-0 bg-brand-blueDark bg-cover bg-center"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-brand-blueDark/95 via-brand-blueDark/75 to-transparent"></div>
+  <div class="relative mx-auto max-w-7xl px-4 py-28 sm:px-6" data-aos="fade-up">
+    <div class="inline-flex items-center gap-2.5 rounded-full border border-blue-300/40 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
+      <span class="flex h-2 w-2 animate-ping rounded-full bg-brand-red"></span>
+      <span class="text-xs font-semibold uppercase tracking-wider text-blue-100">Indigenous • Data-Driven • Church-Led</span>
+    </div>
+    <h1 class="mt-6 max-w-3xl text-3xl font-black leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl">{{ site.active_headline }}</h1>
+    <p class="mt-6 max-w-2xl text-base leading-relaxed text-blue-100 sm:text-lg">{{ site.subheadline }}</p>
+    <div class="mt-8 flex flex-wrap items-center gap-4">
+      <a href="{{ site.hero_cta_url_1 }}" class="flex items-center gap-2 rounded-xl bg-brand-red px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-brand-redDark">
+        <span>{{ site.hero_cta_text_1 }}</span><i class="fa-solid fa-arrow-trend-up"></i>
+      </a>
+      <a href="{{ site.hero_cta_url_2 }}" class="flex items-center gap-2 rounded-xl border border-white/40 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/15">
+        <i class="fa-solid fa-diagram-project"></i><span>{{ site.hero_cta_text_2 }}</span>
+      </a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ===== Live impact counter ribbon (reference: dark-blue band, 5 metric cards) ===== #}
+<section class="relative overflow-hidden bg-brand-blueDark py-12 text-white shadow-inner" x-data="counterStrip()">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto mb-10 max-w-2xl text-center">
+      <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">{% trans "Two Decades of Measurable Fruit" %}</span>
+      <h2 class="mt-1 text-2xl font-extrabold text-white sm:text-3xl">{% trans "Catalytic Impact Across the Horn of Africa" %}</h2>
+    </div>
+    <div class="grid grid-cols-2 gap-6 text-center md:grid-cols-3 lg:grid-cols-5">
+      <div x-intersect.once="started = true" class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all hover:border-white/20">
+        <div class="font-mono text-3xl font-black tracking-tight text-brand-gold sm:text-4xl"><span x-text="fmt(counters.churches)">0</span>+</div>
+        <div class="mt-1 text-xs font-bold uppercase tracking-wider text-slate-200">{% trans "House Churches Planted" %}</div>
+        <div class="mt-1 text-[11px] text-slate-400">{% trans "Via local church DBS networks" %}</div>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all hover:border-white/20">
+        <div class="font-mono text-3xl font-black tracking-tight text-white sm:text-4xl"><span x-text="fmt(counters.years)">0</span>+</div>
+        <div class="mt-1 text-xs font-bold uppercase tracking-wider text-slate-200">{% trans "Years of Ministry" %}</div>
+        <div class="mt-1 text-[11px] text-slate-400">{% trans "Founded 2003" %}</div>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all hover:border-white/20">
+        <div class="font-mono text-3xl font-black tracking-tight text-rose-400 sm:text-4xl"><span x-text="fmt(counters.upgs)">0</span></div>
+        <div class="mt-1 text-xs font-bold uppercase tracking-wider text-slate-200">{% trans "UPGs Engaged" %}</div>
+        <div class="mt-1 text-[11px] text-slate-400">{% trans "Historic transformation milestones" %}</div>
+      </div>
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all hover:border-white/20">
+        <div class="font-mono text-3xl font-black tracking-tight text-sky-300 sm:text-4xl"><span x-text="fmt(counters.hubs)">0</span> → 12</div>
+        <div class="mt-1 text-xs font-bold uppercase tracking-wider text-slate-200">{% trans "Regional Hubs" %}</div>
+        <div class="mt-1 text-[11px] text-slate-400">{% trans "Expanded under Vision 100DM35" %}</div>
+      </div>
+      <div class="col-span-2 rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm transition-all hover:border-white/20 md:col-span-1">
+        <div class="font-mono text-3xl font-black tracking-tight text-emerald-400 sm:text-4xl"><span x-text="fmt(counters.network)">0</span>+</div>
+        <div class="mt-1 text-xs font-bold uppercase tracking-wider text-slate-200">{% trans "Churches In Network" %}</div>
+        <div class="mt-1 text-[11px] text-slate-400">ECGBC &amp; {% trans "regional congregations" %}</div>
+      </div>
+    </div>
+    <div class="mt-8 flex items-center justify-center gap-2 text-center text-xs text-slate-400">
+      <i class="fa-solid fa-shield-halved text-brand-gold"></i>
+      <span>{% trans "Data independently verified through quarterly MEL reviews & regional Hub oversight councils." %}</span>
+    </div>
+  </div>
+</section>
+
+{# ===== MCMS cycle (reference: chevron-arrow ribbon steps + detail card) ===== #}
+<section class="border-t border-b border-slate-200 bg-brand-slateBg py-20" x-data="{ active:'{{ mcms_steps.first.key }}' }">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto mb-12 max-w-3xl text-center" data-aos="fade-up">
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-blue">{% trans "Our Movement Strategy" %}</span>
+      <h2 class="mt-1 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">{% trans "The MCMS Movement Cycle" %}</h2>
+      <p class="mt-3 text-base text-slate-600">{% trans "Our movement-building strategy among unreached peoples." %}</p>
+    </div>
+    <!-- 4-step chevron ribbon (CMS-driven names/icons) -->
+    <div class="mx-auto mb-10 grid max-w-5xl grid-cols-2 gap-2 overflow-hidden rounded-xl border border-slate-300 shadow-sm md:grid-cols-4 md:gap-0" data-aos="fade-up">
+      {% for step in mcms_steps %}
+      <button @click="active='{{ step.key }}'"
+              class="mcms-step-arrow relative py-4 px-3 text-center transition-all flex flex-col items-center justify-center
+              {% if forloop.first %}bg-brand-blue text-white{% elif forloop.counter == 2 %}bg-sky-700 hover:bg-sky-800 text-white{% elif forloop.counter == 3 %}bg-sky-600 hover:bg-sky-700 text-white md:mcms-step-arrow{% else %}bg-sky-400 hover:bg-sky-500 text-slate-900{% endif %}">
+        <span class="text-xs uppercase tracking-wider {% if forloop.last %}text-slate-800{% else %}text-white/70{% endif %} font-normal">Step 0{{ forloop.counter }}</span>
+        <div class="mt-0.5 flex items-center gap-1.5 text-sm font-bold md:text-base">
+          <i class="fa-solid {% if forloop.first %}fa-bullhorn{% elif forloop.counter == 2 %}fa-fire{% elif forloop.counter == 3 %}fa-shuffle{% else %}fa-seedling{% endif %} text-xs"></i>
+          <span>{{ step.name }}</span>
+        </div>
+      </button>
+      {% endfor %}
+    </div>
+    <!-- Dynamic content panel (CMS-driven descriptions) -->
+    {% for step in mcms_steps %}
+    <div x-show="active==='{{ step.key }}'" x-transition class="mx-auto max-w-5xl rounded-3xl border border-slate-200 bg-white p-6 shadow-card transition-all duration-300 sm:p-10" data-aos="fade-in">
+      <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
+        <div class="space-y-4 lg:col-span-7">
+          <div class="flex items-center gap-2">
+            <span class="rounded-md bg-blue-100 px-3 py-1 text-xs font-bold uppercase text-brand-blue">Step 0{{ forloop.counter }}</span>
+            <i data-lucide="{{ step.icon|default:'refresh-cw' }}" class="h-4 w-4 text-brand-blue"></i>
+          </div>
+          <h3 class="text-2xl font-extrabold text-slate-900 sm:text-3xl">{{ step.name }}</h3>
+          <p class="text-sm leading-relaxed text-slate-600 sm:text-base">{{ step.description|default:step.short_line }}</p>
+          <a href="{% url 'what-we-do' %}" class="mt-2 inline-flex items-center gap-1 text-sm font-bold text-brand-blue hover:text-brand-red">
+            {% trans "Learn more" %} <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
+        </div>
+        <div class="space-y-4 rounded-2xl border border-slate-200 bg-brand-slateBg p-6 lg:col-span-5">
+          <p class="text-xs italic leading-relaxed text-slate-600">&ldquo;{{ step.short_line }}&rdquo;</p>
+          <div class="flex items-center justify-between text-xs pt-1">
+            <span class="font-medium text-slate-500">{% trans "Standard Cycle Stage" %}</span>
+            <a class="inline-flex items-center gap-1 font-bold text-brand-red hover:underline" href="{% url 'library' %}">
+              {% trans "Download Guide" %} <i class="fa-solid fa-arrow-down text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{# ===== Pillars (reference: KPI-pillar cards) ===== #}
+<section class="bg-white py-20" data-aos="fade-up">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto mb-12 max-w-3xl text-center">
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-blue">Strategic Pillars</span>
+      <h2 class="mt-1 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">{% trans "Our Four Pillars" %}</h2>
+    </div>
+    <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {% for p in pillars %}
+      <div class="rounded-2xl border border-slate-200 bg-brand-surface p-6 shadow-sm transition-shadow hover:shadow" data-aos="zoom-in" data-aos-delay="{{ forloop.counter0 }}00">
+        <div class="mb-3 flex items-start justify-between">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 text-lg font-bold text-brand-blue">
+            <i data-lucide="{{ p.icon|default:'pillar' }}" class="h-5 w-5"></i>
+          </div>
+          <span class="rounded-full border border-blue-200 bg-blue-50 px-2.5 py-0.5 text-xs font-bold text-brand-blue">Pillar {{ forloop.counter }}</span>
+        </div>
+        <h3 class="text-base font-bold text-slate-900">{{ p.title }}</h3>
+        <p class="mt-1 text-xs text-slate-500">{{ p.summary }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{# ===== Latest stories (reference: resource-card styling) ===== #}
+{% if latest_stories %}
+<section class="bg-white py-20" data-aos="fade-up">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-brand-red">{% trans "From the Field" %}</span>
+        <h2 class="mt-1 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">{% trans "Latest Impact Stories" %}</h2>
+      </div>
+      <a href="{% url 'impact' %}" class="font-bold text-brand-blue hover:text-brand-red hover:underline">{% trans "View all" %} →</a>
+    </div>
+    <div class="grid gap-6 md:grid-cols-3">
+      {% for s in latest_stories %}
+      <a href="{% url 'story-detail' s.slug %}" class="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-brand-slateBg transition-all hover:border-brand-blue" data-aos="fade-up">
+        {% if s.cover_image %}<img src="{{ s.cover_image.url }}" class="h-44 w-full object-cover" alt="{{ s.title }}">
+        {% else %}<div class="h-44 w-full bg-gradient-to-br from-brand-blue to-brand-blueDark"></div>{% endif %}
+        <div class="flex flex-1 flex-col p-6">
+          <div class="mb-3 flex items-center justify-between text-xs">
+            <span class="rounded px-2 py-0.5 font-bold text-[11px] {% if forloop.counter == 2 %}bg-amber-100 text-amber-800{% elif forloop.counter == 3 %}bg-rose-100 text-brand-red{% else %}bg-blue-100 text-brand-blue{% endif %}">{{ s.get_kind_display }}{% if s.region %} · {{ s.region.name }}{% endif %}</span>
+          </div>
+          <h3 class="text-base font-bold leading-snug text-slate-900 group-hover:text-brand-blue">{{ s.title }}</h3>
+          <p class="mt-2 text-xs leading-relaxed text-slate-600">{{ s.excerpt|truncatechars:120 }}</p>
+          <div class="mt-auto pt-4"><span class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue">{% trans "Read story" %} <i class="fa-solid fa-arrow-right text-[10px]"></i></span></div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{# ===== Partners ===== #}
+{% if partners %}
+<section class="border-t border-slate-200 bg-white py-12" data-aos="fade-up">
+  <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-10 px-4 sm:px-6">
+    {% for p in partners %}
+      {% if p.logo %}<img src="{{ p.logo.url }}" alt="{{ p.name }}" class="h-10 w-auto opacity-60 transition hover:opacity-100">{% else %}<span class="font-semibold text-slate-500">{{ p.name }}</span>{% endif %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function counterStrip() {
+  return {
+    counters: { churches: 0, years: 0, upgs: 0, hubs: 0, network: 0 },
+    started: false,
+    fmt(n) { return new Intl.NumberFormat('en-US').format(n); },
+    init() {
+      const strip = this.$el;
+      const targets = {
+        churches: '{{ site.counter_churches }}' * 1,
+        years: '{{ site.counter_years }}' * 1,
+        upgs: '{{ site.counter_upgs }}' * 1,
+        hubs: '{{ site.counter_hubs }}' * 1,
+        network: '{{ site.counter_network }}' * 1,
+      };
+      const io = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && !this.started) {
+          this.started = true;
+          Object.keys(targets).forEach((k) => this.animate(k, targets[k], 1600));
+          io.disconnect();
+        }
+      }, { threshold: 0.3 });
+      io.observe(strip);
+    },
+    animate(key, target, ms) {
+      const t0 = performance.now();
+      const tick = (t) => {
+        const p = Math.min((t - t0) / ms, 1);
+        const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
+        this.counters[key] = Math.round(target * eased);
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    },
+  };
+}
+</script>
+{% endblock %}

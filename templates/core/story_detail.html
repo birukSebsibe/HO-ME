@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}{{ story.title }} — {{ site.site_name }}{% endblock %}
+
+{% block content %}
+<article class="mx-auto max-w-3xl px-4 py-16 sm:px-6">
+  <a href="{% url 'impact' %}" class="text-sm font-semibold text-slate2-600 hover:text-slate2-800">← Back to all stories</a>
+  <p class="mt-6 text-xs font-semibold uppercase tracking-wider text-brand-red">{{ story.get_kind_display }}{% if story.region %} · {{ story.region.name }}{% endif %}</p>
+  <h1 class="mt-2 text-4xl font-extrabold text-slate2-900">{{ story.title }}</h1>
+  {% if story.published_at %}<p class="mt-2 text-sm text-brand-blue">{{ story.published_at }}</p>{% endif %}
+  {% if story.cover_image %}<img src="{{ story.cover_image.url }}" class="mt-8 w-full rounded-2xl object-cover" alt="{{ story.title }}">{% endif %}
+  {% if story.video_url %}
+  <div class="mt-8 aspect-video"><iframe src="{{ story.video_url }}" class="h-full w-full rounded-2xl" allowfullscreen></iframe></div>
+  {% endif %}
+  <div class="prose prose-dusk mt-8 max-w-none">{{ story.body|safe }}</div>
+  {% if story.tags %}<p class="mt-8 text-sm text-brand-blue">Tags: {{ story.tags }}</p>{% endif %}
+</article>
+{% endblock %}

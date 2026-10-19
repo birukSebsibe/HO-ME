@@ -1,0 +1,352 @@
+{% load static %}{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}{{ site.site_name }}{% endblock %}</title>
+  <meta name="description" content="{% block meta_desc %}{{ site.site_tagline }}{% endblock %}">
+  <link rel="icon" href="{% if site.favicon %}{{ site.favicon.url }}{% else %}data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>{% endif %}">
+  <!-- Tailwind CSS (CDN; swap to `npx tailwindcss build` for production) -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            /* ------ Design tokens: reference UI (deep blue / red / gold system) ------ */
+            brand: {
+              blue:      '#194F9E',
+              blueDark:  '#10366E',
+              blueLight: '#3B82F6',
+              blueBg:    '#0a2b5e',
+              red:       '#E52424',
+              redDark:   '#C81E1E',
+              terracotta:'#E06D53',
+              gold:      '#F59E0B',
+              orange:    '#EA580C',
+              surface:   '#F8FAFC',
+              slateBg:   '#F1F5F9',
+              /* compat shades kept for old class names (brand-50…950 gradient ramps) */
+              50:  '#eef7ff', 100: '#EAF6FF', 200: '#cfe9fb', 300: '#a5d5f6',
+              400: '#7fc1f2', 500: '#63B3ED',
+            },
+            accent: {
+              300: '#f3a4aa', 400: '#ee7079', 500: '#E52424',
+              600: '#C81E1E', 700: '#a01717',
+            },
+            slate2: {
+              50:  '#F8FAFC', 100: '#F1F5F9', 200: '#E2E8F0', 300: '#cbd5e1',
+              400: '#94a3b8', 500: '#64748B', 600: '#475569', 700: '#334155',
+              800: '#293545', 900: '#1E293B', 950: '#10366E',
+            },
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans Ethiopic', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            geez: ['Nyala', 'Noto Sans Ethiopic', 'Abyssinica SIL', 'sans-serif'],
+          },
+          boxShadow: {
+            soft: '0 4px 20px -2px rgba(25, 79, 158, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04)',
+            card: '0 10px 30px -4px rgba(16, 54, 110, 0.08)',
+          },
+        }
+      }
+    }
+  </script>
+  <!-- AOS animate-on-scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+  <!-- Font Awesome icons (reference design) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- Lucide icons (kept for pages that still use data-lucide) -->
+  <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  <!-- Alpine.js -->
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Ethiopic:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    [x-cloak]{display:none!important}
+    :root{
+      --brand-blue:#194F9E; --brand-blueDark:#10366E; --accent-500:#E52424; --accent-600:#C81E1E;
+      --gold:#F59E0B; --terracotta:#E06D53; --line:#E2E8F0; --ink:#1E293B;
+    }
+    /* Shared button classes (kept for existing pages using .btn*) */
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+      border-radius:.75rem;font-weight:700;font-size:.825rem;line-height:1.25rem;
+      padding:.625rem 1.25rem;transition:all .2s ease;cursor:pointer;
+      min-height:44px;@apply focus:outline-none;letter-spacing:.025em}
+    .btn:focus-visible{box-shadow:0 0 0 3px rgba(25,79,158,.45)}
+    .btn-primary{background:var(--accent-500);color:#fff;box-shadow:0 4px 14px -4px rgba(229,36,36,.5)}
+    .btn-primary:hover{background:var(--accent-600);box-shadow:0 6px 18px -4px rgba(200,30,30,.55)}
+    .btn-secondary{background:var(--brand-blue);color:#fff}
+    .btn-secondary:hover{background:var(--brand-blueDark)}
+    .btn-tertiary{background:transparent;color:var(--brand-blue);border:1px solid #cbd5e1}
+    .btn-tertiary:hover{border-color:var(--brand-blue);color:var(--brand-blueDark);background:#eff6ff}
+    .btn[disabled],.btn.disabled{opacity:.55;cursor:not-allowed}
+    .card{background:#fff;border:1px solid var(--line);border-radius:1.25rem;box-shadow:0 1px 2px rgba(16,54,110,.04);
+      transition:box-shadow .25s ease,border-color .25s ease,transform .25s ease}
+    .card-hover:hover{box-shadow:0 10px 30px -4px rgba(16,54,110,.14);border-color:rgba(25,79,158,.4);transform:translateY(-2px)}
+    .field:focus{outline:none;border-color:var(--brand-blue);box-shadow:0 0 0 3px rgba(25,79,158,.25)}
+
+    /* Desktop navigation links (reference: slate text → deep-blue hover) */
+    .nav-link{position:relative;display:inline-flex;align-items:center;padding:.55rem .35rem;border-radius:.4rem;
+      color:#334155;font-weight:500;transition:color 200ms ease,background-color 200ms ease;gap:.55rem}
+    .nav-link:hover{color:var(--brand-blue)}
+    .nav-link-active{color:var(--brand-blue);font-weight:600}
+    .nav-link-active::before{content:'';width:.5rem;height:.5rem;border-radius:9999px;background:var(--accent-500);
+      display:inline-block;flex:none}
+    /* Mobile navigation */
+    .mobile-nav-link{display:block;padding:.7rem .75rem;border-radius:.6rem;color:#334155;font-weight:500;
+      border-left:3px solid transparent;transition:color 160ms ease,background-color 160ms ease,border-color 160ms ease}
+    .mobile-nav-link:hover{color:var(--brand-blue);background:#eff6ff}
+    .mobile-nav-link-active{color:var(--brand-blue);background:#eff6ff;border-left-color:var(--accent-500);font-weight:700}
+    @media (prefers-reduced-motion: reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+        transition-duration:.01ms!important;scroll-behavior:auto!important}
+    }
+  </style>
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-brand-surface font-sans text-slate-800 antialiased selection:bg-brand-red selection:text-white" x-data="{ scrolled:false, mobileOpen:false }" @scroll.window="scrolled = window.scrollY > 10">
+
+{% with current_url=request.resolver_match.url_name %}
+{# ---------------- Top utility bar (reference design) ---------------- #}
+<div class="sticky top-0 z-50 bg-brand-blueDark py-2 px-4 text-xs text-white">
+  <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 md:flex-row">
+    <!-- Left: live-plan announcement -->
+    <div class="flex items-center gap-3">
+      <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-red px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white">
+        <span class="h-1.5 w-1.5 animate-ping rounded-full bg-white"></span> {% trans "Live Plan" %}
+      </span>
+      <span class="text-slate-200">
+        <strong class="font-semibold text-white">Vision 100DM35 (2026–2030)</strong> {% trans "Strategic Plan Finalized" %}
+      </span>
+      <a class="ml-1 text-[11px] font-medium text-slate-300 underline transition-colors hover:text-brand-gold"
+         href="{% url 'vision' %}">{% trans "Explore Targets" %} →</a>
+    </div>
+    <!-- Right: affiliate line, portal link, language switcher -->
+    <div class="flex items-center gap-4 text-slate-300">
+      <div class="hidden items-center gap-2 text-[11px] lg:flex">
+        <i class="fa-solid fa-location-dot text-brand-terracotta"></i>
+        <span>{{ site.contact_address }}{% if site.contact_address %} • {% endif %}ECGBC Affiliated</span>
+      </div>
+      <div class="hidden h-3 w-px bg-blue-800 lg:block"></div>
+      <!-- Portal button links to the Staff Admin Portal -->
+      <a href="/admin-portal/login/"
+         class="flex items-center gap-1.5 rounded border border-blue-700/60 bg-blue-900/50 px-2 py-1 text-[11px] text-slate-200 transition hover:bg-blue-800/80 hover:text-white">
+        <i class="fa-solid fa-lock text-[10px] text-brand-gold"></i>
+        <span>{% trans "Staff & Hub Portal" %}</span>
+      </a>
+      <!-- Language switcher (English / አማርኛ / Afaan Oromoo) -->
+      <div class="flex items-center gap-1 rounded bg-slate-900/60 px-2 py-0.5 text-[11px]">
+        <i class="fa-solid fa-globe text-brand-blueLight text-[10px]"></i>
+        <form action="{% url 'set_language' %}" method="post" class="inline">{% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.get_full_path }}">
+          <select name="language" aria-label="Language" onchange="this.form.submit()"
+                  class="cursor-pointer border-0 bg-transparent py-0 pl-1 pr-4 text-xs text-slate-200 focus:ring-0">
+            <option class="text-slate-900" value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+            <option class="text-slate-900" value="am" {% if LANGUAGE_CODE == 'am' %}selected{% endif %}>አማርኛ (Amharic)</option>
+            <option class="text-slate-900" value="om" {% if LANGUAGE_CODE == 'om' %}selected{% endif %}>Afaan Oromoo</option>
+          </select>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{# ---------------- Primary navigation (reference design) ---------------- #}
+<header class="sticky top-[33px] z-40 border-b border-slate-200/80 bg-white/95 shadow-sm backdrop-blur-md transition-all duration-200">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-20 items-center justify-between">
+      <!-- Brand logos area -->
+      <a aria-label="{{ site.site_name }}" class="group flex items-center gap-3.5 py-1" href="/">
+        {% if site.logo %}
+          <div class="relative h-12 w-12 shrink-0 transition-transform duration-300 group-hover:scale-105">
+            <img src="{{ site.logo.url }}" alt="{{ site.site_name }}" class="h-full w-full object-contain">
+          </div>
+          <div class="hidden border-l pl-3 sm:block">
+            <span class="block text-lg font-extrabold leading-tight text-brand-blue">{{ site.site_name }}</span>
+            <span class="block text-[11px] font-semibold text-brand-red">{{ site.site_tagline }}</span>
+          </div>
+        {% else %}
+          <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand-blue font-extrabold text-white shadow-sm sm:hidden">HM</div>
+          <span class="hidden text-xl leading-tight sm:block">
+            <span class="font-extrabold text-brand-blue">HO-ME</span>
+            <span class="font-geez font-bold text-brand-red"> | ሆሜ</span>
+          </span>
+        {% endif %}
+      </a>
+
+      <!-- Desktop navigation -->
+      <nav class="hidden items-center gap-6 text-sm font-medium text-slate-700 xl:flex" aria-label="Main navigation">
+        <a class="nav-link transition-colors {% if current_url == 'about' %}nav-link-active{% endif %}"
+           href="{% url 'about' %}" {% if current_url == 'about' %}aria-current="page"{% endif %}>{% trans "About Us" %}</a>
+        <a class="nav-link transition-colors {% if current_url == 'what-we-do' %}nav-link-active{% endif %}"
+           href="{% url 'what-we-do' %}" {% if current_url == 'what-we-do' %}aria-current="page"{% endif %}>{% trans "What We Do" %}</a>
+        <a class="nav-link transition-colors {% if current_url == 'where-we-work' %}nav-link-active{% endif %}"
+           href="{% url 'where-we-work' %}" {% if current_url == 'where-we-work' %}aria-current="page"{% endif %}>{% trans "Where We Work" %}</a>
+        <a class="nav-link transition-colors {% if current_url == 'vision' %}nav-link-active{% endif %}"
+           href="{% url 'vision' %}" {% if current_url == 'vision' %}aria-current="page"{% endif %}>
+          <span class="mr-1.5 inline-block h-2 w-2 rounded-full bg-brand-red"></span> Vision 100DM35
+        </a>
+        <a class="nav-link transition-colors {% if current_url == 'impact' %}nav-link-active{% endif %}"
+           href="{% url 'impact' %}" {% if current_url == 'impact' %}aria-current="page"{% endif %}>{% trans "Impact &amp; Stories" %}</a>
+        <a class="nav-link transition-colors {% if current_url == 'library' %}nav-link-active{% endif %}"
+           href="{% url 'library' %}" {% if current_url == 'library' %}aria-current="page"{% endif %}>{% trans "Library" %}</a>
+      </nav>
+
+      <!-- Right: CTA cluster -->
+      <div class="flex items-center gap-2.5">
+        <a class="hidden items-center px-3.5 py-2 text-xs font-semibold text-brand-blue transition-colors hover:text-brand-blueDark md:inline-flex"
+           href="{% url 'get-involved' %}#pray">
+          <i class="fa-solid fa-hands-praying mr-1.5 text-brand-terracotta"></i> {% trans "Pray" %}
+        </a>
+        <a class="hidden items-center rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 transition-colors hover:border-brand-blue hover:text-brand-blue lg:inline-flex"
+           href="{% url 'get-involved' %}#partner">
+          {% trans "Churches of Peace" %}
+        </a>
+        <a class="inline-flex items-center gap-2 rounded-lg bg-brand-red px-4 py-2.5 text-xs font-bold tracking-wide text-white shadow-sm transition-all duration-200 hover:bg-brand-redDark hover:shadow-md"
+           href="{% url 'get-involved' %}">
+          <i class="fa-solid fa-heart"></i>
+          <span>{% trans "GIVE" %}</span>
+        </a>
+        <!-- Mobile menu button -->
+        <button @click="mobileOpen = !mobileOpen"
+          class="p-2 text-slate-600 transition-colors hover:text-brand-blue focus:outline-none xl:hidden"
+          :aria-expanded="mobileOpen.toString()" aria-controls="mobile-menu"
+          :aria-label="mobileOpen ? 'Close menu' : 'Open menu'">
+          <i x-show="!mobileOpen" class="fa-solid fa-bars text-xl"></i>
+          <i x-show="mobileOpen" x-cloak class="fa-solid fa-xmark text-xl"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile nav drawer -->
+  <div id="mobile-menu" x-show="mobileOpen" x-cloak
+       x-transition:enter="transition ease-out duration-200"
+       x-transition:enter-start="opacity-0 -translate-y-2"
+       x-transition:enter-end="opacity-100 translate-y-0"
+       x-transition:leave="transition ease-in duration-150"
+       x-transition:leave-start="opacity-100 translate-y-0"
+       x-transition:leave-end="opacity-0 -translate-y-2"
+       @keydown.escape.window="mobileOpen = false"
+       class="border-b border-slate-200 bg-white px-6 pb-5 pt-3 shadow-lg xl:hidden">
+    <nav class="flex flex-col gap-1 text-sm font-medium text-slate-700">
+      <a class="mobile-nav-link {% if current_url == 'about' %}mobile-nav-link-active{% endif %}" href="{% url 'about' %}">{% trans "About Us" %}</a>
+      <a class="mobile-nav-link {% if current_url == 'what-we-do' %}mobile-nav-link-active{% endif %}" href="{% url 'what-we-do' %}">{% trans "What We Do" %}</a>
+      <a class="mobile-nav-link {% if current_url == 'where-we-work' %}mobile-nav-link-active{% endif %}" href="{% url 'where-we-work' %}">{% trans "Where We Work" %}</a>
+      <a class="mobile-nav-link {% if current_url == 'vision' %}mobile-nav-link-active{% endif %}" href="{% url 'vision' %}">Vision 100DM35</a>
+      <a class="mobile-nav-link {% if current_url == 'impact' %}mobile-nav-link-active{% endif %}" href="{% url 'impact' %}">{% trans "Impact &amp; Stories" %}</a>
+      <a class="mobile-nav-link {% if current_url == 'library' %}mobile-nav-link-active{% endif %}" href="{% url 'library' %}">{% trans "Library" %}</a>
+      <div class="flex flex-col gap-2 pt-2">
+        <a class="w-full rounded-md border border-brand-blue bg-white py-2 text-center font-semibold text-brand-blue"
+           href="{% url 'get-involved' %}#partner">{% trans "Churches of Peace" %}</a>
+        <a class="btn btn-primary w-full justify-center" href="{% url 'get-involved' %}">{% trans "Get Involved" %}</a>
+        <!-- Language switcher for mobile -->
+        <form action="{% url 'set_language' %}" method="post" class="mt-1 flex items-center justify-center gap-2 rounded-md bg-brand-slateBg py-2">{% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.get_full_path }}">
+          <i class="fa-solid fa-globe text-brand-blue"></i>
+          <select name="language" aria-label="Language" onchange="this.form.submit()"
+                  class="cursor-pointer border-0 bg-transparent text-xs font-semibold text-slate-700 focus:ring-0">
+            <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+            <option value="am" {% if LANGUAGE_CODE == 'am' %}selected{% endif %}>አማርኛ</option>
+            <option value="om" {% if LANGUAGE_CODE == 'om' %}selected{% endif %}>Afaan Oromoo</option>
+          </select>
+        </form>
+      </div>
+    </nav>
+  </div>
+</header>
+{% endwith %}
+
+{% if messages %}
+<div class="mx-auto max-w-7xl px-4 sm:px-6" role="status" aria-live="polite">
+  {% for message in messages %}
+    <div class="mt-3 rounded-lg border bg-white px-4 py-3 text-sm shadow-soft
+                {% if message.tags == 'success' %}border-l-4 border-l-emerald-500 text-emerald-700{% elif message.tags == 'error' %}border-l-4 border-l-brand-red text-brand-redDark{% else %}border-slate-200{% endif %}">
+      {{ message }}
+    </div>
+  {% endfor %}
+</div>
+{% endif %}
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+{# ---------------- Footer (reference design) ---------------- #}
+<footer class="border-t border-slate-800 bg-slate-900 pb-12 pt-16 text-slate-300">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 gap-10 border-b border-slate-800 pb-12 md:grid-cols-2 lg:grid-cols-12">
+      <!-- Left: logos & summary -->
+      <div class="space-y-4 lg:col-span-5">
+        <div class="flex items-center gap-3">
+          {% if site.logo %}
+            <img src="{{ site.logo.url }}" alt="{{ site.site_name }}" class="h-14 w-14 rounded-full border border-slate-700 bg-white object-contain p-1">
+          {% else %}
+            <div class="grid h-14 w-14 place-items-center rounded-full bg-brand-blue font-extrabold text-white">H</div>
+          {% endif %}
+          <span class="text-lg font-bold text-white">{{ site.site_name }}</span>
+        </div>
+        <p class="max-w-sm pt-2 text-xs leading-relaxed text-slate-400">{{ site.footer_note }}</p>
+        <div class="flex items-center gap-2 pt-1 text-[11px] text-slate-400">
+          <i class="fa-solid fa-certificate text-brand-gold"></i>
+          <span>ECGBC Affiliated</span>
+        </div>
+      </div>
+      <!-- Middle: quick nav -->
+      <div class="lg:col-span-3">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-white">{% trans "Explore" %}</h4>
+        <ul class="grid grid-cols-2 gap-2 pt-2 text-xs text-slate-400">
+          <li><a class="transition hover:text-brand-gold" href="{% url 'about' %}">{% trans "About Us" %}</a></li>
+          <li><a class="transition hover:text-brand-gold" href="{% url 'what-we-do' %}">{% trans "What We Do" %}</a></li>
+          <li><a class="transition hover:text-brand-gold" href="{% url 'where-we-work' %}">{% trans "Where We Work" %}</a></li>
+          <li><a class="transition hover:text-brand-gold" href="{% url 'vision' %}">Vision 100DM35</a></li>
+          <li><a class="transition hover:text-brand-gold" href="{% url 'impact' %}">{% trans "Impact &amp; Stories" %}</a></li>
+          <li><a class="transition hover:text-brand-gold" href="{% url 'library' %}">{% trans "Resource Library" %}</a></li>
+          <li><a class="transition hover:text-brand-gold" href="{% url 'get-involved' %}">{% trans "Get Involved" %}</a></li>
+          <li><a class="transition hover:text-brand-gold" href="{% url 'transparency' %}">{% trans "Transparency" %}</a></li>
+        </ul>
+      </div>
+      <!-- Right: HQ + contact + newsletter -->
+      <div class="space-y-3 lg:col-span-4">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-white">{% trans "Contact" %}</h4>
+        <p class="text-xs leading-relaxed text-slate-400"><i class="fa-solid fa-location-dot mr-1.5 text-brand-red"></i>{{ site.contact_address }}</p>
+        <p class="text-xs text-slate-400"><i class="fa-solid fa-envelope mr-1.5 text-brand-blueLight"></i>{{ site.contact_email }}</p>
+        <p class="text-xs text-slate-400"><i class="fa-solid fa-phone mr-1.5 text-emerald-400"></i>{{ site.contact_phone }}</p>
+        <div class="flex gap-2 pt-2">
+          {% if site.social_facebook %}<a href="{{ site.social_facebook }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>{% endif %}
+          {% if site.social_x %}<a href="{{ site.social_x }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>{% endif %}
+          {% if site.social_instagram %}<a href="{{ site.social_instagram }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>{% endif %}
+          {% if site.social_youtube %}<a href="{{ site.social_youtube }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>{% endif %}
+          {% if site.social_linkedin %}<a href="{{ site.social_linkedin }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>{% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col items-center justify-between gap-4 pt-8 text-xs text-slate-500 md:flex-row">
+      <div>© {% now "Y" %} {{ site.site_name }}. {% trans "All Rights Reserved." %}</div>
+      <div class="flex flex-wrap items-center gap-4">
+        <a class="hover:text-slate-300" href="{{ site.privacy_policy_url }}">{% trans "Privacy Policy" %}</a>
+        <span>•</span>
+        <a class="hover:text-slate-300" href="{{ site.transparency_url }}">{% trans "Transparency" %}</a>
+        <span>•</span>
+        <span class="italic text-slate-400">{% trans "Security Notice: Field identities anonymized for frontline worker protection." %}</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.addEventListener('DOMContentLoaded', () => {
+    AOS.init({ once: true, duration: prefersReduced ? 0 : 700, offset: 80 });
+    if (window.lucide) lucide.createIcons();
+  });
+  document.addEventListener('alpine:initialized', () => {
+    setTimeout(() => window.lucide && lucide.createIcons(), 100);
+  });
+</script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

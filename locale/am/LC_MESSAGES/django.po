@@ -1,0 +1,222 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: HO-ME 1.0\n"
+"Language: am\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "About Us"
+msgstr "ስለ እኛ"
+
+msgid "What We Do"
+msgstr "ምን እንሰራለን"
+
+msgid "Where We Work"
+msgstr "የምንሰራበት ቦታ"
+
+msgid "Impact & Stories"
+msgstr "ተጽዕኖ እና ታሪኮች"
+
+msgid "Library"
+msgstr "ቤተ መጻሕፍት"
+
+msgid "Get Involved"
+msgstr "ይሳተፉ"
+
+msgid "Explore"
+msgstr "ይጎብኙ"
+
+msgid "Resources"
+msgstr ""
+
+msgid "Contact"
+msgstr "ያግኙን"
+
+msgid "Privacy Policy"
+msgstr ""
+
+msgid "Transparency"
+msgstr ""
+
+msgid "Resource Library"
+msgstr "የመረጃ ቤተ መጻሕፍት"
+
+msgid "Horn of Africa Missions Engagers — secure staff sign-in."
+msgstr "ደህንነቱ የተጠበቀ የሠራተኛ መግቢያ"
+
+msgid "Username"
+msgstr "የተጠቃሚ ስም"
+
+msgid "Password"
+msgstr "የይለፍ ቃል"
+
+msgid "Email address"
+msgstr "የኢሜይል አድራሻ"
+
+msgid "Sign in"
+msgstr "ይግቡ"
+
+msgid "Sign in now"
+msgstr "አሁን ይግቡ"
+
+msgid "Log in"
+msgstr "ግባ"
+
+msgid "Sign out"
+msgstr "ውጣ"
+
+msgid "Log out"
+msgstr "ውጣ"
+
+msgid "Forgot password?"
+msgstr "የይለፍ ቃል ረስተዋል?"
+
+msgid "Forgot your password?"
+msgstr "የይለፍ ቃል ረስተዋል?"
+
+msgid "Back to sign in"
+msgstr "ወደ መግቢያ ተመልስ"
+
+msgid "Protected by brute-force lockout."
+msgstr "በመከላከያ እገዳ የተጠበቀ።"
+
+msgid "All sign-ins are monitored and audited."
+msgstr "ሁሉም መግቢያዎች ተከታተለው ይመዝገባሉ።"
+
+msgid ""
+"Please enter a correct %(username)s and password. Note that both fields may "
+"be case-sensitive."
+msgstr ""
+
+msgid "Reset your password"
+msgstr ""
+
+msgid ""
+"Enter the email address linked to your admin account. We'll send you a one-"
+"time link to set a new password."
+msgstr "አዲስ የይለፍ ቃል ለማስቀመጥ አገናኝ እንልክልዎታለን። ኢሜይል አድራሻዎን ያስገቡ።"
+
+msgid "Send reset link"
+msgstr "አገናኙን ይላኩ"
+
+msgid "Check your inbox"
+msgstr "የገቢ መልዕክቶ ይፈትሹ"
+
+msgid ""
+"If an account exists for that email, a one-time reset link is on its way. It"
+" expires shortly for security — check your spam folder too."
+msgstr ""
+"የዚህ ኢሜይል መግቢያ ካለዎት፣ አንድ ጊዜ የሚሠራ አገናኝ እየተላከ ነው። ለደህንነት ለአጭር ጊዜ ብቻ ይሠራል — የስፓም"
+" ማህደርዎንም ይፈትሹ።"
+
+msgid "Set a new password"
+msgstr "አዲስ የይለፍ ቃል ያስቀምጡ"
+
+msgid "Choose a strong password for the admin portal."
+msgstr "ለአስተዳደር ገጽ ጠንካራ የይለፍ ቃል ይምረጡ።"
+
+msgid "New password"
+msgstr "አዲስ የይለፍ ቃል"
+
+msgid "Confirm new password"
+msgstr "አዲሱን የይለፍ ቃል ያረጋግጡ"
+
+msgid "Update password"
+msgstr "የይለፍ ቃል ያዘምኑ"
+
+msgid "Link expired"
+msgstr ""
+
+msgid "This reset link is invalid or has already been used."
+msgstr "ይህ አገናኝ ትክክል አይደለም ወይም ቀድሞ ተጠቅመዋል።"
+
+msgid "Request a new link"
+msgstr "አዲስ አገናኝ ይጠይቁ"
+
+msgid "Password updated"
+msgstr "የይለፍ ቃል ተዘምኗል"
+
+msgid "Your new password is active. You can now sign in with it."
+msgstr "አዲሱ የይለፍ ቃል ተግባራ ነው። በዚሁ ይግቡ።"
+
+msgid "Pray, partner, give, or serve with us across the Horn of Africa."
+msgstr "ይጸልዩ፣ አጋር ይሁኑ፣ ስጡ ወይም ከእኛ ጋር ይሰሩ።"
+
+msgid "Prayer"
+msgstr "ጸሎት"
+
+msgid "Church Partnership"
+msgstr "የሰበካ ቤት አጋርነት"
+
+msgid "Giving"
+msgstr "ልገሳ"
+
+msgid "Volunteer / Staff"
+msgstr "በቃሌት / ሠራተኛ"
+
+msgid "Join the Prayer Network"
+msgstr "የጸሎት ኔትዎርክ ተቀላቀሉ"
+
+msgid "Receive weekly or monthly points for the peoples and hubs of the Horn."
+msgstr "ሳምንታዊ ወይም ወርሃዊ የጸሎት ቃል ይደርስልዎታል።"
+
+msgid "Sign up to pray"
+msgstr "ለጸሎት ተመዝገቡ"
+
+msgid "Church Partnership Application"
+msgstr "የሰበካ ቤት አጋር ጥያቄ"
+
+msgid "Giving Options"
+msgstr "የልገሳ አማራጮች"
+
+msgid "Volunteer / Staff Application"
+msgstr "የበቃሌት / ሠራተኛ ጥያቄ"
+
+msgid "Submit application"
+msgstr "ጥያቄውን ያስገቡ"
+
+msgid "Close"
+msgstr "ዝጋ"
+
+msgid "Oops"
+msgstr ""
+
+msgid "Thank you!"
+msgstr "እናመሰግናለን!"
+
+msgid "Thank you — you've joined the prayer network!"
+msgstr "እናመሰግናለን — የጸሎት ኔትዎርኩ ተቀላቀላችሁ!"
+
+msgid "Application received — our partnerships team will be in touch."
+msgstr "ጥያቄው ደርሷል — የአጋርነት ቡድናችን ያገኛል።"
+
+msgid "Application received — thank you for offering to serve!"
+msgstr "ጥያቄው ደርሷል — ለማገልገል በማሰባችሁ ናመሰግናለን!"
+
+msgid "Access request submitted — we'll follow up by email."
+msgstr "ጥያቄው ግቦት ደርሷል — በኢሜይል እንከታተላለን።"
+
+msgid "Home"
+msgstr "መነሻ"
+
+msgid "Add"
+msgstr "ጨምር"
+
+msgid "Change"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "History"
+msgstr ""
+
+msgid "Dashboard"
+msgstr "ዳሽቦርድ"
+
+msgid "View site"
+msgstr ""

@@ -1,0 +1,1842 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HO-ME | Horn of Africa Missions Engagers (ሆሜ)</title>
+<meta content="The African Church Multiplying Disciples Among the Unreached. Indigenous, data-driven, and church-led Disciple Making Movements across Ethiopia and the Horn of Africa." name="description"/>
+<!-- Tailwind CSS v3 CDN with forms & container-queries -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Custom Configuration -->
+<script data-purpose="tailwind-config">
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              blue: '#194F9E',
+              blueDark: '#10366E',
+              blueLight: '#3B82F6',
+              red: '#E52424',
+              redDark: '#C81E1E',
+              terracotta: '#E06D53',
+              gold: '#F59E0B',
+              orange: '#EA580C',
+              surface: '#F8FAFC',
+              slateBg: '#F1F5F9'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+            geez: ['Nyala', 'Abyssinica SIL', 'sans-serif']
+          },
+          boxShadow: {
+            soft: '0 4px 20px -2px rgba(25, 79, 158, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04)',
+            card: '0 10px 30px -4px rgba(16, 54, 110, 0.08)'
+          }
+        }
+      }
+    }
+  </script>
+<!-- External Font Awesome CDN for Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<!-- Custom CSS for Brand Typography and Specialized Ribbons -->
+<style data-purpose="custom-decorations">
+    /* Custom Chevron/Arrow ribbon for the MCMS stages */
+    .mcms-step-arrow {
+      position: relative;
+    }
+    @media (min-width: 768px) {
+      .mcms-step-arrow::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -16px;
+        width: 0;
+        height: 0;
+        border-top: 28px solid transparent;
+        border-bottom: 28px solid transparent;
+        border-left: 16px solid currentColor;
+        z-index: 10;
+      }
+    }
+    /* Subtle pulse animation for active movement dots */
+    @keyframes subtlePulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.08); }
+    }
+    .animate-subtle-pulse {
+      animation: subtlePulse 3s infinite ease-in-out;
+    }
+    /* Modal Backdrop Blur Filter */
+    .glass-modal {
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body class="bg-brand-surface text-slate-800 antialiased selection:bg-brand-red selection:text-white font-sans">
+<!-- BEGIN: TopBar -->
+<div class="bg-brand-blueDark text-white text-xs py-2 px-4 border-b border-blue-900/60 sticky top-0 z-50" data-purpose="top-utility-bar">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
+<!-- Left: Status Announcement & Ecgbc Affiliation -->
+<div class="flex items-center gap-3">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-brand-red/90 text-white font-semibold text-[11px] tracking-wide uppercase">
+<span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span> Live Plan
+        </span>
+<span class="text-slate-200">
+<strong>Vision 100DM35 (2026–2030)</strong> Strategic Plan Finalized
+        </span>
+<a class="underline hover:text-amber-300 text-[11px] transition-colors ml-1 font-medium" href="#vision">Explore Targets →</a>
+</div>
+<!-- Right: Direct Hub Network, Portal & Language Switcher -->
+<div class="flex items-center gap-4 text-slate-300">
+<div class="hidden lg:flex items-center gap-2 text-[11px]">
+<i class="fa-solid fa-location-dot text-brand-terracotta"></i>
+<span>Addis Ababa (HQ) • ECGBC Affiliated</span>
+</div>
+<div class="h-3 w-px bg-blue-800 hidden lg:block"></div>
+<!-- Portal Trigger Button -->
+<button class="flex items-center gap-1.5 hover:text-white text-[11px] bg-blue-900/50 hover:bg-blue-800/80 px-2 py-1 rounded transition border border-blue-700/60 text-slate-200" onclick="togglePortalModal(true)">
+<i class="fa-solid fa-lock text-[10px] text-amber-400"></i>
+<span>Staff &amp; Hub Portal</span>
+</button>
+<!-- Language selector simulation -->
+<div class="flex items-center gap-1 bg-slate-900/60 px-2 py-0.5 rounded text-[11px]">
+<i class="fa-solid fa-globe text-blue-400 text-[10px]"></i>
+<select class="bg-transparent border-0 py-0 pl-1 pr-4 text-xs text-slate-200 focus:ring-0 cursor-pointer" id="lang-switch">
+<option class="text-slate-900" selected="" value="en">English</option>
+<option class="text-slate-900" value="am">አማርኛ (Amharic)</option>
+<option class="text-slate-900" value="om">Afaan Oromoo</option>
+<option class="text-slate-900" value="ar">العربية</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- END: TopBar -->
+<!-- BEGIN: MainHeader -->
+<header class="bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 sticky top-[33px] z-40 transition-all duration-200" data-purpose="primary-navigation">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Brand Logos Area -->
+<a aria-label="Horn of Africa Missions Engagers Home" class="flex items-center gap-3.5 group py-1" href="#">
+<!-- Circular Emblem Logo -->
+<div class="relative w-14 h-14 shrink-0 transition-transform duration-300 group-hover:scale-105">
+<img alt="Horn of Africa Evangelical Mission Engagers Official Seal" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_28vXwPpaUMIyL8lfPPzz9r2b5kFzF7jNKF9kGhsC6zRklHSqJquCNTVtgjqLbgXPSJ6aTwj60zWPkxKnXYuhD65cAFgYzNqaom44OmTzU3rlWJ1G3GLUnOLnyUGaECpri3uAl-F5ySRsLJDiK7toWGhlL2Xb2LKSyUnDw2YOLKhira8eojxAUNpPGaNsWR5r1VyoOo0aUS8-lVLAbYNWtmuZfFFhgGsTfY6vbH3Gu4_AeuhDe_L-7SNOKJvRgGiQGg"/>
+</div>
+<!-- Banner Wordmark Logo -->
+<div class="hidden sm:block border-l pl-3 border-slate-200">
+<img alt="HO-ME ሆሜ - Mobilize Catalyze Multiply Sustain" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkm-KIvF-XQKMCfgPJ0AW8OgIPST17k3DI8WFZWTvxjPS76fc7spOpWnP80NGHXqrfj2mvzGliSCJunCBGSK7XWavSy2Lgzbi-pXwJJiXCWxnaMQbn6zw05XM_QuQPfWnVauglONKLxpPoq-boawU1ZTFsPuw_-TPdO202OK9A9h0NPZnXjznfzLavkmmUGmnkqtKI-LjQz38Vymh7MIq3YdWp8AYT92X369eSK2QKfQOy4-Vf_q2oPh7NUYFjmz22nQ"/>
+</div>
+<div class="sm:hidden font-bold leading-tight">
+<span class="text-brand-blue font-extrabold text-xl">HO-ME</span>
+<span class="text-brand-red font-geez text-lg"> | ሆሜ</span>
+</div>
+</a>
+<!-- Desktop Navigation Links -->
+<nav class="hidden xl:flex items-center gap-7 text-sm font-medium text-slate-700">
+<a class="hover:text-brand-blue transition-colors" href="#about">Who We Are</a>
+<a class="hover:text-brand-blue transition-colors" href="#mcms">What We Do (MCMS)</a>
+<a class="hover:text-brand-blue transition-colors" href="#hubs">12 Regional Hubs</a>
+<a class="hover:text-brand-blue transition-colors flex items-center gap-1.5 text-brand-blue font-semibold" href="#vision">
+<span class="w-2 h-2 rounded-full bg-brand-red"></span>
+            Vision 100DM35
+          </a>
+<a class="hover:text-brand-blue transition-colors" href="#resources">Resource Library</a>
+<a class="hover:text-brand-blue transition-colors" href="#history">Story &amp; Host</a>
+</nav>
+<!-- Right Call to Action Buttons -->
+<div class="flex items-center gap-3">
+<a class="hidden md:inline-flex items-center text-xs font-semibold px-3.5 py-2 text-brand-blue hover:text-brand-blueDark transition-colors" href="#pray">
+<i class="fa-solid fa-hands-praying mr-1.5 text-brand-terracotta"></i> Pray
+          </a>
+<a class="hidden lg:inline-flex items-center text-xs font-semibold px-3 py-2 border border-slate-300 hover:border-brand-blue text-slate-700 hover:text-brand-blue rounded-lg transition-colors" href="#partner">
+            Churches of Peace
+          </a>
+<a class="inline-flex items-center gap-2 bg-brand-red hover:bg-brand-redDark text-white text-xs font-bold px-4 py-2.5 rounded-lg shadow-sm hover:shadow transition-all duration-200 tracking-wide" href="#give">
+<i class="fa-solid fa-heart"></i>
+<span>GIVE / ድጋፍ ያድርጉ</span>
+</a>
+<!-- Mobile Menu Button -->
+<button aria-label="Toggle Navigation" class="xl:hidden text-slate-600 hover:text-brand-blue p-2" onclick="toggleMobileNav()">
+<i class="fa-solid fa-bars text-xl"></i>
+</button>
+</div>
+</div>
+</div>
+<!-- Mobile Nav Drawer -->
+<div class="hidden xl:hidden bg-white border-b border-slate-200 px-6 py-5 shadow-lg" id="mobile-menu">
+<nav class="flex flex-col gap-4 text-sm font-medium text-slate-700">
+<a class="py-1 hover:text-brand-blue" href="#about" onclick="toggleMobileNav()">Who We Are</a>
+<a class="py-1 hover:text-brand-blue" href="#mcms" onclick="toggleMobileNav()">What We Do (MCMS Process)</a>
+<a class="py-1 hover:text-brand-blue" href="#hubs" onclick="toggleMobileNav()">12 Regional Hubs &amp; Frontiers</a>
+<a class="py-1 text-brand-blue font-semibold" href="#vision" onclick="toggleMobileNav()">Vision 100DM35 Strategy</a>
+<a class="py-1 hover:text-brand-blue" href="#resources" onclick="toggleMobileNav()">Materials &amp; Manuals</a>
+<a class="py-1 hover:text-brand-blue" href="#history" onclick="toggleMobileNav()">History, Governance &amp; HOST</a>
+<div class="pt-2 flex flex-col gap-2">
+<a class="w-full text-center py-2 bg-slate-100 rounded-md font-semibold text-slate-800" href="#pray" onclick="toggleMobileNav()">Prayer Network</a>
+<a class="w-full text-center py-2 border border-brand-blue text-brand-blue rounded-md font-semibold" href="#partner" onclick="toggleMobileNav()">Church Mobilization Form</a>
+</div>
+</nav>
+</div>
+</header>
+<!-- END: MainHeader -->
+<main>
+<!-- BEGIN: HeroSection -->
+<section class="relative overflow-hidden bg-gradient-to-b from-slate-100 via-white to-brand-surface pt-12 pb-20 border-b border-slate-200" data-purpose="hero-banner">
+<!-- Background decorative watermarks & map glow -->
+<div class="absolute -right-24 -top-24 w-96 h-96 bg-blue-100/60 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -left-20 bottom-0 w-80 h-80 bg-red-100/40 rounded-full blur-3xl pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Left Column: Primary Messaging & CTAs -->
+<div class="lg:col-span-7 space-y-6 text-left">
+<!-- Strategic Badge -->
+<div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 shadow-sm">
+<span class="flex h-2 w-2 rounded-full bg-brand-red animate-ping"></span>
+<span class="text-xs font-semibold text-brand-blue uppercase tracking-wider">Indigenous • Data-Driven • Church-Led</span>
+</div>
+<!-- Headline -->
+<h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12]">
+              The African Church Multiplying Disciples <span class="text-brand-blue underline decoration-brand-red decoration-4 underline-offset-8">Among the Unreached.</span>
+</h1>
+<!-- Subtitle -->
+<p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
+              For over 20 years, <strong>Horn of Africa Missions Engagers (HO-ME / ሆሜ)</strong> has equipped local Ethiopian and regional churches to send, support, and multiply self-sustaining disciple-makers across unreached Muslim-heritage and frontier populations.
+            </p>
+<!-- Action CTAs -->
+<div class="flex flex-wrap items-center gap-4 pt-3">
+<a class="px-6 py-3.5 bg-brand-blue hover:bg-brand-blueDark text-white font-bold text-sm rounded-xl shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-2" href="#vision">
+<span>Explore Vision 100DM35</span>
+<i class="fa-solid fa-arrow-trend-up"></i>
+</a>
+<a class="px-6 py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm rounded-xl border border-slate-300 shadow-sm transition-all duration-200 flex items-center gap-2" href="#mcms">
+<i class="fa-solid fa-diagram-project text-brand-red"></i>
+<span>How the MCMS Cycle Works</span>
+</a>
+<button class="px-4 py-3.5 text-slate-600 hover:text-brand-red text-sm font-semibold inline-flex items-center gap-2 transition-colors" onclick="playMovementStoryModal()">
+<i class="fa-regular fa-circle-play text-xl text-brand-red"></i>
+<span>Field Documentary</span>
+</button>
+</div>
+<!-- Trust Indicator / Endorsement -->
+<div class="pt-6 border-t border-slate-200/80 flex items-center gap-4 text-xs text-slate-500">
+<div class="flex -space-x-2">
+<span class="w-8 h-8 rounded-full bg-brand-blue text-white flex items-center justify-center font-bold text-xs ring-2 ring-white">EC</span>
+<span class="w-8 h-8 rounded-full bg-brand-red text-white flex items-center justify-center font-bold text-xs ring-2 ring-white">HO</span>
+<span class="w-8 h-8 rounded-full bg-brand-gold text-white flex items-center justify-center font-bold text-xs ring-2 ring-white">ME</span>
+</div>
+<div>
+<p class="font-semibold text-slate-700">Evangelical Churches Fellowship of Ethiopia / ECGBC Partner</p>
+<p>Governed by an active Board of Trustees &amp; compliant with Ethiopian civil society regulations.</p>
+</div>
+</div>
+</div>
+<!-- Right Column: Visual Brand Seal & Movement Card -->
+<div class="lg:col-span-5 relative flex justify-center">
+<!-- Elevated Hero Card with Seal Representation -->
+<div class="relative w-full max-w-md bg-white rounded-3xl p-7 shadow-card border border-slate-200">
+<!-- Top Header of Card -->
+<div class="flex items-center justify-between pb-5 border-b border-slate-100">
+<div class="flex items-center gap-3">
+<img alt="HO-ME Seal" class="w-12 h-12 object-contain rounded-full shadow-inner border border-slate-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_28vXwPpaUMIyL8lfPPzz9r2b5kFzF7jNKF9kGhsC6zRklHSqJquCNTVtgjqLbgXPSJ6aTwj60zWPkxKnXYuhD65cAFgYzNqaom44OmTzU3rlWJ1G3GLUnOLnyUGaECpri3uAl-F5ySRsLJDiK7toWGhlL2Xb2LKSyUnDw2YOLKhira8eojxAUNpPGaNsWR5r1VyoOo0aUS8-lVLAbYNWtmuZfFFhgGsTfY6vbH3Gu4_AeuhDe_L-7SNOKJvRgGiQGg"/>
+<div>
+<h3 class="text-sm font-black text-slate-800 leading-tight">ሆርን ኦፍ አፍሪካ ኢቫንጄሊካል</h3>
+<p class="text-xs text-brand-blue font-semibold">HO-ME Movement Hub</p>
+</div>
+</div>
+<span class="px-2.5 py-1 text-[11px] font-bold rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">
+<i class="fa-solid fa-circle-check mr-1 text-[9px]"></i>Active 2026
+                </span>
+</div>
+<!-- Interactive Stage Preview in Hero Card -->
+<div class="my-6 p-4 rounded-2xl bg-gradient-to-br from-blue-50/70 to-slate-50 border border-blue-100 space-y-3">
+<div class="flex justify-between items-center text-xs">
+<span class="font-bold text-slate-700">Movement Cycle Status</span>
+<span class="text-brand-blue font-mono font-bold">Phase IV: Scale</span>
+</div>
+<!-- Mini visualization of the 4 MCMS steps -->
+<div class="grid grid-cols-4 gap-1 text-[10px] text-center font-bold">
+<div class="py-1.5 rounded bg-brand-blue text-white shadow-xs">Mobilize</div>
+<div class="py-1.5 rounded bg-brand-blue/80 text-white">Catalyze</div>
+<div class="py-1.5 rounded bg-sky-600 text-white">Multiply</div>
+<div class="py-1.5 rounded bg-sky-400 text-slate-900">Sustain</div>
+</div>
+<p class="text-[12px] text-slate-600 italic leading-snug">
+                  "Not sending foreign teams, but shifting the African church from receiving to self-reproducing frontier sending."
+                </p>
+</div>
+<!-- Key Metrics Quick View -->
+<div class="grid grid-cols-2 gap-3 text-center">
+<div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
+<div class="text-2xl font-black text-brand-blue">23,000+</div>
+<div class="text-[11px] font-medium text-slate-500">Churches Multiplied</div>
+</div>
+<div class="p-3 rounded-xl bg-slate-50 border border-slate-100">
+<div class="text-2xl font-black text-brand-red">8 UPGs</div>
+<div class="text-[11px] font-medium text-slate-500">Engaged to Reached</div>
+</div>
+</div>
+<!-- Quick Action Inside Card -->
+<div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+<span class="text-xs text-slate-500 font-medium">Verified by field MEL team</span>
+<a class="text-xs font-bold text-brand-blue hover:text-brand-red inline-flex items-center gap-1" href="#hubs">
+                  View 12 Hubs <i class="fa-solid fa-chevron-right text-[10px]"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroSection -->
+<!-- BEGIN: LiveImpactCounterRibbon -->
+<section class="bg-brand-blueDark text-white py-12 relative overflow-hidden shadow-inner" data-purpose="metrics-counter-ribbon">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-2xl mx-auto mb-10">
+<span class="text-xs font-bold tracking-widest uppercase text-amber-400">Two Decades of Measurable Fruit</span>
+<h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Catalytic Impact Across the Horn of Africa</h2>
+</div>
+<!-- 5 Column Metrics Grid -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-center">
+<!-- Metric 1 -->
+<div class="bg-white/5 backdrop-blur-sm p-5 rounded-2xl border border-white/10 hover:border-white/20 transition-all">
+<div class="text-3xl sm:text-4xl font-black text-amber-400 font-mono tracking-tight" id="metric-churches">23,000+</div>
+<div class="text-xs font-bold text-slate-200 mt-1 uppercase tracking-wider">House Churches Planted</div>
+<div class="text-[11px] text-slate-400 mt-1">Via local church DBS networks</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-white/5 backdrop-blur-sm p-5 rounded-2xl border border-white/10 hover:border-white/20 transition-all">
+<div class="text-3xl sm:text-4xl font-black text-white font-mono tracking-tight" id="metric-years">20+</div>
+<div class="text-xs font-bold text-slate-200 mt-1 uppercase tracking-wider">Years of Ministry</div>
+<div class="text-[11px] text-slate-400 mt-1">Founded 2003 • Operating to 2026+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-white/5 backdrop-blur-sm p-5 rounded-2xl border border-white/10 hover:border-white/20 transition-all">
+<div class="text-3xl sm:text-4xl font-black text-rose-400 font-mono tracking-tight" id="metric-upgs">8</div>
+<div class="text-xs font-bold text-slate-200 mt-1 uppercase tracking-wider">UPGs to "Reached"</div>
+<div class="text-[11px] text-slate-400 mt-1">Historic transformation milestones</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-white/5 backdrop-blur-sm p-5 rounded-2xl border border-white/10 hover:border-white/20 transition-all">
+<div class="text-3xl sm:text-4xl font-black text-sky-300 font-mono tracking-tight" id="metric-hubs">8 → 12</div>
+<div class="text-xs font-bold text-slate-200 mt-1 uppercase tracking-wider">Regional Hubs</div>
+<div class="text-[11px] text-slate-400 mt-1">Expanded under Vision 100DM35</div>
+</div>
+<!-- Metric 5 -->
+<div class="col-span-2 md:col-span-1 bg-white/5 backdrop-blur-sm p-5 rounded-2xl border border-white/10 hover:border-white/20 transition-all">
+<div class="text-3xl sm:text-4xl font-black text-emerald-400 font-mono tracking-tight" id="metric-network">4,000+</div>
+<div class="text-xs font-bold text-slate-200 mt-1 uppercase tracking-wider">Churches In Network</div>
+<div class="text-[11px] text-slate-400 mt-1">ECGBC &amp; regional congregations</div>
+</div>
+</div>
+<div class="mt-8 text-center text-xs text-slate-400 flex items-center justify-center gap-2">
+<i class="fa-solid fa-shield-halved text-amber-400"></i>
+<span>Data independently verified through quarterly MEL reviews &amp; regional Hub oversight councils.</span>
+</div>
+</div>
+</section>
+<!-- END: LiveImpactCounterRibbon -->
+<!-- BEGIN: AboutWhoWeAre -->
+<section class="py-20 bg-white" data-purpose="who-we-are" id="about">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<!-- Image and Emblem Showcase Column -->
+<div class="lg:col-span-5 order-2 lg:order-1">
+<div class="relative bg-slate-50 p-8 rounded-3xl border border-slate-200 shadow-soft">
+<div class="text-center space-y-4">
+<img alt="HO-ME Seal Emblem" class="w-36 h-36 mx-auto object-contain drop-shadow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_28vXwPpaUMIyL8lfPPzz9r2b5kFzF7jNKF9kGhsC6zRklHSqJquCNTVtgjqLbgXPSJ6aTwj60zWPkxKnXYuhD65cAFgYzNqaom44OmTzU3rlWJ1G3GLUnOLnyUGaECpri3uAl-F5ySRsLJDiK7toWGhlL2Xb2LKSyUnDw2YOLKhira8eojxAUNpPGaNsWR5r1VyoOo0aUS8-lVLAbYNWtmuZfFFhgGsTfY6vbH3Gu4_AeuhDe_L-7SNOKJvRgGiQGg"/>
+<div class="font-geez text-brand-red font-bold text-lg">
+                  ሆርን ኦፍ አፍሪካ ኢቫንጄሊካል ሚሽን ኢንጌጀርስ
+                </div>
+<div class="text-xs text-slate-500 font-medium tracking-wide uppercase">
+                  Horn of Africa Evangelical Mission Engagers (HO-ME)
+                </div>
+</div>
+<!-- Key identity tenets -->
+<div class="mt-8 space-y-3 pt-6 border-t border-slate-200">
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-blue-100 text-brand-blue flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">1</div>
+<div>
+<h4 class="text-xs font-bold text-slate-900">Indigenous Leadership</h4>
+<p class="text-xs text-slate-600">Equipping local believers who know the languages, culture, and social dynamics intimately.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-red-100 text-brand-red flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">2</div>
+<div>
+<h4 class="text-xs font-bold text-slate-900">Church of Peace Strategy</h4>
+<p class="text-xs text-slate-600">Transforming inward-looking churches into reproducing sending centers for unreached frontiers.</p>
+</div>
+</div>
+<div class="flex items-start gap-3">
+<div class="w-6 h-6 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">3</div>
+<div>
+<h4 class="text-xs font-bold text-slate-900">DMM (Disciple Making Movements)</h4>
+<p class="text-xs text-slate-600">Focusing on obedience-based Discovery Bible Studies (DBS) that reproduce to the 4th generation.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Narrative Column -->
+<div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
+<span class="text-xs font-bold text-brand-red uppercase tracking-wider">Pioneering Frontier Missions</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-snug">
+              Mobilizing the Horn of Africa Church from a <span class="text-brand-blue">Mission Field into a Mission Force</span>.
+            </h2>
+<p class="text-slate-600 leading-relaxed text-base">
+              The Horn of Africa is home to over <strong>270 million people</strong>, including 43 highly unreached and unengaged people groups (UPGs). Historically, missions in the region relied heavily on external agencies and models unsuited to high-resistance contexts.
+            </p>
+<p class="text-slate-600 leading-relaxed text-base">
+              Since 2003, <strong>HO-ME</strong> has pioneered a paradigm shift: activating established evangelical congregations (specifically across the 4,000+ ECGBC churches and allied networks) to take sovereign responsibility for unreached frontiers at their doorsteps. Through inductive Discovery Bible Studies, Persons of Peace, and local economic resilience, we see generations of new believers birthed within their own cultural context.
+            </p>
+<!-- Theological and Organizational pillars -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+<div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50">
+<i class="fa-solid fa-arrows-spin text-brand-blue text-lg mb-2"></i>
+<h3 class="text-sm font-bold text-slate-800">4th Generation Multiplication</h3>
+<p class="text-xs text-slate-500 mt-1">Moving past 1st generation converts to establish autonomous, self-multiplying house churches.</p>
+</div>
+<div class="border border-slate-200 rounded-xl p-4 bg-slate-50/50">
+<i class="fa-solid fa-wheat-awn text-brand-terracotta text-lg mb-2"></i>
+<h3 class="text-sm font-bold text-slate-800">Kingdom Business &amp; Self-Reliance</h3>
+<p class="text-xs text-slate-500 mt-1">Replacing foreign dependency with local church stewardship, IGA micro-enterprises, and domestic giving.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: AboutWhoWeAre -->
+<!-- BEGIN: InteractiveMCMSCycle -->
+<section class="py-20 bg-slate-50 border-t border-b border-slate-200" data-purpose="mcms-movement-cycle" id="mcms">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Section Header -->
+<div class="text-center max-w-3xl mx-auto mb-12">
+<div class="inline-flex items-center gap-2 mb-3">
+<img alt="HO-ME Ribbon" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkm-KIvF-XQKMCfgPJ0AW8OgIPST17k3DI8WFZWTvxjPS76fc7spOpWnP80NGHXqrfj2mvzGliSCJunCBGSK7XWavSy2Lgzbi-pXwJJiXCWxnaMQbn6zw05XM_QuQPfWnVauglONKLxpPoq-boawU1ZTFsPuw_-TPdO202OK9A9h0NPZnXjznfzLavkmmUGmnkqtKI-LjQz38Vymh7MIq3YdWp8AYT92X369eSK2QKfQOy4-Vf_q2oPh7NUYFjmz22nQ"/>
+</div>
+<h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">The MCMS Movement Cycle</h2>
+<p class="text-slate-600 mt-3 text-base">
+            Click through our 4-stage strategic engine that turns ordinary local congregations into multiplying frontier church planting movements.
+          </p>
+</div>
+<!-- 4 Step Ribbon Selector matching the official logo graphic workflow -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-0 max-w-5xl mx-auto mb-10 shadow-sm rounded-xl overflow-hidden border border-slate-300">
+<!-- Step 1: Mobilize -->
+<button class="mcms-tab mcms-step-arrow py-4 px-3 text-center transition-all bg-brand-blue text-white font-bold text-sm md:text-base flex flex-col items-center justify-center" id="tab-mobilize" onclick="setMcmsStage('mobilize')">
+<span class="text-xs uppercase tracking-wider text-blue-200 font-normal">Step 01</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<i class="fa-solid fa-bullhorn text-xs"></i>
+<span>Mobilize</span>
+</div>
+</button>
+<!-- Step 2: Catalyze -->
+<button class="mcms-tab mcms-step-arrow py-4 px-3 text-center transition-all bg-sky-700 hover:bg-sky-800 text-white font-bold text-sm md:text-base flex flex-col items-center justify-center" id="tab-catalyze" onclick="setMcmsStage('catalyze')">
+<span class="text-xs uppercase tracking-wider text-sky-200 font-normal">Step 02</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<i class="fa-solid fa-fire text-xs"></i>
+<span>Catalyze</span>
+</div>
+</button>
+<!-- Step 3: Multiply -->
+<button class="mcms-tab mcms-step-arrow py-4 px-3 text-center transition-all bg-sky-600 hover:bg-sky-700 text-white font-bold text-sm md:text-base flex flex-col items-center justify-center" id="tab-multiply" onclick="setMcmsStage('multiply')">
+<span class="text-xs uppercase tracking-wider text-sky-100 font-normal">Step 03</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<i class="fa-solid fa-shuffle text-xs"></i>
+<span>Multiply</span>
+</div>
+</button>
+<!-- Step 4: Sustain -->
+<button class="mcms-tab py-4 px-3 text-center transition-all bg-sky-400 hover:bg-sky-500 text-slate-900 font-bold text-sm md:text-base flex flex-col items-center justify-center" id="tab-sustain" onclick="setMcmsStage('sustain')">
+<span class="text-xs uppercase tracking-wider text-slate-800 font-normal">Step 04</span>
+<div class="flex items-center gap-1.5 mt-0.5">
+<i class="fa-solid fa-seedling text-xs"></i>
+<span>Sustain</span>
+</div>
+</button>
+</div>
+<!-- Dynamic Content Display Panel -->
+<div class="bg-white rounded-3xl p-6 sm:p-10 shadow-card border border-slate-200 max-w-5xl mx-auto transition-all duration-300" id="mcms-content-card">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<div class="lg:col-span-7 space-y-4">
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-md text-xs font-bold bg-blue-100 text-brand-blue uppercase" id="stage-badge">Phase 1: The Engine</span>
+<span class="text-xs text-slate-500 font-medium" id="stage-focus">Local Church Activation</span>
+</div>
+<h3 class="text-2xl sm:text-3xl font-extrabold text-slate-900" id="stage-title">
+                Mobilize: Turning Churches Outward into Frontiers
+              </h3>
+<p class="text-slate-600 text-sm sm:text-base leading-relaxed" id="stage-description">
+                Rather than creating detached mission organizations, HO-ME works with established congregations through our <strong>Churches of Peace</strong> initiative. We awaken leaders to see unreached peoples in their vicinity, shift mindsets from traditional institutional maintenance to frontier mission, and prepare candidates for apostolic sending.
+              </p>
+<!-- Dynamic highlights list -->
+<div class="pt-2">
+<h4 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-2">Key Methodologies:</h4>
+<ul class="space-y-2 text-xs sm:text-sm text-slate-600" id="stage-bullets">
+<li class="flex items-center gap-2">
+<i class="fa-solid fa-check-circle text-emerald-600"></i>
+<span>"Church of Peace" mobilization seminars conducted in local synods and zones.</span>
+</li>
+<li class="flex items-center gap-2">
+<i class="fa-solid fa-check-circle text-emerald-600"></i>
+<span>Identification, screening, and sending candidate church planters directly supported by mother churches.</span>
+</li>
+<li class="flex items-center gap-2">
+<i class="fa-solid fa-check-circle text-emerald-600"></i>
+<span>Frontier prayer networks mobilizing continuous intercession for unreached people clusters.</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Stage Quantitative Target & Quote -->
+<div class="lg:col-span-5 bg-slate-50 rounded-2xl p-6 border border-slate-200 space-y-5">
+<div>
+<span class="text-xs font-bold uppercase text-slate-400">Vision 100DM35 Milestone</span>
+<div class="text-3xl font-black text-brand-blue mt-1" id="stage-metric-target">100 Churches</div>
+<div class="text-xs font-medium text-slate-600" id="stage-metric-label">Activated as reproducing "Churches of Peace" by 2030</div>
+</div>
+<div class="p-4 bg-white rounded-xl border border-slate-200 shadow-xs">
+<i class="fa-solid fa-quote-left text-brand-terracotta text-lg mb-1 block"></i>
+<p class="text-xs italic text-slate-700 leading-relaxed" id="stage-quote">
+                  "Frontier missions doesn't begin on the foreign field; it begins when our local pulpit catches God's heartbreak for the unreached at our border."
+                </p>
+<div class="mt-2 text-[11px] font-bold text-slate-900" id="stage-quote-author">— Regional Synod Coordinator, Bale Hub</div>
+</div>
+<div class="flex items-center justify-between text-xs pt-1">
+<span class="text-slate-500 font-medium">Standard Manual:</span>
+<a class="font-bold text-brand-red hover:underline inline-flex items-center gap-1" href="#resources">
+                  Download Guide <i class="fa-solid fa-arrow-down text-[10px]"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: InteractiveMCMSCycle -->
+<!-- BEGIN: Vision100DM35StrategicPlan -->
+<section class="py-20 bg-white" data-purpose="vision-dashboard" id="vision">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+<div>
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 border border-red-200 text-xs font-bold text-brand-red mb-2">
+<i class="fa-solid fa-bullseye"></i> 2026–2030 Strategic Horizon
+            </div>
+<h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">Vision 100DM35 Strategic Dashboard</h2>
+<p class="text-slate-600 mt-2 max-w-2xl text-sm sm:text-base">
+              Moving from initial foundation to multiplication: 100 Churches of Peace sending and sustaining 365 frontline workers across 35 verified DMM streams.
+            </p>
+</div>
+<!-- Document Action -->
+<div class="flex items-center gap-3">
+<button class="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold transition" onclick="downloadSummarySimulation()">
+<i class="fa-solid fa-file-pdf text-red-400"></i>
+<span>Download Executive Summary (PDF)</span>
+</button>
+</div>
+</div>
+<!-- Metric KPI Cards Table / Progress Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1: Workers Sustained Locally -->
+<div class="bg-brand-surface rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start mb-3">
+<div class="w-10 h-10 rounded-xl bg-blue-100 text-brand-blue flex items-center justify-center text-lg font-bold">
+<i class="fa-solid fa-hand-holding-hand"></i>
+</div>
+<span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-brand-blue border border-blue-200">Pillar 1: Mobilize</span>
+</div>
+<h3 class="text-base font-bold text-slate-900">Workers Sustained by Local Churches</h3>
+<p class="text-xs text-slate-500 mt-1">Reducing foreign dependency by pairing field workers directly with domestic mother churches.</p>
+<div class="mt-6 space-y-2">
+<div class="flex justify-between text-xs font-semibold">
+<span class="text-slate-500">Baseline: <strong>~52%</strong></span>
+<span class="text-brand-blue font-bold">2030 Target: <strong>70%</strong></span>
+</div>
+<div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+<div class="bg-brand-blue h-full rounded-full transition-all duration-1000" style="width: 74%;"></div>
+</div>
+<div class="text-[11px] text-right text-slate-400">Currently at 52% of 2030 goal</div>
+</div>
+</div>
+<!-- Card 2: DMM Streams (2nd to 4th Gen) -->
+<div class="bg-brand-surface rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start mb-3">
+<div class="w-10 h-10 rounded-xl bg-red-100 text-brand-red flex items-center justify-center text-lg font-bold">
+<i class="fa-solid fa-network-wired"></i>
+</div>
+<span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-red-50 text-brand-red border border-red-200">Pillar 3: Multiply</span>
+</div>
+<h3 class="text-base font-bold text-slate-900">Verified DMM Streams (Gen 2–4)</h3>
+<p class="text-xs text-slate-500 mt-1">Self-replicating discipleship rivers multiplying without external supervision.</p>
+<div class="mt-6 space-y-2">
+<div class="flex justify-between text-xs font-semibold">
+<span class="text-slate-500">Baseline: <strong>~2 Streams</strong></span>
+<span class="text-brand-red font-bold">2030 Target: <strong>35 Streams</strong></span>
+</div>
+<div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+<div class="bg-brand-red h-full rounded-full transition-all duration-1000" style="width: 25%;"></div>
+</div>
+<div class="text-[11px] text-right text-slate-400">8 Streams currently emerging</div>
+</div>
+</div>
+<!-- Card 3: Active Frontline Church Planters -->
+<div class="bg-brand-surface rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start mb-3">
+<div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-lg font-bold">
+<i class="fa-solid fa-person-walking-luggage"></i>
+</div>
+<span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200">Frontline Field</span>
+</div>
+<h3 class="text-base font-bold text-slate-900">Active Frontline Planters</h3>
+<p class="text-xs text-slate-500 mt-1">Cross-cultural indigenous apostolic pioneers deployed in unreached clusters.</p>
+<div class="mt-6 space-y-2">
+<div class="flex justify-between text-xs font-semibold">
+<span class="text-slate-500">Baseline: <strong>250 Planters</strong></span>
+<span class="text-amber-600 font-bold">2030 Target: <strong>365 Planters</strong></span>
+</div>
+<div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+<div class="bg-amber-500 h-full rounded-full transition-all duration-1000" style="width: 68%;"></div>
+</div>
+<div class="text-[11px] text-right text-slate-400">250 fully deployed, 115 in pipeline</div>
+</div>
+</div>
+<!-- Card 4: Churches of Peace -->
+<div class="bg-brand-surface rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start mb-3">
+<div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-lg font-bold">
+<i class="fa-solid fa-church"></i>
+</div>
+<span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200">Pillar 1: Mobilize</span>
+</div>
+<h3 class="text-base font-bold text-slate-900">Churches of Peace Activated</h3>
+<p class="text-xs text-slate-500 mt-1">Congregations with active missionary committees, prayer watches &amp; direct frontier budgets.</p>
+<div class="mt-6 space-y-2">
+<div class="flex justify-between text-xs font-semibold">
+<span class="text-slate-500">Baseline: <strong>38 Churches</strong></span>
+<span class="text-purple-600 font-bold">2030 Target: <strong>100 Churches</strong></span>
+</div>
+<div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+<div class="bg-purple-600 h-full rounded-full transition-all duration-1000" style="width: 38%;"></div>
+</div>
+<div class="text-[11px] text-right text-slate-400">38 Synods/local assemblies signed covenant</div>
+</div>
+</div>
+<!-- Card 5: Local Revenue Share -->
+<div class="bg-brand-surface rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start mb-3">
+<div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg font-bold">
+<i class="fa-solid fa-coins"></i>
+</div>
+<span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">Pillar 4: Sustain</span>
+</div>
+<h3 class="text-base font-bold text-slate-900">Local Ethiopian Revenue Share</h3>
+<p class="text-xs text-slate-500 mt-1">Domestic giving, Kingdom business profits, and synod contributions funding operations.</p>
+<div class="mt-6 space-y-2">
+<div class="flex justify-between text-xs font-semibold">
+<span class="text-slate-500">Baseline: <strong>~14%</strong></span>
+<span class="text-emerald-600 font-bold">2030 Target: <strong>25%</strong></span>
+</div>
+<div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+<div class="bg-emerald-600 h-full rounded-full transition-all duration-1000" style="width: 56%;"></div>
+</div>
+<div class="text-[11px] text-right text-slate-400">14% achieve in 2025 financial audit</div>
+</div>
+</div>
+<!-- Card 6: Hub Infrastructure Expansion -->
+<div class="bg-brand-surface rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow transition-shadow">
+<div class="flex justify-between items-start mb-3">
+<div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center text-lg font-bold">
+<i class="fa-solid fa-map-location-dot"></i>
+</div>
+<span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-700 border border-sky-200">Regional Footprint</span>
+</div>
+<h3 class="text-base font-bold text-slate-900">Regional Hubs Deployed</h3>
+<p class="text-xs text-slate-500 mt-1">Decentralized oversight centers providing direct pastoral and MEL support to field teams.</p>
+<div class="mt-6 space-y-2">
+<div class="flex justify-between text-xs font-semibold">
+<span class="text-slate-500">Previous: <strong>8 Hubs</strong></span>
+<span class="text-sky-700 font-bold">Target: <strong>12 Hubs</strong></span>
+</div>
+<div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden">
+<div class="bg-sky-600 h-full rounded-full transition-all duration-1000" style="width: 100%;"></div>
+</div>
+<div class="text-[11px] text-right text-emerald-600 font-semibold">All 12 hubs initiated &amp; staffed</div>
+</div>
+</div>
+</div>
+<!-- Strategic Pillars Tab Navigation -->
+<div class="mt-14 bg-slate-50 rounded-2xl p-6 border border-slate-200">
+<div class="border-b border-slate-200 pb-4 mb-6 flex flex-wrap gap-2">
+<button class="pillar-btn px-4 py-2 rounded-lg text-xs font-bold bg-brand-blue text-white shadow-xs" id="pillar-tab-1" onclick="setVisionPillar(1)">
+              Pillar 1: Mobilize &amp; Sending (Churches of Peace)
+            </button>
+<button class="pillar-btn px-4 py-2 rounded-lg text-xs font-bold bg-white text-slate-700 hover:bg-slate-100" id="pillar-tab-2" onclick="setVisionPillar(2)">
+              Pillar 2: Catalyzing Disciple Making (DMM &amp; DBS)
+            </button>
+<button class="pillar-btn px-4 py-2 rounded-lg text-xs font-bold bg-white text-slate-700 hover:bg-slate-100" id="pillar-tab-3" onclick="setVisionPillar(3)">
+              Pillar 3: Movement Multiplication &amp; Generation Tracking
+            </button>
+<button class="pillar-btn px-4 py-2 rounded-lg text-xs font-bold bg-white text-slate-700 hover:bg-slate-100" id="pillar-tab-4" onclick="setVisionPillar(4)">
+              Pillar 4: Sustainable Resourcing &amp; Kingdom Business
+            </button>
+</div>
+<div class="text-sm text-slate-700 space-y-3" id="pillar-content">
+<h4 class="text-base font-bold text-slate-900">Pillar 1: Church Mobilization &amp; Cross-Cultural Sending</h4>
+<p class="leading-relaxed">
+              HO-ME partners directly with synods and local churches to build sovereign ownership. In Pillar 1, our goal is turning 100 established congregations into "Churches of Peace" with dedicated mission budgets, prayer intercessors, and direct spiritual care for frontier workers.
+            </p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+<div class="bg-white p-3 rounded-lg border border-slate-200 text-xs">
+<span class="font-bold text-brand-blue block">Action 1.1</span>
+                Synod-wide catalytic workshops covering Biblical mandate for frontier peoples.
+              </div>
+<div class="bg-white p-3 rounded-lg border border-slate-200 text-xs">
+<span class="font-bold text-brand-blue block">Action 1.2</span>
+                Screening and psycho-spiritual profiling for church planters and spouses.
+              </div>
+<div class="bg-white p-3 rounded-lg border border-slate-200 text-xs">
+<span class="font-bold text-brand-blue block">Action 1.3</span>
+                Direct worker adoption contracts between sender congregations and regional hubs.
+              </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Vision100DM35StrategicPlan -->
+<!-- BEGIN: WhereWeWorkHubs -->
+<section class="py-20 bg-brand-surface border-t border-slate-200" data-purpose="regional-hubs-explorer" id="hubs">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-14">
+<span class="text-xs font-bold text-brand-blue uppercase tracking-wider">Regional Footprint &amp; Frontiers</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-1">12 Regional Hubs Across the Horn</h2>
+<p class="text-slate-600 mt-2 text-sm sm:text-base">
+            Decentralized operational centers serving diverse demographic zones. In strict alignment with security protocols, all frontline activities are coordinated through regional hubs.
+          </p>
+</div>
+<!-- Horn Overview Demographics Banner -->
+<div class="bg-gradient-to-r from-brand-blueDark to-blue-900 text-white rounded-2xl p-6 mb-10 shadow-soft">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-blue-800">
+<div class="pt-2 md:pt-0">
+<div class="text-2xl sm:text-3xl font-black text-amber-400">270.9M</div>
+<div class="text-xs text-blue-200 mt-1 uppercase font-semibold">Horn of Africa Population</div>
+</div>
+<div class="pt-2 md:pt-0">
+<div class="text-2xl sm:text-3xl font-black text-white">132.1M</div>
+<div class="text-xs text-blue-200 mt-1 uppercase font-semibold">Ethiopia Population</div>
+</div>
+<div class="pt-2 md:pt-0">
+<div class="text-2xl sm:text-3xl font-black text-rose-300">43 UPGs</div>
+<div class="text-xs text-blue-200 mt-1 uppercase font-semibold">Priority Frontier Groups</div>
+</div>
+<div class="pt-2 md:pt-0">
+<div class="text-2xl sm:text-3xl font-black text-emerald-400">12 Hubs</div>
+<div class="text-xs text-blue-200 mt-1 uppercase font-semibold">Active Operational Bases</div>
+</div>
+</div>
+</div>
+<!-- Interactive 12 Hubs Grid with Detail Selector -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Hub Buttons Selection (12 Hubs) -->
+<div class="lg:col-span-5 grid grid-cols-2 gap-2.5">
+<!-- 12 Hub Buttons -->
+<button class="hub-btn p-3 rounded-xl border text-left text-xs font-bold transition-all bg-white hover:border-brand-blue border-slate-200 text-slate-800 shadow-xs flex items-center justify-between" id="hub-btn-Tigray" onclick="selectHub('Tigray')">
+<span>1. Tigray Hub</span>
+<i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+</button>
+<button class="hub-btn p-3 rounded-xl border text-left text-xs font-bold transition-all bg-white hover:border-brand-blue border-slate-200 text-slate-800 shadow-xs flex items-center justify-between" id="hub-btn-NorthWest" onclick="selectHub('NorthWest')">
+<span>2. North West Hub</span>
+<i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+</button>
+<button class="hub-btn p-3 rounded-xl border text-left text-xs font-bold transition-all bg-white hover:border-brand-blue border-slate-200 text-slate-800 shadow-xs flex items-center justify-between" id="hub-btn-Gondar" onclick="selectHub('Gondar')">
+<span>3. Gondar Hub</span>
+<i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+</button>
+<button class="hub-btn p-3 rounded-xl border text-left text-xs font-bold transition-all bg-brand-blue text-white border-brand-blue shadow-xs flex items-center justify-between" id="hub-btn-NorthEast" onclick="selectHub('NorthEast')">
+<span>4. North East (Afar/Argoba)</span>
+<i class="fa-solid fa-chevron-right text-[10px] text-white"></i>
+</button>
+<button class="hub-btn p-3 rounded-xl border text-left text-xs font-bold transition-all bg-white hover:border-brand-blue border-slate-200 text-slate-800 shadow-xs flex items-center justify-between" id="hub-btn-Arsi" onclick="selectHub('Arsi')">
+<span>5. Arsi Hub</span>
+<i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+</button>
+<button class="hub-btn p-3 rounded-xl border text-left text-xs font-bold transition-all bg-white hover:border-brand-blue border-slate-200 text-slate-800 shadow-xs flex items-center justify-between" id="hub-btn-South" onclick="selectHub('South')">
+<span>6. South Hub</span>
+<i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+</button>
+<button class="hub-btn p-3 rounded-xl border text-left text-xs font-bold transition-all bg-white hover:border-brand-blue border-slate-200 text-slate-800 shadow-xs flex items-center justify-between" id="hub-btn-SouthWest" onclick="selectHub('SouthWest')">
+<span>7. South West Hub</span>
+<i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+</button>
+<button class="hub-btn p-3 rounded-xl border text-left text-xs font-bold transition-all bg-white hover:border-brand-blue border-slate-200 text-slate-800 shadow-xs flex items-center justify-between" id="hub-btn-NorthShewa" onclick="selectHub('NorthShewa')">
+<span>8. North Shewa Hub</span>
+<i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+</button>
+<button class="hub-btn p-3 rounded-xl border text-left text-xs font-bold transition-all bg-white hover:border-brand-blue border-slate-200 text-slate-800 shadow-xs flex items-center justify-between" id="hub-btn-Somali" onclick="selectHub('Somali')">
+<span>9. Somali Hub</span>
+<i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+</button>
+<button class="hub-btn p-3 rounded-xl border text-left text-xs font-bold transition-all bg-white hover:border-brand-blue border-slate-200 text-slate-800 shadow-xs flex items-center justify-between" id="hub-btn-East" onclick="selectHub('East')">
+<span>10. East Hub</span>
+<i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+</button>
+<button class="hub-btn p-3 rounded-xl border text-left text-xs font-bold transition-all bg-white hover:border-brand-blue border-slate-200 text-slate-800 shadow-xs flex items-center justify-between" id="hub-btn-Central" onclick="selectHub('Central')">
+<span>11. Central (Addis Ababa)</span>
+<i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+</button>
+<button class="hub-btn p-3 rounded-xl border text-left text-xs font-bold transition-all bg-white hover:border-brand-blue border-slate-200 text-slate-800 shadow-xs flex items-center justify-between" id="hub-btn-Bale" onclick="selectHub('Bale')">
+<span>12. Bale Hub</span>
+<i class="fa-solid fa-chevron-right text-[10px] text-slate-400"></i>
+</button>
+</div>
+<!-- Selected Hub Public-Safe Briefing Panel -->
+<div class="lg:col-span-7 bg-white rounded-3xl p-7 shadow-card border border-slate-200">
+<div class="flex items-center justify-between border-b border-slate-100 pb-4">
+<div>
+<span class="text-xs font-bold uppercase text-brand-red tracking-wider">Regional Profile</span>
+<h3 class="text-2xl font-black text-slate-900" id="hub-detail-name">North East Hub (Afar &amp; Argoba)</h3>
+</div>
+<span class="px-3 py-1 bg-amber-50 text-amber-800 border border-amber-200 text-xs font-bold rounded-lg" id="hub-detail-status">
+                Pioneer Frontier
+              </span>
+</div>
+<div class="mt-5 space-y-4 text-sm text-slate-600">
+<p class="leading-relaxed" id="hub-detail-desc">
+                Covers the semi-arid lowlands along the Rift Valley corridor. Focuses on pastoralist clans, market towns, and remote settlements with less than 0.1% evangelical witness. Ministry revolves around relational Discovery Bible Studies, clean water initiatives, and mobile livestock coaching.
+              </p>
+<!-- Hub Demographic Metrics -->
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-3 py-2">
+<div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+<span class="text-[11px] text-slate-400 uppercase font-semibold">Priority Peoples</span>
+<div class="text-sm font-bold text-slate-800 mt-0.5" id="hub-detail-peoples">Afar, Argoba, Oromo</div>
+</div>
+<div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+<span class="text-[11px] text-slate-400 uppercase font-semibold">Active Planters</span>
+<div class="text-sm font-bold text-brand-blue mt-0.5" id="hub-detail-workers">38 Indigenous Workers</div>
+</div>
+<div class="bg-slate-50 p-3 rounded-xl border border-slate-100 col-span-2 sm:col-span-1">
+<span class="text-[11px] text-slate-400 uppercase font-semibold">Mother Churches</span>
+<div class="text-sm font-bold text-emerald-600 mt-0.5" id="hub-detail-sponsors">14 Partner Assemblies</div>
+</div>
+</div>
+<!-- Prayer focus item -->
+<div class="p-4 rounded-xl bg-blue-50/60 border border-blue-100">
+<div class="flex items-center gap-2 text-xs font-bold text-brand-blue">
+<i class="fa-solid fa-hands-praying"></i>
+<span>Specific Frontier Prayer Request:</span>
+</div>
+<p class="text-xs text-slate-700 mt-1.5 italic" id="hub-detail-prayer">
+                  "Pray for Persons of Peace among clan elders in Awash valley trading settlements, and protection for workers navigating harsh climatic heat and regional tensions."
+                </p>
+</div>
+<div class="flex items-center justify-between text-xs pt-2">
+<span class="text-slate-400 text-[11px]">
+<i class="fa-solid fa-lock text-[10px] mr-1"></i> Frontline worker names withheld for security compliance.
+                </span>
+<a class="font-bold text-brand-blue hover:text-brand-red flex items-center gap-1" href="#pray">
+                  Join Prayer Shield <i class="fa-solid fa-arrow-right text-[10px]"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: WhereWeWorkHubs -->
+<!-- BEGIN: ResourceLibrary -->
+<section class="py-20 bg-white" data-purpose="public-resource-library" id="resources">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+<div>
+<span class="text-xs font-bold text-brand-red uppercase tracking-wider">Materials for the World</span>
+<h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight mt-1">Resource &amp; Training Library</h2>
+<p class="text-slate-600 mt-2 max-w-2xl text-sm sm:text-base">
+              Field-tested manuals, Discovery Bible Study bookmarks, mobilization syllabi, and empirical DMM research available in Amharic, Afaan Oromoo, and English.
+            </p>
+</div>
+<!-- Category filter buttons -->
+<div class="flex items-center gap-2 flex-wrap">
+<button class="res-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-brand-blue text-white" data-cat="all" onclick="filterResources('all')">All</button>
+<button class="res-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200" data-cat="manual" onclick="filterResources('manual')">DMM Manuals</button>
+<button class="res-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200" data-cat="mobilization" onclick="filterResources('mobilization')">Church Mobilization</button>
+<button class="res-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200" data-cat="prayer" onclick="filterResources('prayer')">Prayer Guides</button>
+<button class="res-filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200" data-cat="research" onclick="filterResources('research')">Reports</button>
+</div>
+</div>
+<!-- Resources Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="resource-cards-container">
+<!-- Item 1 -->
+<div class="resource-card bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between hover:border-brand-blue transition-all" data-category="manual">
+<div>
+<div class="flex items-center justify-between text-xs mb-3">
+<span class="px-2 py-0.5 rounded bg-blue-100 text-brand-blue font-bold text-[11px]">DMM Manual</span>
+<span class="text-slate-500 font-semibold text-[11px]">Amharic &amp; English</span>
+</div>
+<h3 class="font-bold text-slate-900 text-base leading-snug">
+                Discovery Bible Study (DBS) Practitioner Guide
+              </h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                A 7-question inductive model for launching disciple-making groups led entirely by seekers and new believers within their kinship clusters.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
+<span class="text-slate-400 font-mono text-[11px]">PDF • 3.4 MB • 4,210 DLs</span>
+<button class="font-bold text-brand-blue hover:text-brand-red flex items-center gap-1.5" onclick="simulateDownload('DBS_Practitioner_Guide.pdf')">
+<i class="fa-solid fa-download"></i> Download
+              </button>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="resource-card bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between hover:border-brand-blue transition-all" data-category="mobilization">
+<div>
+<div class="flex items-center justify-between text-xs mb-3">
+<span class="px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-bold text-[11px]">Mobilization</span>
+<span class="text-slate-500 font-semibold text-[11px]">Amharic</span>
+</div>
+<h3 class="font-bold text-slate-900 text-base leading-snug">
+                Churches of Peace: Synod Mobilizer Handbook
+              </h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                The official curriculum for pastorates, elders, and youth wings to transition local churches into frontier missionary sending hubs.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
+<span class="text-slate-400 font-mono text-[11px]">PDF • 5.1 MB • 2,180 DLs</span>
+<button class="font-bold text-brand-blue hover:text-brand-red flex items-center gap-1.5" onclick="simulateDownload('Churches_of_Peace_Handbook.pdf')">
+<i class="fa-solid fa-download"></i> Download
+              </button>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="resource-card bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between hover:border-brand-blue transition-all" data-category="prayer">
+<div>
+<div class="flex items-center justify-between text-xs mb-3">
+<span class="px-2 py-0.5 rounded bg-rose-100 text-brand-red font-bold text-[11px]">Prayer Guide</span>
+<span class="text-slate-500 font-semibold text-[11px]">Bilingual</span>
+</div>
+<h3 class="font-bold text-slate-900 text-base leading-snug">
+                30-Day Horn of Africa Ramadan Intercession Shield
+              </h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                Daily guided Scripture readings and targeted prayer briefings for 30 major unreached people clusters across Ethiopia, Somalia, and Djibouti.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
+<span class="text-slate-400 font-mono text-[11px]">PDF • 1.9 MB • 6,540 DLs</span>
+<button class="font-bold text-brand-blue hover:text-brand-red flex items-center gap-1.5" onclick="simulateDownload('30Day_Ramadan_PrayerShield.pdf')">
+<i class="fa-solid fa-download"></i> Download
+              </button>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="resource-card bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between hover:border-brand-blue transition-all" data-category="research">
+<div>
+<div class="flex items-center justify-between text-xs mb-3">
+<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold text-[11px]">MEL Report</span>
+<span class="text-slate-500 font-semibold text-[11px]">English</span>
+</div>
+<h3 class="font-bold text-slate-900 text-base leading-snug">
+                Movement 2025 Evaluation: 20-Year Retrospective
+              </h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                Quantitative and qualitative breakdown of 23,000+ house churches, examining baptism rates, 4th gen stream retention, and socio-economic resilience.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
+<span class="text-slate-400 font-mono text-[11px]">PDF • 8.4 MB • 1,420 DLs</span>
+<button class="font-bold text-brand-blue hover:text-brand-red flex items-center gap-1.5" onclick="simulateDownload('M2025_Evaluation_Report.pdf')">
+<i class="fa-solid fa-download"></i> Download
+              </button>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="resource-card bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between hover:border-brand-blue transition-all" data-category="manual">
+<div>
+<div class="flex items-center justify-between text-xs mb-3">
+<span class="px-2 py-0.5 rounded bg-blue-100 text-brand-blue font-bold text-[11px]">DMM Manual</span>
+<span class="text-slate-500 font-semibold text-[11px]">Afaan Oromoo</span>
+</div>
+<h3 class="font-bold text-slate-900 text-base leading-snug">
+                Qajeelfama Hojii DBS (Afaan Oromoo)
+              </h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                Localized Discovery Bible Study framework and Person of Peace scouting principles for western and southern regional evangelists.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
+<span class="text-slate-400 font-mono text-[11px]">PDF • 2.8 MB • 3,110 DLs</span>
+<button class="font-bold text-brand-blue hover:text-brand-red flex items-center gap-1.5" onclick="simulateDownload('Qajeelfama_DBS_AfaanOromoo.pdf')">
+<i class="fa-solid fa-download"></i> Download
+              </button>
+</div>
+</div>
+<!-- Item 6 -->
+<div class="resource-card bg-slate-50 rounded-2xl p-6 border border-slate-200 flex flex-col justify-between hover:border-brand-blue transition-all" data-category="research">
+<div>
+<div class="flex items-center justify-between text-xs mb-3">
+<span class="px-2 py-0.5 rounded bg-purple-100 text-purple-800 font-bold text-[11px]">Strategic Plan</span>
+<span class="text-slate-500 font-semibold text-[11px]">Executive Brief</span>
+</div>
+<h3 class="font-bold text-slate-900 text-base leading-snug">
+                Vision 100DM35 Strategic Plan (2026–2030)
+              </h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                Complete institutional strategy document outlining the transition to self-sustained church planter streams and 12-hub coordination.
+              </p>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-200 flex items-center justify-between text-xs">
+<span class="text-slate-400 font-mono text-[11px]">PDF • 4.6 MB • 980 DLs</span>
+<button class="font-bold text-brand-blue hover:text-brand-red flex items-center gap-1.5" onclick="simulateDownload('Vision_100DM35_FullPlan.pdf')">
+<i class="fa-solid fa-download"></i> Download
+              </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: ResourceLibrary -->
+<!-- BEGIN: GetInvolvedHub -->
+<section class="py-20 bg-slate-100 border-t border-b border-slate-200" data-purpose="four-ways-to-engage" id="partner">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-3xl mx-auto mb-14">
+<span class="text-xs font-bold text-brand-red uppercase tracking-wider">Take Your Place in the Movement</span>
+<h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-1">Four Pathways of Kingdom Engagement</h2>
+<p class="text-slate-600 mt-2 text-sm sm:text-base">
+            Whether you are an individual intercessor, a local Ethiopian congregation, an international ally, or a prospective missional scholar.
+          </p>
+</div>
+<!-- 4 Grid Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Way 1: Pray -->
+<div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-soft flex flex-col justify-between" id="pray">
+<div>
+<div class="w-12 h-12 rounded-2xl bg-rose-50 text-brand-red flex items-center justify-center text-xl mb-4">
+<i class="fa-solid fa-hands-praying"></i>
+</div>
+<h3 class="text-lg font-bold text-slate-900">1. Intercessory Shield</h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                Join over 1,200 believers in our daily frontier intercessor channel. Receive secure, real-time prayer alerts from active Hubs.
+              </p>
+<!-- Quick form -->
+<div class="mt-4 space-y-2">
+<input class="w-full text-xs rounded-lg border-slate-300 py-2" placeholder="Your Name" type="text"/>
+<input class="w-full text-xs rounded-lg border-slate-300 py-2" placeholder="Email or Telegram handle" type="email"/>
+</div>
+</div>
+<button class="mt-5 w-full py-2.5 bg-brand-red hover:bg-brand-redDark text-white text-xs font-bold rounded-xl transition" onclick="alert('Thank you for joining the HO-ME Prayer Shield network. You will receive this month\'s briefing shortly.')">
+              Join Prayer Watch
+            </button>
+</div>
+<!-- Way 2: Partner (Churches of Peace) -->
+<div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-soft flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-2xl bg-blue-50 text-brand-blue flex items-center justify-center text-xl mb-4">
+<i class="fa-solid fa-church"></i>
+</div>
+<h3 class="text-lg font-bold text-slate-900">2. Churches of Peace</h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                For Ethiopian &amp; regional local congregations. Enter a bilateral agreement to adopt an unreached people group and send vetted planters.
+              </p>
+<ul class="mt-4 space-y-1.5 text-xs text-slate-600">
+<li class="flex items-center gap-1.5">
+<i class="fa-solid fa-check text-brand-blue text-[11px]"></i> Pastoral staff orientation
+                </li>
+<li class="flex items-center gap-1.5">
+<i class="fa-solid fa-check text-brand-blue text-[11px]"></i> Synod frontier mapping
+                </li>
+<li class="flex items-center gap-1.5">
+<i class="fa-solid fa-check text-brand-blue text-[11px]"></i> Shared missionary support
+                </li>
+</ul>
+</div>
+<button class="mt-5 w-full py-2.5 bg-brand-blue hover:bg-brand-blueDark text-white text-xs font-bold rounded-xl transition" onclick="openChurchPartnerModal()">
+              Inquire as a Church
+            </button>
+</div>
+<!-- Way 3: Give Dual Gateway -->
+<div class="bg-white rounded-3xl p-6 border-2 border-brand-red shadow-soft flex flex-col justify-between relative overflow-hidden" id="give">
+<div class="absolute top-0 right-0 bg-brand-red text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-bl">
+              Direct Impact
+            </div>
+<div>
+<div class="w-12 h-12 rounded-2xl bg-amber-50 text-brand-orange flex items-center justify-center text-xl mb-4">
+<i class="fa-solid fa-heart-circle-bolt"></i>
+</div>
+<h3 class="text-lg font-bold text-slate-900">3. Give / ድጋፍ ያድርጉ</h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                Empower frontline workers with life support, emergency extraction reserves, DBS scripture tools, and kingdom business capital.
+              </p>
+<!-- Dual Gateway Selector -->
+<div class="mt-4 p-2 bg-slate-50 rounded-xl border border-slate-200">
+<div class="grid grid-cols-2 gap-1 text-[11px] font-bold text-center">
+<button class="py-1 rounded bg-brand-blue text-white" id="btn-gw-local" onclick="setGiveGateway('local')">Local (Birr)</button>
+<button class="py-1 rounded text-slate-600 hover:bg-slate-200" id="btn-gw-intl" onclick="setGiveGateway('intl')">Global ($ USD)</button>
+</div>
+<div class="mt-2 text-xs text-slate-700 leading-snug" id="give-details-box">
+<strong>Telebirr / CBE Birr:</strong><br/>
+                  Commercial Bank of Ethiopia: <span class="font-mono font-bold text-brand-blue">1000023489123</span><br/>
+                  Telebirr SuperApp: <span class="font-mono font-bold text-brand-red">0911-23-4567</span>
+</div>
+</div>
+</div>
+<button class="mt-5 w-full py-2.5 bg-slate-900 hover:bg-black text-white text-xs font-bold rounded-xl transition" onclick="openGivingModal()">
+              View All Giving Channels
+            </button>
+</div>
+<!-- Way 4: Study at HOST -->
+<div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-soft flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-4">
+<i class="fa-solid fa-graduation-cap"></i>
+</div>
+<h3 class="text-lg font-bold text-slate-900">4. HOST Seminary</h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">
+<strong>Horn of Africa School of Trans-for-Mission:</strong> Applied post-graduate &amp; certificate degrees in DMM leadership, contextual theology, and Muslim-context ministry.
+              </p>
+<div class="mt-3 bg-emerald-50/50 p-2.5 rounded-lg border border-emerald-100 text-[11px] text-emerald-900">
+<span class="font-bold">Next Intake:</span> Fall 2026 Cohort<br/>
+                Modular hybrid &amp; field-based thesis tracks.
+              </div>
+</div>
+<button class="mt-5 w-full py-2.5 border border-emerald-600 text-emerald-700 hover:bg-emerald-50 text-xs font-bold rounded-xl transition" onclick="openHostModal()">
+              HOST Prospectus
+            </button>
+</div>
+</div>
+</div>
+</section>
+<!-- END: GetInvolvedHub -->
+<!-- BEGIN: HistoryTimelineAndGovernance -->
+<section class="py-20 bg-white" data-purpose="history-and-governance" id="history">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- History Timeline (Left Column) -->
+<div class="lg:col-span-7 space-y-6">
+<span class="text-xs font-bold text-brand-blue uppercase tracking-wider">Faithful Roots &amp; Milestones</span>
+<h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Our 20+ Year Historical Journey</h2>
+<p class="text-slate-600 text-sm leading-relaxed">
+              From a small prayer meeting in Addis Ababa to a cross-regional catalytic movement impacting thousands of unreached communities.
+            </p>
+<!-- Vertical Timeline Component -->
+<div class="relative border-l-2 border-slate-200 ml-3 pl-6 space-y-8 pt-2">
+<!-- 2003 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-brand-blue border-4 border-white"></div>
+<span class="text-xs font-extrabold text-brand-blue tracking-wider uppercase">2003 — HOAM Founded</span>
+<h4 class="text-sm font-bold text-slate-900 mt-0.5">Horn of Africa Mission Born</h4>
+<p class="text-xs text-slate-600 mt-1">Established by visionary Ethiopian church leaders responding to neglected frontiers in the eastern borders.</p>
+</div>
+<!-- 2006 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-brand-red border-4 border-white"></div>
+<span class="text-xs font-extrabold text-brand-red tracking-wider uppercase">2006 — The DMM Paradigm Shift</span>
+<h4 class="text-sm font-bold text-slate-900 mt-0.5">Adoption of Discovery Bible Study (DBS)</h4>
+<p class="text-xs text-slate-600 mt-1">Transitioned from traditional institutional mission stations to indigenous Disciple Making Movements reproducing to multiple generations.</p>
+</div>
+<!-- 2012–2015 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-amber-500 border-4 border-white"></div>
+<span class="text-xs font-extrabold text-amber-600 tracking-wider uppercase">2012–2015 — Consolidation</span>
+<h4 class="text-sm font-bold text-slate-900 mt-0.5">Merging into HO-ME (ሆሜ)</h4>
+<p class="text-xs text-slate-600 mt-1">Horn of Africa Mission and Mission Engagers joined forces to unite mobilization expertise with frontline catalytic coaching.</p>
+</div>
+<!-- 2021–2025 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-sky-600 border-4 border-white"></div>
+<span class="text-xs font-extrabold text-sky-600 tracking-wider uppercase">2021–2025 — M2025 Campaign</span>
+<h4 class="text-sm font-bold text-slate-900 mt-0.5">Surpassing 23,000 House Churches</h4>
+<p class="text-xs text-slate-600 mt-1">Decentralized 8 regional hubs established and 8 historic UPGs moved to actively reached status through multiplying streams.</p>
+</div>
+<!-- 2026–2030 -->
+<div class="relative">
+<div class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-emerald-600 border-4 border-white ring-4 ring-emerald-100"></div>
+<span class="text-xs font-extrabold text-emerald-600 tracking-wider uppercase">2026–2030 — The Present Strategic Era</span>
+<h4 class="text-sm font-bold text-slate-900 mt-0.5">Vision 100DM35 Launch</h4>
+<p class="text-xs text-slate-600 mt-1">Expanding to 12 regional hubs, activating 100 self-sustaining Churches of Peace, and validating 35 4th-generation DMM streams.</p>
+</div>
+</div>
+</div>
+<!-- Governance, Auditing & HOST (Right Column) -->
+<div class="lg:col-span-5 space-y-6">
+<!-- Governance & Transparency Card -->
+<div class="bg-slate-50 rounded-3xl p-6 border border-slate-200">
+<div class="flex items-center gap-2 text-brand-blue text-xs font-bold uppercase tracking-wider mb-2">
+<i class="fa-solid fa-scale-balanced"></i> Governance &amp; Integrity
+              </div>
+<h3 class="text-lg font-bold text-slate-900">Highest Standards of Accountability</h3>
+<p class="text-xs text-slate-600 mt-2 leading-relaxed">
+                HO-ME is an officially registered Non-Profit Civil Society Organization in Ethiopia (Registry No. 1284), governed by an independent Board of Trustees representing leading academic, church, and legal voices.
+              </p>
+<div class="mt-4 space-y-2.5 text-xs text-slate-700">
+<div class="flex items-center gap-2 p-2 bg-white rounded-lg border border-slate-200">
+<i class="fa-solid fa-file-shield text-emerald-600"></i>
+<span><strong>Annual External Audits:</strong> Verified by accredited independent accounting firms.</span>
+</div>
+<div class="flex items-center gap-2 p-2 bg-white rounded-lg border border-slate-200">
+<i class="fa-solid fa-user-shield text-brand-blue"></i>
+<span><strong>Safeguarding &amp; Anti-Fraud:</strong> Strict child protection &amp; whistle-blower hotlines in place.</span>
+</div>
+<div class="flex items-center gap-2 p-2 bg-white rounded-lg border border-slate-200">
+<i class="fa-solid fa-building-ngo text-brand-red"></i>
+<span><strong>ECGBC Alignment:</strong> Full fraternal accountability with the Evangelical Church Fellowship.</span>
+</div>
+</div>
+</div>
+<!-- Founders & Leadership Tribute -->
+<div class="bg-gradient-to-br from-brand-blueDark to-slate-900 text-white rounded-3xl p-6 shadow-soft">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-amber-400 text-xl font-bold border border-white/20">
+<i class="fa-solid fa-feather-pointed"></i>
+</div>
+<div>
+<h4 class="text-sm font-bold text-white">Leadership Legacy</h4>
+<p class="text-xs text-slate-300">Honoring our founders, pioneers, and field coordinators</p>
+</div>
+</div>
+<p class="text-xs text-slate-300 mt-4 leading-relaxed italic">
+                "We remember with deep gratitude the heroic sacrifices of church planters who walked hundreds of kilometers into hostile deserts, and the steadfast directors who anchored HO-ME in biblical prayer."
+              </p>
+<div class="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-[11px] text-slate-400">
+<span>Addis Ababa G+3 Resource Center</span>
+<span class="text-amber-400 font-semibold">100% African-Led</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HistoryTimelineAndGovernance -->
+</main>
+<!-- BEGIN: InternalPortalModal -->
+<div aria-modal="true" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/60 glass-modal transition-opacity duration-300" id="portal-modal" role="dialog">
+<div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-200 overflow-hidden transform transition-all">
+<!-- Modal Header -->
+<div class="bg-brand-blueDark text-white p-6 relative">
+<button aria-label="Close modal" class="absolute top-4 right-4 text-slate-300 hover:text-white p-1" onclick="togglePortalModal(false)">
+<i class="fa-solid fa-xmark text-lg"></i>
+</button>
+<div class="flex items-center gap-2 text-xs uppercase font-bold text-amber-400 mb-1">
+<i class="fa-solid fa-lock text-[10px]"></i> Secure Access
+        </div>
+<h3 class="text-xl font-black">Staff &amp; Hub Portal</h3>
+<p class="text-xs text-slate-300 mt-1">Authorized access for Hub Coordinators, MEL Field Officers, and Board Members.</p>
+</div>
+<!-- Modal Body Form -->
+<form class="p-6 space-y-4" onsubmit="event.preventDefault(); alert('Demo Notice: Authorized field workers can authenticate via secure SSO token in deployment.'); togglePortalModal(false);">
+<div>
+<label class="block text-xs font-bold text-slate-700 uppercase mb-1">Hub Worker ID or Official Email</label>
+<input class="w-full text-xs rounded-xl border-slate-300 focus:ring-brand-blue focus:border-brand-blue py-2.5" placeholder="name.hub@home-horn.org" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-slate-700 uppercase mb-1">Passcode / Field Token</label>
+<input class="w-full text-xs rounded-xl border-slate-300 focus:ring-brand-blue focus:border-brand-blue py-2.5" placeholder="••••••••••••" required="" type="password"/>
+</div>
+<div>
+<label class="block text-xs font-bold text-slate-700 uppercase mb-1">Select Regional Hub</label>
+<select class="w-full text-xs rounded-xl border-slate-300 focus:ring-brand-blue focus:border-brand-blue py-2.5">
+<option>Central HQ (Addis Ababa)</option>
+<option>North East Hub (Afar/Argoba)</option>
+<option>Somali Hub</option>
+<option>Bale Hub</option>
+<option>Tigray Hub</option>
+<option>North West Hub</option>
+<option>Gondar Hub</option>
+<option>Arsi Hub</option>
+<option>South Hub</option>
+<option>South West Hub</option>
+<option>North Shewa Hub</option>
+<option>East Hub</option>
+</select>
+</div>
+<div class="flex items-center justify-between text-[11px] text-slate-500">
+<label class="flex items-center gap-1.5 cursor-pointer">
+<input class="rounded text-brand-blue text-xs" type="checkbox"/>
+<span>Keep signed in (Secure device)</span>
+</label>
+<a class="hover:underline text-brand-blue font-semibold" href="#">Forgot token?</a>
+</div>
+<button class="w-full py-3 bg-brand-blue hover:bg-brand-blueDark text-white text-xs font-bold rounded-xl transition shadow-sm" type="submit">
+          Authenticate &amp; Enter Dashboard
+        </button>
+<p class="text-[10px] text-center text-slate-400">
+          Offline sync via SQLite &amp; encrypted field logging enabled on this node.
+        </p>
+</form>
+</div>
+</div>
+<!-- END: InternalPortalModal -->
+<!-- BEGIN: ChurchPartnerModal -->
+<div aria-modal="true" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/60 glass-modal" id="church-modal" role="dialog">
+<div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden">
+<div class="bg-brand-blue text-white p-6 relative">
+<button class="absolute top-4 right-4 text-white/80 hover:text-white" onclick="toggleChurchModal(false)">
+<i class="fa-solid fa-xmark text-lg"></i>
+</button>
+<span class="text-xs uppercase font-bold text-blue-200">Mobilization Partnership</span>
+<h3 class="text-xl font-bold mt-1">Register as a "Church of Peace"</h3>
+<p class="text-xs text-blue-100 mt-1">Connect your assembly directly to an unreached frontline people group.</p>
+</div>
+<form class="p-6 space-y-3.5" onsubmit="event.preventDefault(); alert('Inquiry received! A Regional Church Mobilizer will contact your church eldership within 3 business days.'); toggleChurchModal(false);">
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1">Local Assembly Name</label>
+<input class="w-full text-xs rounded-xl border-slate-300 py-2" placeholder="e.g. ECGBC Bethel" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1">Denomination / Synod</label>
+<input class="w-full text-xs rounded-xl border-slate-300 py-2" placeholder="e.g. ECGBC / Kale Heywet" required="" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1">Pastor / Elder Contact</label>
+<input class="w-full text-xs rounded-xl border-slate-300 py-2" placeholder="Full Name" required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1">Phone Number (Ethiopia)</label>
+<input class="w-full text-xs rounded-xl border-slate-300 py-2" placeholder="+251 9..." required="" type="tel"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1">City / Town Location</label>
+<input class="w-full text-xs rounded-xl border-slate-300 py-2" placeholder="Addis Ababa, Hawassa, Adama, etc." required="" type="text"/>
+</div>
+<div>
+<label class="block text-xs font-semibold text-slate-700 mb-1">Frontier Interest or Desired Hub</label>
+<select class="w-full text-xs rounded-xl border-slate-300 py-2">
+<option>General - Where the need is greatest</option>
+<option>North East Hub (Afar / Argoba)</option>
+<option>Somali Region Hub</option>
+<option>Bale &amp; Southeast Lowlands</option>
+<option>North Shewa Frontiers</option>
+</select>
+</div>
+<button class="w-full py-3 bg-brand-blue hover:bg-brand-blueDark text-white text-xs font-bold rounded-xl transition mt-2" type="submit">
+          Submit Partnership Inquiry
+        </button>
+</form>
+</div>
+</div>
+<!-- END: ChurchPartnerModal -->
+<!-- BEGIN: MainFooter -->
+<footer class="bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-slate-800" data-purpose="primary-footer">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- Top Row: Logos & Core Purpose -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+<!-- Left 4 Columns: Logos & Summary -->
+<div class="lg:col-span-5 space-y-4">
+<div class="flex items-center gap-3">
+<img alt="HO-ME Seal" class="w-14 h-14 object-contain bg-white rounded-full p-1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_28vXwPpaUMIyL8lfPPzz9r2b5kFzF7jNKF9kGhsC6zRklHSqJquCNTVtgjqLbgXPSJ6aTwj60zWPkxKnXYuhD65cAFgYzNqaom44OmTzU3rlWJ1G3GLUnOLnyUGaECpri3uAl-F5ySRsLJDiK7toWGhlL2Xb2LKSyUnDw2YOLKhira8eojxAUNpPGaNsWR5r1VyoOo0aUS8-lVLAbYNWtmuZfFFhgGsTfY6vbH3Gu4_AeuhDe_L-7SNOKJvRgGiQGg"/>
+<div class="bg-white/95 rounded-lg px-2.5 py-1.5 shadow-sm inline-block">
+<img alt="HO-ME Wordmark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkm-KIvF-XQKMCfgPJ0AW8OgIPST17k3DI8WFZWTvxjPS76fc7spOpWnP80NGHXqrfj2mvzGliSCJunCBGSK7XWavSy2Lgzbi-pXwJJiXCWxnaMQbn6zw05XM_QuQPfWnVauglONKLxpPoq-boawU1ZTFsPuw_-TPdO202OK9A9h0NPZnXjznfzLavkmmUGmnkqtKI-LjQz38Vymh7MIq3YdWp8AYT92X369eSK2QKfQOy4-Vf_q2oPh7NUYFjmz22nQ"/>
+</div>
+</div>
+<p class="text-xs text-slate-400 leading-relaxed max-w-sm pt-2">
+<strong>Horn of Africa Evangelical Mission Engagers (HO-ME / ሆሜ)</strong> equips local churches to catalyze, multiply, and sustain indigenous Disciple Making Movements among the unreached peoples of the Horn of Africa.
+          </p>
+<div class="text-[11px] text-slate-400 flex items-center gap-2 pt-1">
+<i class="fa-solid fa-certificate text-brand-gold"></i>
+<span>Registered Ethiopian CBO No. 1284 • In fraternal alliance with ECGBC.</span>
+</div>
+</div>
+<!-- Middle 3 Columns: Hubs & Operations -->
+<div class="lg:col-span-3 space-y-2">
+<h4 class="text-xs font-bold uppercase tracking-wider text-white">12 Regional Hubs</h4>
+<div class="grid grid-cols-2 gap-1 text-xs text-slate-400 pt-1">
+<a class="hover:text-amber-400 transition" href="#hubs">Central (HQ)</a>
+<a class="hover:text-amber-400 transition" href="#hubs">North East</a>
+<a class="hover:text-amber-400 transition" href="#hubs">Somali Hub</a>
+<a class="hover:text-amber-400 transition" href="#hubs">Arsi Hub</a>
+<a class="hover:text-amber-400 transition" href="#hubs">Bale Hub</a>
+<a class="hover:text-amber-400 transition" href="#hubs">Tigray Hub</a>
+<a class="hover:text-amber-400 transition" href="#hubs">North West</a>
+<a class="hover:text-amber-400 transition" href="#hubs">Gondar Hub</a>
+<a class="hover:text-amber-400 transition" href="#hubs">South Hub</a>
+<a class="hover:text-amber-400 transition" href="#hubs">South West</a>
+<a class="hover:text-amber-400 transition" href="#hubs">North Shewa</a>
+<a class="hover:text-amber-400 transition" href="#hubs">East Hub</a>
+</div>
+</div>
+<!-- Right 4 Columns: HQ Address & Direct Contact -->
+<div class="lg:col-span-4 space-y-3">
+<h4 class="text-xs font-bold uppercase tracking-wider text-white">Headquarters &amp; Training Center</h4>
+<p class="text-xs text-slate-400 leading-relaxed">
+<i class="fa-solid fa-location-dot text-brand-red mr-1.5"></i>
+            HO-ME G+3 National Resource Building, Bole Sub-City, Addis Ababa, Ethiopia.
+          </p>
+<p class="text-xs text-slate-400">
+<i class="fa-solid fa-envelope text-brand-blue mr-1.5"></i>
+            info@home-horn.org / missions@home-horn.org
+          </p>
+<p class="text-xs text-slate-400">
+<i class="fa-solid fa-phone text-emerald-400 mr-1.5"></i>
+            +251 11 6XX XXXX / +251 91 1XX XXXX
+          </p>
+<!-- Newsletter Quick Box -->
+<div class="pt-2">
+<span class="text-[11px] font-semibold text-slate-300 block mb-1">Subscribe to Monthly Field Dispatch</span>
+<div class="flex gap-2">
+<input class="text-xs bg-slate-800 border-slate-700 rounded-lg text-white py-1.5 px-3 w-full focus:ring-1 focus:ring-brand-blue" placeholder="email@address.com" type="email"/>
+<button class="bg-brand-red hover:bg-brand-redDark text-white text-xs font-bold px-3 py-1.5 rounded-lg transition" onclick="alert('Subscribed to HO-ME Field Dispatch.');">
+                Send
+              </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Row: Copyright & Security Protocol Notice -->
+<div class="pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+<div>
+          © 2003–2026 Horn of Africa Missions Engagers (HO-ME / ሆሜ). All Rights Reserved.
+        </div>
+<div class="flex items-center gap-4 text-xs">
+<a class="hover:text-slate-300" href="#history">Governance Policy</a>
+<span>•</span>
+<a class="hover:text-slate-300" href="#vision">Vision 100DM35</a>
+<span>•</span>
+<span class="text-slate-400 italic">Security Notice: Field identities anonymized for frontier worker protection.</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: MainFooter -->
+<!-- BEGIN: ScriptInteractions -->
+<script data-purpose="interactive-state-engine">
+    // MCMS Interactive Stages Data
+    const mcmsStages = {
+      mobilize: {
+        badge: "Phase 1: The Engine",
+        focus: "Local Church Activation & Sending",
+        title: "Mobilize: Turning Churches Outward into Frontiers",
+        description: "Rather than creating detached mission organizations, HO-ME works with established congregations through our Churches of Peace initiative. We awaken leaders to see unreached peoples in their vicinity, shift mindsets from traditional institutional maintenance to frontier mission, and prepare candidates for apostolic sending.",
+        bullets: [
+          "'Church of Peace' mobilization seminars conducted in local synods and zones.",
+          "Identification, screening, and sending candidate church planters directly supported by mother churches.",
+          "Frontier prayer networks mobilizing continuous intercession for unreached people clusters."
+        ],
+        targetVal: "100 Churches",
+        targetLbl: "Activated as reproducing 'Churches of Peace' by 2030",
+        quote: "Frontier missions doesn't begin on the foreign field; it begins when our local pulpit catches God's heartbreak for the unreached at our border.",
+        quoteAuthor: "— Regional Synod Coordinator, Bale Hub"
+      },
+      catalyze: {
+        badge: "Phase 2: The Spark",
+        focus: "Person of Peace Discovery & DBS",
+        title: "Catalyze: Finding Persons of Peace and Discovery Groups",
+        description: "Frontline workers enter unreached communities through relational and social needs. By locating Persons of Peace (Luke 10)—insiders who are spiritually hungry and well-connected—we launch the first Discovery Bible Studies (DBS) directly inside secular homes.",
+        bullets: [
+          "Discovery Bible Study bookmarks designed for non-literate and oral-dominant cultures.",
+          "Pioneering discovery groups that read, obey, and immediately share God's word with kin.",
+          "Frontline workers operate as catalytic facilitators, not institutional pastors."
+        ],
+        targetVal: "365 Planters",
+        targetLbl: "Frontline pioneers deployed and catalyzed across unreached frontiers",
+        quote: "We don't bring a Western curriculum. We ask: 'What does this Scripture say, and whom will you tell about it this week?'",
+        quoteAuthor: "— Frontline Facilitator, North East Hub"
+      },
+      multiply: {
+        badge: "Phase 3: The Movement",
+        focus: "4th Generation Reproducing Streams",
+        title: "Multiply: Indigenous Leaders Launching Generational Streams",
+        description: "True Disciple Making Movements are validated when the Gospel reproduces organically from 1st generation to 2nd, 3rd, and 4th generations without external intervention. Indigenous leaders plant autonomous house churches that have DNA to plant again.",
+        bullets: [
+          "Tracking generation trees using verifiable MEL criteria to confirm 4th generation streams.",
+          "Rapid training of emerging elder-facilitators directly from within the harvest.",
+          "Self-baptizing and self-shepherding indigenous house church networks."
+        ],
+        targetVal: "35 Streams",
+        targetLbl: "Independently verified 4th-generation DMM streams active by 2030",
+        quote: "When a granddaughter church plants a great-granddaughter church in an unreached valley, a true movement is born.",
+        quoteAuthor: "— DMM Movement Coach, Somali Hub"
+      },
+      sustain: {
+        badge: "Phase 4: The Resilience",
+        focus: "Local Oversight & Kingdom Business",
+        title: "Sustain: Economic Self-Reliance and Mother-Church Coaching",
+        description: "To prevent movement collapse, HO-ME integrates Kingdom Business, Income Generating Activities (IGA), and ongoing local synod coaching. Workers transition away from donor subsidies to local livelihood, and house church networks become structurally robust.",
+        bullets: [
+          "Kingdom Business capital grants and livestock/agriculture training for planters.",
+          "Hub coaching councils providing pastoral oversight and legal protection.",
+          "Increasing domestic Ethiopian church giving share from 14% to 25%."
+        ],
+        targetVal: "70% Sustained",
+        targetLbl: "Of frontline workers supported by Ethiopian mother churches by 2030",
+        quote: "A movement that relies on foreign funds will die when funds dry. A movement rooted in local soil and business outlives all adversity.",
+        quoteAuthor: "— Finance & Sustainability Director, HO-ME"
+      }
+    };
+
+    function setMcmsStage(stageKey) {
+      const data = mcmsStages[stageKey];
+      if (!data) return;
+
+      // Update text in container
+      document.getElementById('stage-badge').innerText = data.badge;
+      document.getElementById('stage-focus').innerText = data.focus;
+      document.getElementById('stage-title').innerText = data.title;
+      document.getElementById('stage-description').innerText = data.description;
+      document.getElementById('stage-metric-target').innerText = data.targetVal;
+      document.getElementById('stage-metric-label').innerText = data.targetLbl;
+      document.getElementById('stage-quote').innerText = `"${data.quote}"`;
+      document.getElementById('stage-quote-author').innerText = data.quoteAuthor;
+
+      // Update bullets
+      const bulletList = document.getElementById('stage-bullets');
+      bulletList.innerHTML = '';
+      data.bullets.forEach(item => {
+        const li = document.createElement('li');
+        li.className = 'flex items-center gap-2';
+        li.innerHTML = `<i class="fa-solid fa-check-circle text-emerald-600"></i><span>${item}</span>`;
+        bulletList.appendChild(li);
+      });
+
+      // Update tab button styles
+      const tabs = ['mobilize', 'catalyze', 'multiply', 'sustain'];
+      tabs.forEach(t => {
+        const btn = document.getElementById(`tab-${t}`);
+        if (t === stageKey) {
+          btn.classList.add('ring-2', 'ring-white', 'shadow-md');
+          btn.style.opacity = '1';
+        } else {
+          btn.classList.remove('ring-2', 'ring-white', 'shadow-md');
+          btn.style.opacity = '0.85';
+        }
+      });
+    }
+
+    // Hubs Explorer Data (12 Regional Hubs)
+    const hubProfiles = {
+      Tigray: {
+        name: "Tigray Hub",
+        status: "Post-Conflict Recovery & DMM",
+        peoples: "Tigrayan, Irob, Kunama",
+        workers: "22 Indigenous Workers",
+        sponsors: "8 Partner Assemblies",
+        desc: "Coordinating reconciliation and house church multiplication in northern border communities and remote mountain valleys.",
+        prayer: "Pray for post-conflict spiritual healing, trauma counseling tools for planters, and open doors among rural highland villages."
+      },
+      NorthWest: {
+        name: "North West Hub",
+        status: "Active Frontier",
+        peoples: "Shinasha, Gumuz, Agaw",
+        workers: "28 Indigenous Workers",
+        sponsors: "11 Partner Assemblies",
+        desc: "Focusing on indigenous river basin tribes and border communities adjacent to Sudan, emphasizing oral DBS storytelling.",
+        prayer: "Pray for peaceful coexistence along tribal fault lines and Person of Peace breakthrough among Gumuz village chiefs."
+      },
+      Gondar: {
+        name: "Gondar Hub",
+        status: "Cultural Frontier",
+        peoples: "Qemant, Amhara Muslim clusters",
+        workers: "19 Indigenous Workers",
+        sponsors: "7 Partner Assemblies",
+        desc: "Navigating deep historical traditions to introduce inductive discovery groups in historic market crossroads.",
+        prayer: "Pray for courage for seekers facing family ostracization and for fruitful Kingdom business agricultural projects."
+      },
+      NorthEast: {
+        name: "North East Hub (Afar & Argoba)",
+        status: "Pioneer Frontier",
+        peoples: "Afar, Argoba, Oromo",
+        workers: "38 Indigenous Workers",
+        sponsors: "14 Partner Assemblies",
+        desc: "Covers the semi-arid lowlands along the Rift Valley corridor. Focuses on pastoralist clans, market towns, and remote settlements with less than 0.1% evangelical witness. Ministry revolves around relational Discovery Bible Studies, clean water initiatives, and mobile livestock coaching.",
+        prayer: "Pray for Persons of Peace among clan elders in Awash valley trading settlements, and protection for workers navigating harsh climatic heat and regional tensions."
+      },
+      Arsi: {
+        name: "Arsi Hub",
+        status: "Catalytic Multiplication",
+        peoples: "Arsi Oromo, Sidama diaspora",
+        workers: "34 Indigenous Workers",
+        sponsors: "16 Partner Assemblies",
+        desc: "High agricultural density zone seeing rapid generational multiplication through family tree discovery groups.",
+        prayer: "Pray for the retention of 3rd and 4th generation streams and sustainable dairy micro-enterprises supporting field evangelists."
+      },
+      South: {
+        name: "South Hub",
+        status: "Multiplying Stream",
+        peoples: "Gedeo, Guji, Borana",
+        workers: "42 Indigenous Workers",
+        sponsors: "19 Partner Assemblies",
+        desc: "A powerhouse hub mobilizing southern churches toward frontier borders with Kenya and Somalia.",
+        prayer: "Pray for the mobilization of youth mission teams and financial sustainability through coffee farmers' missionary guilds."
+      },
+      SouthWest: {
+        name: "South West Hub",
+        status: "Remote Frontier",
+        peoples: "Surma, Me'en, Bench, Dizi",
+        workers: "26 Indigenous Workers",
+        sponsors: "9 Partner Assemblies",
+        desc: "Serving hard-to-reach tribal groups in deep forest zones. Emphasizes mother-tongue scripture oral recording and medical outreach.",
+        prayer: "Pray for health protection for workers in malaria-endemic valleys and for peace among pastoralist cattle clans."
+      },
+      NorthShewa: {
+        name: "North Shewa Hub",
+        status: "Awakening Frontier",
+        peoples: "Oromo, Argoba enclaves",
+        workers: "21 Indigenous Workers",
+        sponsors: "10 Partner Assemblies",
+        desc: "Strategically located along trade arteries, engaging traditionally resistant communities through neighborhood literacy groups.",
+        prayer: "Pray for breaking spiritual barriers and wisdom in mentoring former religious traditionalists into DBS facilitators."
+      },
+      Somali: {
+        name: "Somali Hub",
+        status: "High Frontier Priority",
+        peoples: "Somali clans (multiple lineages)",
+        workers: "30 Indigenous Workers",
+        sponsors: "12 Partner Assemblies",
+        desc: "Operates with discreet, highly contextualized relational bridges. Emphasizes nomadic family circles and holistic well-drilling partnerships.",
+        prayer: "Pray for deep security wisdom, dreams and visions of Isa al-Masih, and underground discovery groups growing among camel herders."
+      },
+      East: {
+        name: "East Hub",
+        status: "Strategic Commercial Hub",
+        peoples: "Harari, Somali, Oromo",
+        workers: "25 Indigenous Workers",
+        sponsors: "11 Partner Assemblies",
+        desc: "Based around ancient walled crossroads, engaging merchants and university students through digital and hospitality ministry.",
+        prayer: "Pray for student DBS groups on regional campuses and unity among diverse evangelical assemblies in the city."
+      },
+      Central: {
+        name: "Central Hub (Addis Ababa HQ)",
+        status: "Executive Oversight & MEL",
+        peoples: "Diaspora groups, Urban unreached",
+        workers: "35 Staff & Mobilizers",
+        sponsors: "45 Partner Assemblies",
+        desc: "Coordinates national training, HOST graduate courses, external financial audits, and missionary screening for all 11 outer hubs.",
+        prayer: "Pray for executive leadership, wisdom in government and CSO compliance, and successful fundraising for the Vision 100DM35 fund."
+      },
+      Bale: {
+        name: "Bale Hub",
+        status: "Frontier Expansion",
+        peoples: "Bale Oromo, Somali border clans",
+        workers: "27 Indigenous Workers",
+        sponsors: "12 Partner Assemblies",
+        desc: "Working across vast forested and plateau zones where evangelical presence was historically under 0.2%.",
+        prayer: "Pray for newly planted house churches in remote lowland pastoralist camps facing social pressure."
+      }
+    };
+
+    function selectHub(hubKey) {
+      const data = hubProfiles[hubKey];
+      if (!data) return;
+
+      document.getElementById('hub-detail-name').innerText = data.name;
+      document.getElementById('hub-detail-status').innerText = data.status;
+      document.getElementById('hub-detail-peoples').innerText = data.peoples;
+      document.getElementById('hub-detail-workers').innerText = data.workers;
+      document.getElementById('hub-detail-sponsors').innerText = data.sponsors;
+      document.getElementById('hub-detail-desc').innerText = data.desc;
+      document.getElementById('hub-detail-prayer').innerText = `"${data.prayer}"`;
+
+      // Highlight button
+      document.querySelectorAll('.hub-btn').forEach(btn => {
+        btn.classList.remove('bg-brand-blue', 'text-white', 'border-brand-blue');
+        btn.classList.add('bg-white', 'text-slate-800', 'border-slate-200');
+        const chevron = btn.querySelector('.fa-chevron-right');
+        if (chevron) {
+          chevron.classList.remove('text-white');
+          chevron.classList.add('text-slate-400');
+        }
+      });
+
+      const activeBtn = document.getElementById(`hub-btn-${hubKey}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-white', 'text-slate-800', 'border-slate-200');
+        activeBtn.classList.add('bg-brand-blue', 'text-white', 'border-brand-blue');
+        const chevron = activeBtn.querySelector('.fa-chevron-right');
+        if (chevron) {
+          chevron.classList.remove('text-slate-400');
+          chevron.classList.add('text-white');
+        }
+      }
+    }
+
+    // Vision 100DM35 Pillar Selector
+    const pillarData = {
+      1: {
+        title: "Pillar 1: Church Mobilization & Cross-Cultural Sending",
+        desc: "HO-ME partners directly with synods and local churches to build sovereign ownership. In Pillar 1, our goal is turning 100 established congregations into 'Churches of Peace' with dedicated mission budgets, prayer intercessors, and direct spiritual care for frontier workers.",
+        actions: [
+          { tag: "Action 1.1", text: "Synod-wide catalytic workshops covering Biblical mandate for frontier peoples." },
+          { tag: "Action 1.2", text: "Screening and psycho-spiritual profiling for church planters and spouses." },
+          { tag: "Action 1.3", text: "Direct worker adoption contracts between sender congregations and regional hubs." }
+        ]
+      },
+      2: {
+        title: "Pillar 2: Catalyzing Disciple Making (DMM & DBS)",
+        desc: "Moving beyond traditional open-air proselytization toward deeply grounded Discovery Bible Studies. Frontline workers mentor indigenous seekers to interpret scripture under the Holy Spirit, obey promptly, and form reproducing house churches in their native dialect.",
+        actions: [
+          { tag: "Action 2.1", text: "Distributing 15,000 oral & print DBS bookmark sets in 6 regional languages." },
+          { tag: "Action 2.2", text: "Mentoring 365 frontline workers in Luke 10 'Person of Peace' scouting." },
+          { tag: "Action 2.3", text: "Holding quarterly frontline troubleshooting sessions in each regional hub." }
+        ]
+      },
+      3: {
+        title: "Pillar 3: Movement Multiplication & Generation Tracking",
+        desc: "Tracking generational fidelity is vital. We utilize strict MEL standards to ensure that baptism, communion, and leadership appointment occur naturally inside 2nd, 3rd, and 4th generation assemblies without relying on external clergy.",
+        actions: [
+          { tag: "Action 3.1", text: "Quarterly generation tree audits verifying 35 authentic DMM streams." },
+          { tag: "Action 3.2", text: "Indigenous leadership retreats for 2nd and 3rd generation church leaders." },
+          { tag: "Action 3.3", text: "Digital mapping of unengaged clusters to redirect workers from reached areas." }
+        ]
+      },
+      4: {
+        title: "Pillar 4: Sustainable Resourcing & Kingdom Business",
+        desc: "Establishing long-term resilience by transitioning frontline workers to self-sustaining livelihoods through micro-enterprises, and expanding Ethiopian domestic church giving to 25% of the total operating budget.",
+        actions: [
+          { tag: "Action 4.1", text: "Seed capital investment in 120 agricultural and retail Kingdom businesses." },
+          { tag: "Action 4.2", text: "Launching the Annual National Missions Giving Sunday across ECGBC synods." },
+          { tag: "Action 4.3", text: "Strengthening HOST Seminary scholarship fund to train domestic missiologists." }
+        ]
+      }
+    };
+
+    function setVisionPillar(pillarNum) {
+      const data = pillarData[pillarNum];
+      if (!data) return;
+
+      const container = document.getElementById('pillar-content');
+      let actionsHtml = '';
+      data.actions.forEach(act => {
+        actionsHtml += `
+          <div class="bg-white p-3 rounded-lg border border-slate-200 text-xs">
+            <span class="font-bold text-brand-blue block">${act.tag}</span>
+            ${act.text}
+          </div>
+        `;
+      });
+
+      container.innerHTML = `
+        <h4 class="text-base font-bold text-slate-900">${data.title}</h4>
+        <p class="leading-relaxed">${data.desc}</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          ${actionsHtml}
+        </div>
+      `;
+
+      // Update button highlights
+      document.querySelectorAll('.pillar-btn').forEach((btn, idx) => {
+        if (idx + 1 === pillarNum) {
+          btn.classList.remove('bg-white', 'text-slate-700');
+          btn.classList.add('bg-brand-blue', 'text-white', 'shadow-xs');
+        } else {
+          btn.classList.remove('bg-brand-blue', 'text-white', 'shadow-xs');
+          btn.classList.add('bg-white', 'text-slate-700');
+        }
+      });
+    }
+
+    // Filter Resources Functionality
+    function filterResources(category) {
+      const cards = document.querySelectorAll('.resource-card');
+      const buttons = document.querySelectorAll('.res-filter-btn');
+
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-cat') === category) {
+          btn.classList.remove('bg-slate-100', 'text-slate-700');
+          btn.classList.add('bg-brand-blue', 'text-white');
+        } else {
+          btn.classList.remove('bg-brand-blue', 'text-white');
+          btn.classList.add('bg-slate-100', 'text-slate-700');
+        }
+      });
+
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Give Gateway Toggle
+    function setGiveGateway(type) {
+      const localBtn = document.getElementById('btn-gw-local');
+      const intlBtn = document.getElementById('btn-gw-intl');
+      const box = document.getElementById('give-details-box');
+
+      if (type === 'local') {
+        localBtn.className = 'py-1 rounded bg-brand-blue text-white';
+        intlBtn.className = 'py-1 rounded text-slate-600 hover:bg-slate-200';
+        box.innerHTML = `
+          <strong>Telebirr / CBE Birr:</strong><br>
+          Commercial Bank of Ethiopia: <span class="font-mono font-bold text-brand-blue">1000023489123</span><br>
+          Telebirr SuperApp: <span class="font-mono font-bold text-brand-red">0911-23-4567</span><br>
+          <span class="text-[10px] text-slate-500">Awash Bank: 0132049283400 (HO-ME Missions)</span>
+        `;
+      } else {
+        intlBtn.className = 'py-1 rounded bg-brand-blue text-white';
+        localBtn.className = 'py-1 rounded text-slate-600 hover:bg-slate-200';
+        box.innerHTML = `
+          <strong>International Donors (USD / EUR):</strong><br>
+          US 501(c)(3) Partner Account: <span class="font-semibold text-brand-blue">Friends of Horn Missions</span><br>
+          Swift / IBAN: <span class="font-mono font-bold text-brand-red">CBETETAA (HO-ME Foreign Acct)</span><br>
+          <span class="text-[10px] text-slate-500">Tax deductible receipts provided for USA/Canada &amp; UK donors.</span>
+        `;
+      }
+    }
+
+    // Modal Control Functions
+    function togglePortalModal(show) {
+      const modal = document.getElementById('portal-modal');
+      if (show) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+
+    function toggleChurchModal(show) {
+      const modal = document.getElementById('church-modal');
+      if (show) {
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
+    }
+
+    function openChurchPartnerModal() {
+      toggleChurchModal(true);
+    }
+
+    function openGivingModal() {
+      alert("Giving Portal: To designate funds for frontline church planters or Bible translation, please contact finance@home-horn.org or transfer via CBE Birr: 1000023489123.");
+    }
+
+    function openHostModal() {
+      alert("Horn of Africa School of Trans-for-Mission (HOST): The 2026 Academic Catalog & Scholarship forms have been queued for your download. Contact: registrar@host-edu.org.");
+    }
+
+    function downloadSummarySimulation() {
+      alert("Downloading 'Vision_100DM35_Executive_Summary_2026-2030.pdf' (1.4MB). Thank you for partnering with HO-ME.");
+    }
+
+    function simulateDownload(filename) {
+      alert(`Initiating download for "${filename}" from the HO-ME Resource Vault.`);
+    }
+
+    function playMovementStoryModal() {
+      alert("Launching Field Documentary: 'Rivers in the Desert - 20 Years of Disciple Making in the Horn of Africa' (Bilingual with English Subtitles).");
+    }
+
+    // Mobile Navigation Drawer Toggle
+    function toggleMobileNav() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Close Modals on Escape Key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        togglePortalModal(false);
+        toggleChurchModal(false);
+      }
+    });
+  </script>
+<!-- END: ScriptInteractions -->
+</body></html>

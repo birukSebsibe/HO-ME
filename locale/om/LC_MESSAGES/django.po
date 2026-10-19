@@ -1,0 +1,224 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: HO-ME 1.0\n"
+"Language: om\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "About Us"
+msgstr "Waa'ee keenya"
+
+msgid "What We Do"
+msgstr "Wantoota nut dalagnu"
+
+msgid "Where We Work"
+msgstr "Bakka nut hojjennu"
+
+msgid "Impact & Stories"
+msgstr "Faayidaa fi Seenoota"
+
+msgid "Library"
+msgstr "Maktabaa"
+
+msgid "Get Involved"
+msgstr "Nu wajjin hirmaadhaa"
+
+msgid "Explore"
+msgstr "Sakatta'i"
+
+msgid "Resources"
+msgstr "Qabeenyoota"
+
+msgid "Contact"
+msgstr "Wal qunnamtii"
+
+msgid "Privacy Policy"
+msgstr "Karoora Icciitii"
+
+msgid "Transparency"
+msgstr "Banamummaa"
+
+msgid "Resource Library"
+msgstr "Kuufama Qabeenyoota"
+
+msgid "Horn of Africa Missions Engagers — secure staff sign-in."
+msgstr "Hojjetaa nageenyaan seeni."
+
+msgid "Username"
+msgstr "Maqaa fayyadamaa"
+
+msgid "Password"
+msgstr "Jecha icciitii"
+
+msgid "Email address"
+msgstr "Teessoo iimeelii"
+
+msgid "Sign in"
+msgstr "Seeni"
+
+msgid "Sign in now"
+msgstr "Ammaa seeni"
+
+msgid "Log in"
+msgstr "Seeni"
+
+msgid "Sign out"
+msgstr "Ba'i"
+
+msgid "Log out"
+msgstr "Ba'i"
+
+msgid "Forgot password?"
+msgstr "Jecha icciitii irraanfadaa?"
+
+msgid "Forgot your password?"
+msgstr "Jecha icciitii irraanfadaa?"
+
+msgid "Back to sign in"
+msgstr "Deebi'ii seeni"
+
+msgid "Protected by brute-force lockout."
+msgstr "Eegama icciitii."
+
+msgid "All sign-ins are monitored and audited."
+msgstr "Seeni hunduu ilaalamu galmeeffamu."
+
+msgid ""
+"Please enter a correct %(username)s and password. Note that both fields may "
+"be case-sensitive."
+msgstr "Maqaa fayyadamaa fi jecha icciitii sirrii galchi."
+
+msgid "Reset your password"
+msgstr ""
+
+msgid ""
+"Enter the email address linked to your admin account. We'll send you a one-"
+"time link to set a new password."
+msgstr ""
+"Jecha icciitii haaraa murteesuuf hidhaa tokko ergina. Teessoo iimeelii kee "
+"galchi."
+
+msgid "Send reset link"
+msgstr "Hidhaa ergi"
+
+msgid "Check your inbox"
+msgstr "Sanduuqa kee ilaali"
+
+msgid ""
+"If an account exists for that email, a one-time reset link is on its way. It"
+" expires shortly for security — check your spam folder too."
+msgstr ""
+"Iimeelii kanaan seenaa jiraate, hidhaa tokko ergameera. Yeroo gabaabaa waan "
+"dhumeef — sapphurruu kee ilaali."
+
+msgid "Set a new password"
+msgstr "Jecha icciitii haaraa murteessi"
+
+msgid "Choose a strong password for the admin portal."
+msgstr "Jecha icciitii cimaa murteessi."
+
+msgid "New password"
+msgstr "Jecha icciitii haaraa"
+
+msgid "Confirm new password"
+msgstr "Jecha icciitii haaraa mirkaneessi"
+
+msgid "Update password"
+msgstr "Jecha icciitii jijjiiri"
+
+msgid "Link expired"
+msgstr "Hidhaa dhumeera"
+
+msgid "This reset link is invalid or has already been used."
+msgstr "Hidhaan kun sirrii miti yookaan dursee fayyadamameera."
+
+msgid "Request a new link"
+msgstr "Hidhaa haaraa gaafadhu"
+
+msgid "Password updated"
+msgstr "Jecha icciitii jijjiirameera"
+
+msgid "Your new password is active. You can now sign in with it."
+msgstr "Jecha icciitii haaraa hojjee jira. Ammaa seenuu dandeessisi."
+
+msgid "Pray, partner, give, or serve with us across the Horn of Africa."
+msgstr "Duaa kadhachaa, gargaarsaa, kennaa yookaan nu wajjin hojjechaa."
+
+msgid "Prayer"
+msgstr "Duaa"
+
+msgid "Church Partnership"
+msgstr "Waldaa Gargaarsa"
+
+msgid "Giving"
+msgstr "Kennaa"
+
+msgid "Volunteer / Staff"
+msgstr "Hojjetaa/Miseensaa"
+
+msgid "Join the Prayer Network"
+msgstr "Walitti Dhufeenya Duaa hirmaadhaa"
+
+msgid "Receive weekly or monthly points for the peoples and hubs of the Horn."
+msgstr "Torbanii fi ji'a tokko tokko."
+
+msgid "Sign up to pray"
+msgstr "Duaa raawwachuuf galmaa'i"
+
+msgid "Church Partnership Application"
+msgstr "Waldaa Gargaarsa"
+
+msgid "Giving Options"
+msgstr "Karaa Kennaa"
+
+msgid "Volunteer / Staff Application"
+msgstr "Hojjetaa/Miseensaa"
+
+msgid "Submit application"
+msgstr "Gaaffii ergi"
+
+msgid "Close"
+msgstr "Cufi"
+
+msgid "Oops"
+msgstr ""
+
+msgid "Thank you!"
+msgstr "Galatoomi!"
+
+msgid "Thank you — you've joined the prayer network!"
+msgstr "Galatoomi — Waldaa Duaa hirmaattani!"
+
+msgid "Application received — our partnerships team will be in touch."
+msgstr "Gaaffii daaphetee — gargaarsi isin qunnama."
+
+msgid "Application received — thank you for offering to serve!"
+msgstr "Gaaffii daaphetee — hojjettiif Galatoomi!"
+
+msgid "Access request submitted — we'll follow up by email."
+msgstr "Gaaffii daaphetee — iimeelii ilaalna."
+
+msgid "Home"
+msgstr "Seensa"
+
+msgid "Add"
+msgstr "Dabali"
+
+msgid "Change"
+msgstr "Baddali"
+
+msgid "Delete"
+msgstr "Haaquu"
+
+msgid "Save"
+msgstr "Olkaa'i"
+
+msgid "History"
+msgstr "Seenaa"
+
+msgid "Dashboard"
+msgstr "Sakatta'iinsa"
+
+msgid "View site"
+msgstr "Saayitii ilaali"
