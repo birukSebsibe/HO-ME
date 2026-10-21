@@ -1,12 +1,13 @@
 {% extends "base.html" %}
+{% load i18n %}{% load home_tags %}
 
 {% block title %}Where We Work — {{ site.site_name }}{% endblock %}
 
 {% block content %}
 <section class="bg-brand-blueDark py-16 text-white">
   <div class="mx-auto max-w-7xl px-4 sm:px-6" data-aos="fade-up">
-    <h1 class="text-4xl font-extrabold sm:text-5xl">Where We Work</h1>
-    <p class="mt-3 max-w-2xl text-blue-100">Regions and training hubs across the Horn of Africa.</p>
+    <h1 class="text-4xl font-extrabold sm:text-5xl">{% trans "Where We Work" %}</h1>
+    <p class="mt-3 max-w-2xl text-blue-100">{% trans "Regions and training hubs across the Horn of Africa." %}</p>
   </div>
 </section>
 
@@ -25,7 +26,7 @@
   </div>
 
   <p class="mt-3 text-xs text-brand-blue text-center">
-    Explore our regions and hubs using the interactive map.
+    {% trans "Explore our regions and hubs using the interactive map." %}
   </p>
 
   <a
@@ -37,7 +38,7 @@
            transition-colors duration-200 hover:bg-red-600
            focus:outline-none focus:ring-2 focus:ring-blue-400"
   >
-    Open Map in Google Maps
+    {% trans "Open Map in Google Maps" %}
   </a>
 </div>
 
@@ -48,15 +49,15 @@
     <div class="rounded-2xl overflow-hidden border border-slate2-200 bg-white shadow-sm hover:shadow-lg transition"
          data-aos="fade-up" x-show="!selected || selected==='{{ r.name }}'" x-transition>
       <div class="flex items-center justify-between bg-gradient-to-r from-brand-700 to-brand-blueDark px-5 py-3 text-white">
-        <h3 class="font-bold">{{ r.name }}</h3>
+        <h3 class="font-bold">{{ r|tfield:"name" }}</h3>
         <span class="rounded-full px-2.5 py-0.5 text-xs {% if r.status == 'engaged' %}bg-emerald-500{% elif r.status == 'emerging' %}bg-amber-500{% else %}bg-brand-blueLight{% endif %} font-semibold">{{ r.get_status_display }}</span>
       </div>
       <div class="p-5">
         <div class="flex gap-6 text-sm">
-          <p><span class="block text-2xl font-extrabold text-slate2-800">{{ r.upg_count }}</span><span class="text-brand-blue">UPGs</span></p>
-          <p><span class="block text-2xl font-extrabold text-slate2-800">{{ r.total_churches|default:"—" }}</span><span class="text-brand-blue">Churches</span></p>
+          <p><span class="block text-2xl font-extrabold text-slate2-800">{{ r.upg_count }}</span><span class="text-brand-blue">{% trans "UPGs" %}</span></p>
+          <p><span class="block text-2xl font-extrabold text-slate2-800">{{ r.total_churches|default:"—" }}</span><span class="text-brand-blue">{% trans "Churches" %}</span></p>
         </div>
-        <p class="mt-3 text-sm text-slate2-600">{{ r.summary }}</p>
+        <p class="mt-3 text-sm text-slate2-600">{{ r|tfield:"summary" }}</p>
       </div>
     </div>
     {% endfor %}

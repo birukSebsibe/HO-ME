@@ -1,128 +1,182 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load i18n %}{% load home_tags %}
 
-{% block title %}Get Involved — {{ site.site_name }}{% endblock %}
+{% block title %}{% trans "Get Involved" %} — {{ site.site_name }}{% endblock %}
 
 {% block content %}
-<section class="bg-brand-blueDark py-16 text-white">
+<section class="bg-brand-blueDark py-16 text-white dark:bg-night-900 dark:border-b dark:border-night-border">
   <div class="mx-auto max-w-7xl px-4 sm:px-6" data-aos="fade-up">
     <h1 class="text-4xl font-extrabold sm:text-5xl">{% trans "Get Involved" %}</h1>
     <p class="mt-3 max-w-2xl text-blue-100">{% trans "Pray, partner, give, or serve with us across the Horn of Africa." %}</p>
   </div>
 </section>
 
-<section class="mx-auto max-w-4xl px-4 py-16 sm:px-6">
-  <div x-data="{
-        tab:'prayer', done:false, err:false, msg:'',
-        async submit(e, kind){
-          e.preventDefault();
-          const fd = new FormData(e.target);
-          const res = await fetch('/submit/' + kind + '/', { method:'POST', body:fd,
-            headers:{'X-Requested-With':'XMLHttpRequest'} });
-          let data = {};
-          try { data = await res.json(); } catch (err) {}
-          if(res.ok && data.ok){ this.done=true; this.err=false; this.msg=data.message || 'Thank you!'; e.target.reset(); }
-          else {
-            this.done = true; this.err = true;
-            this.msg = (res.status === 403)
-              ? 'Security check failed — please reload the page and try again.'
-              : (data.message || 'Something went wrong — please try again later.');
-          }
+<section class="mx-auto max-w-7xl px-4 py-16 sm:px-6" x-data="{
+      tab:'prayer', done:false, err:false, msg:'',
+      async submit(e, kind){
+        e.preventDefault();
+        const fd = new FormData(e.target);
+        const res = await fetch('/submit/' + kind + '/', { method:'POST', body:fd,
+          headers:{'X-Requested-With':'XMLHttpRequest'} });
+        let data = {};
+        try { data = await res.json(); } catch (err) {}
+        if(res.ok && data.ok){ this.done=true; this.err=false; this.msg=data.message || 'Thank you!'; e.target.reset(); }
+        else {
+          this.done = true; this.err = true;
+          this.msg = (res.status === 403)
+            ? 'Security check failed — please reload the page and try again.'
+            : (data.message || 'Something went wrong — please try again later.');
         }
-      }">
+      }
+    }">
 
-    <!-- Tabs -->
-    <div class="flex flex-wrap gap-2 justify-center" data-aos="fade-up">
-      <button type="button" @click="tab='prayer'; done=false" :class="tab==='prayer' ? 'bg-brand-blue text-white' : 'bg-white border border-slate2-200 text-slate2-800'" class="rounded-full px-5 py-2 text-sm font-semibold transition">🙏 {% trans "Prayer" %}</button>
-      <button type="button" @click="tab='partner'; done=false" :class="tab==='partner' ? 'bg-brand-blue text-white' : 'bg-white border border-slate2-200 text-slate2-800'" class="rounded-full px-5 py-2 text-sm font-semibold transition">🤝 {% trans "Church Partnership" %}</button>
-      <button type="button" @click="tab='give'; done=false" :class="tab==='give' ? 'bg-brand-blue text-white' : 'bg-white border border-slate2-200 text-slate2-800'" class="rounded-full px-5 py-2 text-sm font-semibold transition">💛 {% trans "Giving" %}</button>
-      <button type="button" @click="tab='serve'; done=false" :class="tab==='serve' ? 'bg-brand-blue text-white' : 'bg-white border border-slate2-200 text-slate2-800'" class="rounded-full px-5 py-2 text-sm font-semibold transition">✋ {% trans "Volunteer / Staff" %}</button>
+  <!-- ============ 4 separate pathway cards (click to open the matching form) ============ -->
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4" data-aos="fade-up">
+
+    {# ------------------- Card 1: Pray ------------------- #}
+    <div class="flex flex-col justify-between rounded-3xl border border-slate2-200 bg-white p-6 shadow-soft dark:border-night-border dark:bg-night-card dark:shadow-dark-soft">
+      <div>
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-50 text-xl text-brand-red dark:bg-rose-500/10 dark:text-brand-terracotta">
+          <i class="fa-solid fa-hands-praying"></i>
+        </div>
+        <h3 class="text-lg font-bold text-slate2-900 dark:text-night-100">{% trans "Prayer Shield" %}</h3>
+        <p class="mt-2 text-xs leading-relaxed text-slate2-600 dark:text-night-400">
+          {% trans "Join believers in daily frontier intercession for the peoples and hubs of the Horn." %}
+        </p>
+        <ul class="mt-3 space-y-1.5 text-xs text-slate2-600 dark:text-night-300">
+          <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-blue dark:text-night-blue"></i> {% trans "Weekly or monthly rhythm" %}</li>
+          <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-blue dark:text-night-blue"></i> {% trans "Hub-specific prayer points" %}</li>
+        </ul>
+        <!-- Inline form separator (fields no longer spill into a single long list) -->
+        <form x-show="tab==='prayer'" x-transition @submit="submit($event,'prayer')" class="mt-4 space-y-2 border-t border-slate2-200 pt-4 dark:border-night-border">
+          <input name="full_name" required placeholder="{% trans 'Full name' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <input name="email" type="email" required placeholder="{% trans 'Email' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <input name="phone" placeholder="{% trans 'Phone (optional)' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <select name="frequency" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200">
+            <option value="weekly">{% trans "Weekly update" %}</option><option value="monthly">{% trans "Monthly digest" %}</option><option value="one_off">{% trans "One-off commitment" %}</option>
+          </select>
+          <input name="topics_of_interest" placeholder="{% trans 'Topics of interest (e.g. Somali, Bible translation)' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <textarea name="message" rows="2" placeholder="{% trans "Anything you'd like us to know?" %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500"></textarea>
+        </form>
+      </div>
+      <button type="button" @click="tab = tab==='prayer' ? '' : 'prayer'; done=false"
+              class="mt-5 w-full rounded-xl bg-brand-red py-2.5 text-xs font-bold text-white transition hover:bg-brand-redDark dark:bg-brand-red dark:hover:bg-red-700">
+        <span x-text="tab==='prayer' ? '{% trans "Close form" %}' : '{% trans "Join Prayer Watch" %}'"></span>
+      </button>
     </div>
 
-    <div class="mt-8 rounded-3xl border border-slate2-200 bg-white p-8 shadow-lg" data-aos="fade-up">
-
-      {# ------------------- Pray ------------------- #}
-      <form x-show="tab==='prayer'" x-transition @submit="submit($event,'prayer')" class="space-y-4">
-        <h2 class="text-2xl font-extrabold text-slate2-900">{% trans "Join the Prayer Network" %}</h2>
-        <p class="text-sm text-slate2-600">{% trans "Receive weekly or monthly points for the peoples and hubs of the Horn." %}</p>
-        {% csrf_token %}
-        <div class="grid gap-4 sm:grid-cols-2">
-          <input name="full_name" required placeholder="Full name" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-          <input name="email" type="email" required placeholder="Email" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
+    {# ------------------- Card 2: Church Partnership ------------------- #}
+    <div class="flex flex-col justify-between rounded-3xl border border-slate2-200 bg-white p-6 shadow-soft dark:border-night-border dark:bg-night-card dark:shadow-dark-soft">
+      <div>
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-xl text-brand-blue dark:bg-blue-500/10 dark:text-night-blue">
+          <i class="fa-solid fa-church"></i>
         </div>
-        <input name="phone" placeholder="Phone (optional)" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-        <select name="frequency" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-          <option value="weekly">Weekly update</option><option value="monthly">Monthly digest</option><option value="one_off">One-off commitment</option>
-        </select>
-        <input name="topics_of_interest" placeholder="Topics of interest (e.g. Somali, Bible translation)" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-        <textarea name="message" rows="3" placeholder="Anything you'd like us to know?" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full"></textarea>
-        <button type="submit" class="w-full rounded-xl bg-brand-blue py-3 font-semibold text-white hover:bg-brand-blue">{% trans "Sign up to pray" %}</button>
-      </form>
-
-      {# ------------------- Partner ------------------- #}
-      <form x-show="tab==='partner'" x-transition @submit="submit($event,'partnership')" class="space-y-4">
-        {% csrf_token %}
-        <h2 class="text-2xl font-extrabold text-slate2-900">{% trans "Church Partnership Application" %}</h2>
-        <div class="grid gap-4 sm:grid-cols-2">
-          <input name="full_name" required placeholder="Contact person" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-          <input name="email" type="email" required placeholder="Email" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-          <input name="church_name" required placeholder="Church name" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-          <input name="denomination" placeholder="Denomination" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-          <input name="city" placeholder="City" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-          <input name="phone" placeholder="Phone" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-        </div>
-        <select name="partnership_interest" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-          <option value="prayer">Prayer partner</option><option value="giving">Giving partner</option>
-          <option value="sending">Sending / mobilizing partner</option><option value="hosting">Host a HOST school</option>
-          <option value="other">Other</option>
-        </select>
-        <textarea name="message" rows="3" placeholder="Tell us about your church and its mission heart" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full"></textarea>
-        <button type="submit" class="w-full rounded-xl bg-brand-blue py-3 font-semibold text-white hover:bg-brand-blue">{% trans "Submit application" %}</button>
-      </form>
-
-      {# ------------------- Give ------------------- #}
-      <div x-show="tab==='give'" x-transition class="space-y-5">
-        <h2 class="text-2xl font-extrabold text-slate2-900">{% trans "Giving Options" %}</h2>
-        {% for g in giving_options %}
-        <div class="rounded-2xl border border-slate2-200 bg-blue-50 p-5">
-          <p class="text-xs font-bold uppercase tracking-wider text-brand-red">{{ g.get_kind_display }}</p>
-          <h3 class="mt-1 font-bold text-slate2-900">{{ g.title }}</h3>
-          <div class="mt-2 whitespace-pre-wrap text-sm text-slate2-700">{{ g.details }}</div>
-        </div>
-        {% empty %}
-        <p class="text-sm text-brand-blue">Giving details will be published here — editable in the admin portal.</p>
-        {% endfor %}
-        <p class="text-xs text-brand-blue">For receipts &amp; questions: <b>{{ site.contact_email }}</b></p>
+        <h3 class="text-lg font-bold text-slate2-900 dark:text-night-100">{% trans "Church Partnership" %}</h3>
+        <p class="mt-2 text-xs leading-relaxed text-slate2-600 dark:text-night-400">
+          {% trans "For congregations ready to adopt an unreached people group and send vetted planters." %}
+        </p>
+        <ul class="mt-3 space-y-1.5 text-xs text-slate2-600 dark:text-night-300">
+          <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-blue dark:text-night-blue"></i> {% trans "Pastoral staff orientation" %}</li>
+          <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-blue dark:text-night-blue"></i> {% trans "Synod frontier mapping" %}</li>
+          <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-blue dark:text-night-blue"></i> {% trans "Shared missionary support" %}</li>
+        </ul>
+        <form x-show="tab==='partner'" x-transition @submit="submit($event,'partnership')" class="mt-4 space-y-2 border-t border-slate2-200 pt-4 dark:border-night-border">
+          <input name="church_name" required placeholder="{% trans 'Church name' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <input name="full_name" required placeholder="{% trans 'Contact person' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <input name="email" type="email" required placeholder="{% trans 'Email' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <input name="denomination" placeholder="{% trans 'Denomination' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <input name="city" placeholder="{% trans 'City' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <input name="phone" placeholder="{% trans 'Phone' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <select name="partnership_interest" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200">
+            <option value="prayer">{% trans "Prayer partner" %}</option><option value="giving">{% trans "Giving partner" %}</option>
+            <option value="sending">{% trans "Sending / mobilizing partner" %}</option><option value="hosting">{% trans "Host a HOST school" %}</option>
+            <option value="other">{% trans "Other" %}</option>
+          </select>
+          <textarea name="message" rows="2" placeholder="{% trans 'Tell us about your church and its mission heart' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500"></textarea>
+        </form>
       </div>
-
-      {# ------------------- Serve ------------------- #}
-      <form x-show="tab==='serve'" x-transition @submit="submit($event,'volunteer')" class="space-y-4">
-        {% csrf_token %}
-        <h2 class="text-2xl font-extrabold text-slate2-900">{% trans "Volunteer / Staff Application" %}</h2>
-        <div class="grid gap-4 sm:grid-cols-2">
-          <input name="full_name" required placeholder="Full name" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-          <input name="email" type="email" required placeholder="Email" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-        </div>
-        <select name="kind" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-          <option value="volunteer">Volunteer</option><option value="staff">Staff</option>
-        </select>
-        <input name="skills" placeholder="Skills (e.g. training, administration, media)" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-        <input name="availability" placeholder="Availability (e.g. 2 weeks/year)" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-        <textarea name="references" rows="2" placeholder="References (names & contacts)" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full"></textarea>
-        <input name="cv_url" type="url" placeholder="Link to CV (optional)" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full">
-        <textarea name="message" rows="3" placeholder="Why do you want to serve with HO-ME?" class="rounded-xl border border-slate2-200 px-4 py-2.5 text-sm w-full"></textarea>
-        <button type="submit" class="w-full rounded-xl bg-brand-blue py-3 font-semibold text-white hover:bg-brand-blue">{% trans "Submit application" %}</button>
-      </form>
+      <button type="button" @click="tab = tab==='partner' ? '' : 'partner'; done=false"
+              class="mt-5 w-full rounded-xl bg-brand-blue py-2.5 text-xs font-bold text-white transition hover:bg-brand-blueDark dark:bg-blue-600 dark:hover:bg-blue-700">
+        <span x-text="tab==='partner' ? '{% trans "Close form" %}' : '{% trans "Inquire as a Church" %}'"></span>
+      </button>
     </div>
 
-    <!-- Success overlay -->
-    <div x-show="done" x-transition class="fixed inset-0 z-50 grid place-items-center bg-black/50 p-4" x-cloak>
-      <div class="rounded-3xl bg-white p-10 text-center shadow-2xl max-w-sm">
-        <i data-lucide="check-circle-2" class="mx-auto h-14 w-14 text-brand-blueLight"></i>
-        <h3 class="mt-4 text-xl font-bold text-slate2-900" x-text="err ? '{% trans "Oops" %}' : '{% trans "Thank you!" %}'"></h3>
-        <p class="mt-2 text-sm text-slate2-600" x-text="msg"></p>
-        <button @click="done=false" class="mt-6 rounded-xl bg-brand-blue px-6 py-2.5 font-semibold text-white hover:bg-brand-blue">{% trans "Close" %}</button>
+    {# ------------------- Card 3: Giving ------------------- #}
+    <div class="flex flex-col justify-between rounded-3xl border-2 border-brand-red p-6 shadow-soft dark:border-brand-red/70 dark:bg-night-card dark:shadow-dark-soft">
+      <div>
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-xl text-brand-orange dark:bg-amber-500/10 dark:text-night-gold">
+          <i class="fa-solid fa-heart-circle-bolt"></i>
+        </div>
+        <h3 class="text-lg font-bold text-slate2-900 dark:text-night-100">{% trans "Give" %}</h3>
+        <p class="mt-2 text-xs leading-relaxed text-slate2-600 dark:text-night-400">
+          {% trans "Empower frontline workers with life support, tools, and Kingdom business capital." %}
+        </p>
+        <div x-show="tab==='give'" x-transition class="mt-4 space-y-3 border-t border-slate2-200 pt-4 dark:border-night-border">
+          {% for g in giving_options %}
+          <div class="rounded-xl border border-slate2-200 bg-blue-50/60 p-3 dark:border-night-border dark:bg-blue-500/5">
+            <p class="text-[10px] font-bold uppercase tracking-wider text-brand-red dark:text-brand-terracotta">{{ g.get_kind_display }}</p>
+            <h4 class="mt-0.5 text-sm font-bold text-slate2-900 dark:text-night-100">{{ g|tfield:"title" }}</h4>
+            <div class="mt-1 whitespace-pre-wrap text-xs text-slate2-700 dark:text-night-300">{{ g|tfield:"details" }}</div>
+          </div>
+          {% empty %}
+          <p class="text-xs text-brand-blue dark:text-night-blue">{% trans "Giving details will be published here — editable in the admin portal." %}</p>
+          {% endfor %}
+          <p class="text-[11px] text-brand-blue dark:text-night-blue">{% trans "For receipts & questions:" %} <b>{{ site.contact_email }}</b></p>
+        </div>
       </div>
+      <button type="button" @click="tab = tab==='give' ? '' : 'give'; done=false"
+              class="mt-5 w-full rounded-xl bg-slate2-900 py-2.5 text-xs font-bold text-white transition hover:bg-black dark:bg-night-700 dark:hover:bg-night-600">
+        <span x-text="tab==='give' ? '{% trans "Hide channels" %}' : '{% trans "View Giving Channels" %}'"></span>
+      </button>
+    </div>
+
+    {# ------------------- Card 4: Volunteer / Staff ------------------- #}
+    <div class="flex flex-col justify-between rounded-3xl border border-slate2-200 bg-white p-6 shadow-soft dark:border-night-border dark:bg-night-card dark:shadow-dark-soft">
+      <div>
+        <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-xl text-emerald-600 dark:bg-emerald-500/10 dark:text-emerald-400">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <h3 class="text-lg font-bold text-slate2-900 dark:text-night-100">{% trans "Volunteer / Staff" %}</h3>
+        <p class="mt-2 text-xs leading-relaxed text-slate2-600 dark:text-night-400">
+          {% trans "Serve with your skills — training, administration, media, field logistics, and more." %}
+        </p>
+        <ul class="mt-3 space-y-1.5 text-xs text-slate2-600 dark:text-night-300">
+          <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-blue dark:text-night-blue"></i> {% trans "Flexible availability" %}</li>
+          <li class="flex items-center gap-1.5"><i class="fa-solid fa-check text-brand-blue dark:text-night-blue"></i> {% trans "Onboarding & training provided" %}</li>
+        </ul>
+        <form x-show="tab==='serve'" x-transition @submit="submit($event,'volunteer')" class="mt-4 space-y-2 border-t border-slate2-200 pt-4 dark:border-night-border">
+          <input name="full_name" required placeholder="{% trans 'Full name' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <input name="email" type="email" required placeholder="{% trans 'Email' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <select name="kind" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200">
+            <option value="volunteer">{% trans "Volunteer" %}</option><option value="staff">{% trans "Staff" %}</option>
+          </select>
+          <input name="skills" placeholder="{% trans 'Skills (e.g. training, administration, media)' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <input name="availability" placeholder="{% trans 'Availability (e.g. 2 weeks/year)' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <textarea name="references" rows="2" placeholder="{% trans 'References (names & contacts)' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500"></textarea>
+          <input name="cv_url" type="url" placeholder="{% trans 'Link to CV (optional)' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500">
+          <textarea name="message" rows="2" placeholder="{% trans 'Why do you want to serve with HO-ME?' %}" class="w-full rounded-lg border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-200 placeholder:text-slate2-400 dark:placeholder:text-night-500"></textarea>
+        </form>
+      </div>
+      <button type="button" @click="tab = tab==='serve' ? '' : 'serve'; done=false"
+              class="mt-5 w-full rounded-xl border border-emerald-600 py-2.5 text-xs font-bold text-emerald-700 transition hover:bg-emerald-50 dark:border-emerald-500/60 dark:text-emerald-400 dark:hover:bg-emerald-500/10">
+        <span x-text="tab==='serve' ? '{% trans "Close form" %}' : '{% trans "Apply to Serve" %}'"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Reassurance row under the cards -->
+  <p class="mt-8 text-center text-xs text-slate2-500 dark:text-night-400">
+    <i class="fa-solid fa-shield-halved mr-1 text-brand-gold dark:text-night-gold"></i>
+    {% trans "All submissions are reviewed by our team. We never share your information with third parties." %}
+  </p>
+
+  <!-- Success overlay -->
+  <div x-show="done" x-transition class="fixed inset-0 z-50 grid place-items-center bg-black/50 p-4" x-cloak>
+    <div class="rounded-3xl bg-white p-10 text-center shadow-2xl max-w-sm dark:bg-night-card dark:border dark:border-night-border">
+      <i data-lucide="check-circle-2" class="mx-auto h-14 w-14 text-brand-blueLight dark:text-night-blue"></i>
+      <h3 class="mt-4 text-xl font-bold text-slate2-900 dark:text-night-100" x-text="err ? '{% trans "Oops" %}' : '{% trans "Thank you!" %}'"></h3>
+      <p class="mt-2 text-sm text-slate2-600 dark:text-night-300" x-text="msg"></p>
+      <button @click="done=false" class="mt-6 rounded-xl bg-brand-blue px-6 py-2.5 font-semibold text-white hover:bg-brand-blueDark dark:bg-blue-600 dark:hover:bg-blue-700">{% trans "Close" %}</button>
     </div>
   </div>
 </section>

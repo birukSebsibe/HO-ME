@@ -148,8 +148,20 @@ def build(code: str, index: int) -> None:
     print(f"{code}: {count} msgids -> {po_path.name} + {mo_path.name} OK")
 
 
+# Merge the whole-site sweep entries (kept in a separate module for size).
+try:
+    from .extra_translation_entries import EXTRA_TRANSLATIONS
+    TRANSLATIONS.update(EXTRA_TRANSLATIONS)
+except ImportError:  # run as a plain script, not as a package
+    import sys as _sys, os as _os
+    _sys.path.insert(0, str(LOCALE_DIR))
+    from extra_translation_entries import EXTRA_TRANSLATIONS
+    TRANSLATIONS.update(EXTRA_TRANSLATIONS)
+
+
 if __name__ == "__main__":
     build("am", 1)
     build("om", 2)
     print("Done.")
+
 

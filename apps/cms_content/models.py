@@ -1,9 +1,58 @@
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.db.models import Q
 from django.utils.text import slugify
 
 # Re-use the singleton pattern from core
 from apps.core.models import SingletonModel
+
+
+# ---------------------------------------------------------------------------
+# Whole-content translation: per-language overrides of admin-editable text
+# ---------------------------------------------------------------------------
+
+TRANSLATION_LANGUAGES = (
+    ("am", "Amharic / አማርኛ"),
+    ("om", "Oromifa / Afaan Oromoo"),
+)
+
+
+class ContentTranslation(models.Model):
+    """A translated value for one text field of any CMS-managed object.
+
+    Example: content_type=Pillar, object_id=2, field_name='title',
+    language='am' → Amharic title for that pillar. Falls back to the
+    original value when no override exists for the active language.
+    """
+
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name="content_translations")
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey("content_type", "object_id")
+    field_name = models.CharField(max_length=100)
+    language = models.CharField(max_length=7, choices=TRANSLATION_LANGUAGES)
+    text = models.TextField()
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = (
+            models.UniqueConstraint(
+                fields=("content_type", "object_id", "field_name", "language"),
+                name="unique_translation_per_field_lang",
+            ),
+        )
+        verbose_name = "Content Translation"
+        verbose_name_plural = "Content Translations"
+
+    def clean(self):
+        # Language must be a supported non-English target.
+        if self.language in ("", "en"):
+            raise ValidationError({"language": "Choose 'am' or 'om' — English is the source text."})
+
+    def __str__(self):
+        obj = self.content_object
+        return f"{obj} · {self.field_name} [{self.language}]" if obj else f"{self.field_name} [{self.language}]"
 
 
 # ---------------------------------------------------------------------------

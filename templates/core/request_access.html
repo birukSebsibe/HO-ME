@@ -1,18 +1,19 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %}Request Access — {{ site.site_name }}{% endblock %}
 
 {% block content %}
 <section class="mx-auto max-w-xl px-4 py-16 sm:px-6" data-aos="fade-up">
-  <h1 class="text-3xl font-extrabold text-slate2-900">Request access</h1>
-  <p class="mt-2 text-slate2-600">“{{ resource.title }}” requires approved access. Submit a request and our team will follow up.</p>
+  <h1 class="text-3xl font-extrabold text-slate2-900">{% trans "Request access" %}</h1>
+  <p class="mt-2 text-slate2-600">{% blocktranslate with title=resource.title %}“{{ title }}” requires approved access. Submit a request and our team will follow up.{% endblocktranslate %}</p>
   <form method="post" class="mt-8 space-y-4 rounded-3xl border border-slate2-200 bg-white p-8 shadow">
     {% csrf_token %}
-    <input name="full_name" required placeholder="Full name" class="w-full rounded-xl border border-slate2-200 px-4 py-2.5 text-sm">
-    <input name="email" type="email" required placeholder="Email" class="w-full rounded-xl border border-slate2-200 px-4 py-2.5 text-sm">
-    <input name="organization" placeholder="Organization / church" class="w-full rounded-xl border border-slate2-200 px-4 py-2.5 text-sm">
-    <textarea name="reason" rows="3" placeholder="How will you use this resource?" class="w-full rounded-xl border border-slate2-200 px-4 py-2.5 text-sm"></textarea>
-    <button class="w-full rounded-xl bg-brand-blue py-3 font-semibold text-white hover:bg-brand-blue">Submit request</button>
+    <input name="full_name" required placeholder='{% trans "Full name" %}' class="w-full rounded-xl border border-slate2-200 px-4 py-2.5 text-sm">
+    <input name="email" type="email" required placeholder='{% trans "Email" %}' class="w-full rounded-xl border border-slate2-200 px-4 py-2.5 text-sm">
+    <input name="organization" placeholder='{% trans "Organization / church" %}' class="w-full rounded-xl border border-slate2-200 px-4 py-2.5 text-sm">
+    <textarea name="reason" rows="3" placeholder='{% trans "How will you use this resource?" %}' class="w-full rounded-xl border border-slate2-200 px-4 py-2.5 text-sm"></textarea>
+    <button class="w-full rounded-xl bg-brand-blue py-3 font-semibold text-white hover:bg-brand-blue">{% trans "Submit request" %}</button>
   </form>
 </section>
 {% endblock %}

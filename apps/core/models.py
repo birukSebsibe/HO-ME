@@ -29,6 +29,32 @@ class SingletonModel(models.Model):
         return obj
 
 
+class ChatbotEntry(models.Model):
+    """Predefined question/answer for the floating site chat helper.
+
+    Managed from the admin portal (Chatbot Q&A). Matching is done on the
+    comma-separated free-text keywords.
+    """
+
+    question = models.CharField(max_length=250)
+    answer = models.TextField()
+    keywords = models.CharField(
+        max_length=400,
+        blank=True,
+        help_text="Comma-separated match words, e.g. 'give, donate, support'. Used to answer free-typed questions.",
+    )
+    order = models.PositiveSmallIntegerField(default=0)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ("order", "id")
+        verbose_name = "Chatbot Q&A"
+        verbose_name_plural = "Chatbot Q&A (floating helper)"
+
+    def __str__(self):
+        return self.question
+
+
 class SiteSetting(SingletonModel):
     """Global, fully editable site configuration (hero, counters, contact, footer…)."""
 
@@ -102,7 +128,14 @@ class SiteSetting(SingletonModel):
 
     @property
     def active_headline(self):
-        return self.headline_b if self.hero_variant == "B" else self.headline_a
+        # Language-aware: uses the per-language override when one exists.
+        try:
+            from apps.cms_content.translations import resolve
+            if self.hero_variant == "B":
+                return resolve(self, "headline_b", default=self.headline_b)
+            return resolve(self, "headline_a", default=self.headline_a)
+        except Exception:
+            return self.headline_b if self.hero_variant == "B" else self.headline_a
 
 
 class PartnerLogo(models.Model):

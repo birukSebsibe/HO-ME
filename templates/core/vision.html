@@ -1,13 +1,13 @@
 {% extends "base.html" %}
-{% load home_tags %}
+{% load home_tags %}{% load i18n %}
 
 {% block title %}Vision 100DM35 — {{ site.site_name }}{% endblock %}
 
 {% block content %}
 <section class="bg-brand-blueDark py-16 text-white">
   <div class="mx-auto max-w-7xl px-4 sm:px-6" data-aos="fade-up">
-    <h1 class="text-4xl font-extrabold sm:text-5xl">Vision 100DM35 Tracker</h1>
-    <p class="mt-3 max-w-2xl text-blue-100">Live movement indicators: baseline 2025 → current → 2030 target. Updated by our MEL team in the admin portal.</p>
+    <h1 class="text-4xl font-extrabold sm:text-5xl">{% trans "Vision 100DM35 Tracker" %}</h1>
+    <p class="mt-3 max-w-2xl text-blue-100">{% trans "Live movement indicators: baseline 2025 → current → 2030 target. Updated by our MEL team in the admin portal." %}</p>
   </div>
 </section>
 
@@ -18,7 +18,7 @@
       <div class="flex items-start justify-between gap-4">
         <div>
           <p class="text-xs font-semibold uppercase tracking-wider text-blue-300">{{ ind.code }}{% if ind.pillar %} · {{ ind.pillar }}{% endif %}</p>
-          <h3 class="mt-1 font-bold text-slate2-900">{{ ind.name }}</h3>
+          <h3 class="mt-1 font-bold text-slate2-900">{{ ind|tfield:"name" }}</h3>
         </div>
         <span class="rounded-full bg-blue-50 px-3 py-1 text-sm font-extrabold text-slate2-700">{{ ind.progress_pct }}%</span>
       </div>
@@ -27,13 +27,13 @@
              :style="'width:' + (revealed ? {{ ind.progress_pct }} : 0) + '%'"></div>
       </div>
       <div class="mt-3 flex justify-between text-xs text-slate2-600">
-        <span>Baseline 2025: <b>{{ ind.baseline_2025 }}</b></span>
-        <span class="text-emerald-700 font-bold">Current: {{ ind.current_value }}</span>
-        <span>2030 Target: <b>{{ ind.target_2030 }}</b></span>
+        <span>{% trans "Baseline 2025:" %} <b>{{ ind.baseline_2025 }}</b></span>
+        <span class="text-emerald-700 font-bold">{% trans "Current:" %} {{ ind.current_value }}</span>
+        <span>{% trans "2030 Target:" %} <b>{{ ind.target_2030 }}</b></span>
       </div>
     </div>
     {% empty %}
-    <p class="text-slate2-600">No indicators yet — MEL admins can add them in the admin portal.</p>
+    <p class="text-slate2-600">{% trans "No indicators yet — MEL admins can add them in the admin portal." %}</p>
     {% endfor %}
   </div>
 </section>

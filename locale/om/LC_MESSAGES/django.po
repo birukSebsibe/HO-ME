@@ -222,3 +222,500 @@ msgstr "Sakatta'iinsa"
 
 msgid "View site"
 msgstr "Saayitii ilaali"
+
+msgid "2030 Target:"
+msgstr "Golii 2030:"
+
+msgid ""
+"A repeating cycle of movement-building, every 3–5 years, every people group."
+msgstr "Santaa waggoota 3–5, umaata hundaaf."
+
+msgid "About HO-ME"
+msgstr "Waa'ee HO-ME"
+
+msgid "All"
+msgstr "Hunduu"
+
+msgid "All Rights Reserved."
+msgstr "Mirgi hunduu eegameera."
+
+msgid "All audiences"
+msgstr "Gargaartota hundaa"
+
+msgid "All categories"
+msgstr "Gosa hundaa"
+
+msgid "All languages"
+msgstr "Afaan hundaa"
+
+msgid "All regions"
+msgstr "Naannoo hundaa"
+
+msgid ""
+"All submissions are reviewed by our team. We never share your information "
+"with third parties."
+msgstr "Hundaaf qoodamaa ta'a gargaarsi keenya ilaala."
+
+msgid "Amount"
+msgstr "Hirmaataa"
+
+msgid "Answers from our pre-defined help topics"
+msgstr "Gargaarsa soba duraa irraa"
+
+msgid "Anything you'd like us to know?"
+msgstr "Waa'ee isaa hubattu jirtuu?"
+
+msgid "Apply to Serve"
+msgstr "Gargaaramuuf galmaa'i"
+
+msgid "Back to all stories"
+msgstr "Deebi'ii seenoota hundaa"
+
+msgid "Baseline 2025:"
+msgstr "Shuma 2025:"
+
+msgid "Catalytic Impact Across the Horn of Africa"
+msgstr "Faayidaa Horn of Africa gahaa"
+
+msgid "Churches"
+msgstr "Waldota"
+
+msgid "Churches In Network"
+msgstr "Waldota walitti hidame"
+
+msgid "Churches Multiplied"
+msgstr "Waldota baay'atan"
+
+msgid "Close chat helper"
+msgstr "Gargaaraa duukaa cufi"
+
+msgid "Close details"
+msgstr "Ibsa cufi"
+
+msgid "Close form"
+msgstr "Goorma cufi"
+
+msgid "Current:"
+msgstr "Ammaa:"
+
+msgid "DMM Generations"
+msgstr "Dhaloota DMM"
+
+msgid "Dark"
+msgstr "Dukana"
+
+msgid ""
+"Data independently verified through quarterly MEL reviews & regional Hub "
+"oversight councils."
+msgstr "Odeeffanoo gaafa MEL hubatamaa jira."
+
+msgid ""
+"Disciple-making movements multiply through four generations and beyond."
+msgstr "Sochii DMM dhala afurii fudhata."
+
+msgid "Distinctives"
+msgstr "Amaloota addaa"
+
+msgid "Download"
+msgstr "Gutti"
+
+msgid "Download Guide"
+msgstr "Kitaaba gargaarsa buufi"
+
+msgid "ECGBC Affiliated"
+msgstr "Waliin hidhame ECGBC"
+
+msgid "Email"
+msgstr "Iimeelii"
+
+msgid ""
+"Empower frontline workers with life support, tools, and Kingdom business "
+"capital."
+msgstr "Hojjetaa cinaa dandamachuuf gargaari."
+
+msgid "Engaged to Reached"
+msgstr "UPG qabameet gahaa"
+
+msgid "Evangelical Churches Fellowship of Ethiopia / ECGBC Partner"
+msgstr "Waldota Kiristaana Itoophiyaa ECGBC"
+
+msgid ""
+"Every milestone represents a step forward in our story of growth, "
+"innovation, and impact."
+msgstr "Mallattoo hundinu sochii keenya ragga kafaa."
+
+msgid "Expanded under Vision 100DM35"
+msgstr "Vision 100DM35 jalatti baballate"
+
+msgid "Explore Targets"
+msgstr "Golii ilaali"
+
+msgid "Explore milestone"
+msgstr "Mallattoo ilaalaa"
+
+msgid "Explore our regions and hubs using the interactive map."
+msgstr "Kaartaa qoodaa karaa meeshaa kanaan ilaali."
+
+msgid "Financial Transparency"
+msgstr "Banamummaa Fee"
+
+msgid "Flexible availability"
+msgstr "Yeroo lafaa keenya"
+
+msgid ""
+"For congregations ready to adopt an unreached people group and send vetted "
+"planters."
+msgstr "Ummata hin gaahin itti fufuuf waldaa kennidhaa."
+
+msgid "For receipts & questions:"
+msgstr "Gaaffii daaphetee:"
+
+msgid "Founded 2003"
+msgstr "Maddaha 2003"
+
+msgid "Four Pillars of HO-ME"
+msgstr "Ujummoo HO-ME afurii"
+
+msgid "From the Field"
+msgstr "Meeshaa keessaa"
+
+msgid "Full name"
+msgstr "Maqaa guutuu"
+
+msgid "GIVE"
+msgstr "Keni"
+
+msgid "Give"
+msgstr "Keni"
+
+msgid "Giving details will be published here — editable in the admin portal."
+msgstr "Karaa kennaan asii argamu — saayitii admin gargaarame."
+
+msgid "Giving partner"
+msgstr "Kenu gargaaraa"
+
+msgid ""
+"Governed by an active Board of Trustees & compliant with Ethiopian civil "
+"society regulations."
+msgstr "Miijaanoo keenya qabxii rukri taasisaa."
+
+msgid "HO-ME Assistant"
+msgstr "HO-ME gargaaraa"
+
+msgid ""
+"HO-ME publishes annual impact and finance summaries. The Vision 100DM35 "
+"tracker shows live progress against our 2030 movement goals. For detailed "
+"statements, request access through the resource library or email %(email)s."
+msgstr "HO-Me faaydaa waggaa ibsa."
+
+msgid ""
+"HO-ME respects your privacy. We collect only the information you give us "
+"through our forms (name, email, phone, applications) and use it solely to "
+"follow up on prayer, partnership, giving, volunteering and resource "
+"requests. We never sell your data. To correct or delete your data, contact "
+"%(email)s."
+msgstr "HO-Me gadda keenya hundaa kana jira."
+
+msgid "HOST Training School"
+msgstr "Mana barumsa HOST"
+
+msgid "Hide channels"
+msgstr "Dhiyeesi keena dhokki"
+
+msgid "Historic transformation milestones"
+msgstr "Mallattoo adda"
+
+msgid "Host a HOST school"
+msgstr "Mana barumsa HOST buusi"
+
+msgid "House Churches Planted"
+msgstr "Waldota dachaa"
+
+msgid "How will you use this resource?"
+msgstr "Qabeenya kana waan itti fayyadamta?"
+
+msgid "Hub-specific prayer points"
+msgstr "Qibii hub qabduu"
+
+msgid "Hubs"
+msgstr "Huubota"
+
+msgid "Impact &amp; Stories"
+msgstr "Faayidaa fi Seenoota"
+
+msgid "In loving tribute"
+msgstr "Yaada kadda jaalalaa"
+
+msgid "Indigenous • Data-Driven • Church-Led"
+msgstr "Aboriginal • Odeeffannoo • Waldota"
+
+msgid "Inquire as a Church"
+msgstr "Waldoota qooda of anjiru"
+
+msgid "Item"
+msgstr "Akaataa"
+
+msgid ""
+"I’m not sure about that one — try a question below, or email us at info@ho-"
+"me.org."
+msgstr "Ani gaaffiinya hin beeku — gaaffii kun duuba gargaaraa."
+
+msgid ""
+"Join believers in daily frontier intercession for the peoples and hubs of "
+"the Horn."
+msgstr "Ummata afurii dukana gargaaraa hirmaadhaa."
+
+msgid "Join Prayer Watch"
+msgstr "Duaa qindeessaa hirmaadhaa"
+
+msgid "Kingdom Business IGAs"
+msgstr "Dalagaa Bal'aa IGL"
+
+msgid "Latest Impact Stories"
+msgstr "Seenaa faaydaa dioo"
+
+msgid "Leadership"
+msgstr "Gantummaa"
+
+msgid "Learn more"
+msgstr "Dabalata barree"
+
+msgid "Light"
+msgstr "Ifaa"
+
+msgid ""
+"Live movement indicators: baseline 2025 → current → 2030 target. Updated by "
+"our MEL team in the admin portal."
+msgstr "Sobu vonti ujumaa: Shuma 2025 → Ammaa → Golii 2030."
+
+msgid "Milestone details"
+msgstr "Ibsa mallattoo"
+
+msgid "Mission"
+msgstr "Hojii"
+
+msgid "Mobilize → Catalyze → Multiply → Sustain"
+msgstr "Soori → Harcabis → Baay'iso → Siiq"
+
+msgid "Monthly digest"
+msgstr "Ji'aa haasawa"
+
+msgid "Movement Cycle Status"
+msgstr "Sobu vonti adda"
+
+msgid "News"
+msgstr "Oduu"
+
+msgid ""
+"News, field stories and testimonies — all safety-reviewed before publishing."
+msgstr "Oduu, seenoo meeshaa fi qarqaalcha — hundaaf qooda rukri."
+
+msgid "No help topics are configured yet — admins can add them in the portal."
+msgstr "Wannii gargaarsa hin qabduu — admin gargaarame dabalata."
+
+msgid "No indicators yet — MEL admins can add them in the admin portal."
+msgstr "Wannii MEL hin qabduu — admin gargaarame dabalata."
+
+msgid "No resources match your filters."
+msgstr "Qabbeenyota argamuu dide."
+
+msgid "No stories match your filters."
+msgstr "Seenoota argamu dide."
+
+msgid "Onboarding & training provided"
+msgstr "Hojii mad cara"
+
+msgid "One-off commitment"
+msgstr "Yeroo tokko qabxii"
+
+msgid "Open Map in Google Maps"
+msgstr "Kaartaa Google Maps banaa"
+
+msgid "Open chat helper"
+msgstr "Duukaa gargaaraa banaa"
+
+msgid "Organization / church"
+msgstr "Dhaabbata / wald"
+
+msgid "Other"
+msgstr "Kan biraa"
+
+msgid "Our Core Values"
+msgstr "Garaa keenya nyata"
+
+msgid "Our Four Pillars"
+msgstr "Ujummoo afurii keenya"
+
+msgid "Our Journey — 2003 to Today"
+msgstr "Sooqaa — 2003 hanga ammaa"
+
+msgid "Our Movement Strategy"
+msgstr "Sobu vonti keenya"
+
+msgid "Our Story"
+msgstr "Seenaa keenya"
+
+msgid "Our movement-building strategy among unreached peoples."
+msgstr "Sobu vonti keenya ummata hiyyessa."
+
+msgid "Pastoral staff orientation"
+msgstr "Hojjetee mana irraa"
+
+msgid "Prayer Shield"
+msgstr "Qeelxa Duaa"
+
+msgid "Prayer partner"
+msgstr "Duu gargaaraa"
+
+msgid "Read story"
+msgstr "Seenaa dubbisi"
+
+msgid "Regional Hubs"
+msgstr "Huuba naannoo"
+
+msgid "Regions and training hubs across the Horn of Africa."
+msgstr "Naannoo fi Huuba rukri Horn of Africa."
+
+msgid "Request Access"
+msgstr "Gaaffii banqa"
+
+msgid "Request access"
+msgstr "Gaaffii banqa"
+
+msgid "Scroll horizontally to explore the journey"
+msgstr "Karaa qajeelaa soqii ilaal"
+
+msgid "Search resources…"
+msgstr "Qabbeenyota barbaaddi…"
+
+msgid "Search stories…"
+msgstr "Seenoo barbaaddi…"
+
+msgid ""
+"Security Notice: Field identities anonymized for frontline worker "
+"protection."
+msgstr "Gargaarsa rukri: Odeeffanoo cinaa keessaa dhokki."
+
+msgid "Send"
+msgstr "Ergi"
+
+msgid "Sending / mobilizing partner"
+msgstr "Ergatu / juud gargaaradha"
+
+msgid ""
+"Serve with your skills — training, administration, media, field logistics, "
+"and more."
+msgstr "Dandamachu kee gargaari — barachii, nageenya, meetii, meeshaa."
+
+msgid "Shared missionary support"
+msgstr "Hojjetoo waldii"
+
+msgid "Staff"
+msgstr "Hojjettii"
+
+msgid "Standard Cycle Stage"
+msgstr "Tarmeeji sobu"
+
+msgid "Steps"
+msgstr "Qajectota"
+
+msgid "Stories"
+msgstr "Seenoota"
+
+msgid "Strategic Pillars"
+msgstr "Ujummoo dinnalee"
+
+msgid "Strategic Plan Finalized"
+msgstr "Soba galaasa"
+
+msgid "Submit request"
+msgstr "Gaaffii ergi"
+
+msgid "Synod frontier mapping"
+msgstr "s_l gaazeeti"
+
+msgid "Tags"
+msgstr "Maalli"
+
+msgid "Testimonies"
+msgstr "Qarqaalcha"
+
+msgid "The MCMS Movement Cycle"
+msgstr "Sobu MCMS"
+
+msgid ""
+"The MCMS cycle, four pillars, DMM generations, HOST training, Kingdom "
+"business and digital ministry."
+msgstr "Sobu MCMS, ujummoo afurii, dhaloot DMM, HOST, dalagaa, duukana."
+
+msgid ""
+"Training materials, research and tools — filter by category, language or "
+"audience."
+msgstr "Meeshaa barachii, dammaasa fi tools — gosa, afaan ofi juud."
+
+msgid "Two Decades of Measurable Fruit"
+msgstr "Wagga waldii loyt"
+
+msgid "Type your question…"
+msgstr "Gaaffii ke galchi…"
+
+msgid "UPGs"
+msgstr "UPG"
+
+msgid "UPGs Engaged"
+msgstr "UPG qabame"
+
+msgid "Verified by field MEL team"
+msgstr "MEL hudhudhaa waan here"
+
+msgid "Via local church DBS networks"
+msgstr "DBS waldaa"
+
+msgid "View"
+msgstr "Ilaali"
+
+msgid "View Giving Channels"
+msgstr "Karra keni ilaal"
+
+msgid "View all"
+msgstr "Hunda ilaal"
+
+msgid "Vision"
+msgstr "Fedhiiraa"
+
+msgid "Vision 100DM35 Tracker"
+msgstr "Vision 100DM35 gahaa"
+
+msgid "Volunteer"
+msgstr "Hojjindaa"
+
+msgid ""
+"We honour the founders, partners and praying churches whose faithfulness lit"
+" this movement. Editable from the admin portal's Tribute card set."
+msgstr "Mafkalii, gargaarii fi walda baatan galata keenya taasisaa."
+
+msgid "Weekly or monthly rhythm"
+msgstr "Torbanii fi ji'aa"
+
+msgid "Weekly update"
+msgstr "Athaggii torbania"
+
+msgid "Years of Ministry"
+msgstr "Wagga dhabhani"
+
+msgid "downloads"
+msgstr "buufana"
+
+msgid "regional congregations"
+msgstr "waldii naannoo"
+
+msgid ""
+"“%(x)s” requires approved access. Submit a request and our team will follow "
+"up."
+msgstr "“%(x)s” gaaffii banqa. Nu gargaarnaa."
+
+msgid "Welcome! Choose a question below or type your own."
+msgstr "Baga nagaan keenya! Gaaffi duuba filadhu yookaan kiradhu."
+
+msgid "Welcome! Admins can add pre-defined questions in the portal."
+msgstr "Baga nagaan keenya! Admin sochiikiin gaaffi hundee."

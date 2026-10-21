@@ -10,12 +10,14 @@ from django.contrib import admin
 from django.utils.html import format_html
 
 from apps.core.models import (
+    ChatbotEntry,
     CoreValue,
     LeadershipProfile,
     PartnerLogo,
     SiteSetting,
     TimelineMilestone,
 )
+from apps.cms_content.models import ContentTranslation
 from apps.cms_content.models import (
     DmmGenerationStep,
     DigitalMinistrySummary,
@@ -351,3 +353,53 @@ class VolunteerStaffAdmin(admin.ModelAdmin):
 class GivingOptionAdmin(admin.ModelAdmin):
     list_display = ("title", "kind", "order", "is_active")
     list_editable = ("order", "is_active")
+
+
+# ---------------------------------------------------------------------------
+# Floating chatbot Q&A — manageable pre-defined questions & answers
+# ---------------------------------------------------------------------------
+
+@admin.register(ChatbotEntry, site=admin_site)
+class ChatbotEntryAdmin(admin.ModelAdmin):
+    """'Chatbot Q&A' section in the admin portal sidebar."""
+
+    list_display = ("question", "answer_preview", "keywords", "order", "is_active")
+    list_editable = ("order", "is_active")
+    list_filter = ("is_active",)
+    search_fields = ("question", "answer", "keywords")
+    fieldsets = (
+        ("Question & answer", {
+            "fields": ("question", "answer"),
+            "description": (
+                "Shown as a clickable chip in the floating chat helper. "
+                "The first 6 active entries appear as quick questions."
+            ),
+        }),
+        (None, {"fields": ("keywords", "order", "is_active")}),
+    )
+
+    @admin.display(description="Answer")
+    def answer_preview(self, obj):
+        return (obj.answer[:80] + "…") if len(obj.answer) > 80 else obj.answer
+
+
+# ---------------------------------------------------------------------------
+# Content Translations — per-language overrides of CMS text fields
+# ---------------------------------------------------------------------------
+
+@admin.register(ContentTranslation, site=admin_site)
+class ContentTranslationAdmin(admin.ModelAdmin):
+    """'Content Translations' section: translate any CMS text field into Amharic/Oromifa."""
+
+    list_display = ("content_preview", "field_name", "language", "text_preview", "updated_at")
+    list_filter = ("language", "content_type")
+    search_fields = ("text", "field_name")
+    fields = ("content_type", "object_id", "field_name", "language", "text")
+
+    @admin.display(description="Object")
+    def content_preview(self, obj):
+        return str(obj.content_object)
+
+    @admin.display(description="Translation")
+    def text_preview(self, obj):
+        return (obj.text[:80] + "…") if len(obj.text) > 80 else obj.text

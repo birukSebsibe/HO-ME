@@ -1,4 +1,4 @@
-{% load static %}{% load i18n %}
+{% load static %}{% load i18n %}{% load home_tags %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" class="scroll-smooth">
 <head>
@@ -7,10 +7,20 @@
   <title>{% block title %}{{ site.site_name }}{% endblock %}</title>
   <meta name="description" content="{% block meta_desc %}{{ site.site_tagline }}{% endblock %}">
   <link rel="icon" href="{% if site.favicon %}{{ site.favicon.url }}{% else %}data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌍</text></svg>{% endif %}">
+  <!-- Theme bootstrap: apply saved theme before first paint (no flash) -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark') document.documentElement.classList.add('dark');
+      } catch (e) {}
+    })();
+  </script>
   <!-- Tailwind CSS (CDN; swap to `npx tailwindcss build` for production) -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -40,6 +50,17 @@
               400: '#94a3b8', 500: '#64748B', 600: '#475569', 700: '#334155',
               800: '#293545', 900: '#1E293B', 950: '#10366E',
             },
+            /* Rich dark UI surfaces (softened: navy-slate, low-glare) */
+            night: {
+              50:  '#F1F5F9', 100: '#E9EEF6', 200: '#CDD8E8', 300: '#A9B9D2',
+              400: '#8CA0BD', 500: '#6E819C', 600: '#55677F', 700: '#22304A',
+              800: '#1B273E', 850: '#121B2E', 900: '#0D1526', 950: '#0A101E',
+              /* interactive dark accents (soft, not harsh) */
+              blue: '#6FA8F8',       /* calm interactive blue on dark   */
+              gold: '#F5C04E',       /* soft gold on dark               */
+              card: '#141D31',       /* deep card surface               */
+              border: '#25334E',     /* dark hairlines                  */
+            },
           },
           fontFamily: {
             sans: ['Inter', 'Noto Sans Ethiopic', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
@@ -48,6 +69,8 @@
           boxShadow: {
             soft: '0 4px 20px -2px rgba(25, 79, 158, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04)',
             card: '0 10px 30px -4px rgba(16, 54, 110, 0.08)',
+            'dark-soft': '0 4px 20px -2px rgba(0,0,0,.35), 0 2px 6px -1px rgba(0,0,0,.2)',
+            'dark-card': '0 10px 30px -4px rgba(0,0,0,.5)',
           },
         }
       }
@@ -85,7 +108,7 @@
     .card{background:#fff;border:1px solid var(--line);border-radius:1.25rem;box-shadow:0 1px 2px rgba(16,54,110,.04);
       transition:box-shadow .25s ease,border-color .25s ease,transform .25s ease}
     .card-hover:hover{box-shadow:0 10px 30px -4px rgba(16,54,110,.14);border-color:rgba(25,79,158,.4);transform:translateY(-2px)}
-    .field:focus{outline:none;border-color:var(--brand-blue);box-shadow:0 0 0 3px rgba(25,79,158,.25)}
+    .field:focus{outline:none;border-color:var(--brand-blueLight);box-shadow:0 0 0 3px rgba(59,130,246,.25)}
 
     /* Desktop navigation links (reference: slate text → deep-blue hover) */
     .nav-link{position:relative;display:inline-flex;align-items:center;padding:.55rem .35rem;border-radius:.4rem;
@@ -99,6 +122,97 @@
       border-left:3px solid transparent;transition:color 160ms ease,background-color 160ms ease,border-color 160ms ease}
     .mobile-nav-link:hover{color:var(--brand-blue);background:#eff6ff}
     .mobile-nav-link-active{color:var(--brand-blue);background:#eff6ff;border-left-color:var(--accent-500);font-weight:700}
+
+    /* ============ DARK THEME (whole-site sweep, soft navy palette) ============ */
+    html.dark body{background:#0D1526;color:#CDD8E8}
+
+    /* ---- Surfaces ---- */
+    html.dark .bg-white{background-color:#141D31}
+    html.dark .bg-brand-surface{background-color:#0D1526}
+    html.dark .bg-brand-slateBg{background-color:#101A2E}
+    html.dark .bg-slate-50,html.dark .bg-slate-100,html.dark .bg-slate2-50{background-color:#17213A}
+    html.dark .bg-blue-50,html.dark .bg-blue-100,
+    html.dark .bg-blue-50\/60,html.dark .bg-blue-50\/70{background-color:rgba(111,168,248,.08)}
+    html.dark .bg-sky-50,html.dark .bg-sky-100{background-color:rgba(111,168,248,.06)}
+    html.dark .bg-rose-50,html.dark .bg-rose-100{background-color:rgba(240,147,147,.09)}
+    html.dark .bg-amber-50,html.dark .bg-amber-100{background-color:rgba(245,192,78,.09)}
+    html.dark .bg-emerald-50{background-color:rgba(110,231,183,.07)}
+    html.dark .bg-brand-50,html.dark .bg-brand-100{background-color:rgba(111,168,248,.07)}
+    html.dark .bg-brand-200{background-color:rgba(111,168,248,.14)}
+    html.dark .bg-blue-100\/60{background-color:rgba(111,168,248,.05)}
+    html.dark .bg-red-100\/40{background-color:rgba(240,147,147,.05)}
+    html.dark .text-emerald-600{color:#34D399}
+
+    /* ---- Text: light ink set, softened accents ---- */
+    html.dark .text-slate-900,html.dark .text-slate-800,
+    html.dark .text-slate2-900,html.dark .text-slate2-800{color:#E9EEF6}
+    html.dark .text-slate-700,html.dark .text-slate2-700{color:#CDD8E8}
+    html.dark .text-slate-600,html.dark .text-slate2-600{color:#A9B9D2}
+    html.dark .text-slate-500,html.dark .text-slate2-500{color:#8CA0BD}
+    html.dark .text-slate-400,html.dark .text-slate2-400{color:#7489A6}
+    html.dark .text-brand-blue,html.dark .text-brand-blueDark{color:#6FA8F8}
+    html.dark .text-brand-red,html.dark .text-brand-redDark,
+    html.dark .text-accent-600,html.dark .text-accent-700{color:#F09393}
+    html.dark .text-brand-orange{color:#F5C07E}
+    html.dark .text-brand-gold{color:#F5C04E}
+    html.dark .text-brand-terracotta{color:#F0A58B}
+    html.dark .text-brand-700,html.dark .text-brand-800{color:#6FA8F8}
+    html.dark .text-blue-700,html.dark .text-blue-800{color:#9CC0FA}
+    html.dark .text-emerald-700{color:#6EE7B7}
+    html.dark .text-amber-800{color:#F0C36B}
+    html.dark .text-rose-500,html.dark .text-rose-600{color:#F09393}
+
+    /* ---- Borders & rings ---- */
+    html.dark .border-slate-100,html.dark .border-slate2-100,
+    html.dark .border-blue-100{border-color:#1F2C47}
+    html.dark .border-slate-200,html.dark .border-slate-200\/80,
+    html.dark .border-slate2-200{border-color:#25334E}
+    html.dark .border-slate-300,html.dark .border-slate2-300{border-color:#2C3D5C}
+    html.dark .border-blue-200,html.dark .border-blue-200\/80,
+    html.dark .border-blue-300\/40{border-color:rgba(111,168,248,.32)}
+    html.dark .border-emerald-200{border-color:rgba(110,231,183,.3)}
+    html.dark .border-brand-300{border-color:rgba(111,168,248,.4)}
+    html.dark .border-brand-200{border-color:rgba(111,168,248,.22)}
+    html.dark .border-white{border-color:#0D1526}
+    html.dark .ring-white{--tw-ring-color:#0D1526}
+
+    /* ---- Hover states ---- */
+    html.dark .hover\:bg-slate-50:hover{background-color:rgba(255,255,255,.04)}
+    html.dark .hover\:bg-slate-100:hover{background-color:rgba(255,255,255,.06)}
+    html.dark .hover\:bg-blue-50:hover{background-color:rgba(111,168,248,.1)}
+    html.dark .hover\:bg-emerald-50:hover{background-color:rgba(110,231,183,.08)}
+    html.dark .hover\:border-brand-blue:hover{border-color:rgba(111,168,248,.45)}
+
+    /* ---- Gradients ---- */
+    html.dark .bg-gradient-to-b.from-slate-100{background-image:linear-gradient(180deg,#101A2E,#0D1526)}
+    html.dark .from-blue-50\/70{--tw-gradient-from:rgba(111,168,248,.07);--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to,transparent)}
+    html.dark .to-slate-50{--tw-gradient-to:#101A2E;--tw-gradient-stops:var(--tw-gradient-from),var(--tw-gradient-to)}
+
+    /* ---- Form fields (forms-plugin defaults need !important to override) ---- */
+    html.dark input:not([type="hidden"]):not(.bg-transparent),
+    html.dark select:not(.bg-transparent),
+    html.dark textarea{
+      background-color:#121B2E!important;border-color:#2C3D5C!important;color:#DFE7F3!important}
+    html.dark input::placeholder,html.dark textarea::placeholder{color:#6E819C}
+    html.dark select option{background:#121B2E;color:#DFE7F3}
+    html.dark .field{background-color:#121B2E;border-color:#2C3D5C;color:#DFE7F3}
+    html.dark .nav-link{color:#CBD5E1}
+    html.dark .nav-link:hover{color:#60A5FA;background:rgba(96,165,250,.08)}
+    html.dark .nav-link-active{color:#60A5FA}
+    html.dark .mobile-nav-link{color:#CBD5E1}
+    html.dark .mobile-nav-link:hover{color:#60A5FA;background:rgba(96,165,250,.08)}
+    html.dark .mobile-nav-link-active{color:#60A5FA;background:rgba(96,165,250,.1)}
+    html.dark .btn-primary{background:#E52424;color:#fff;box-shadow:0 4px 14px -4px rgba(229,36,36,.45)}
+    html.dark .btn-primary:hover{background:#C81E1E}
+    html.dark .btn-secondary{background:#2563EB;color:#fff}
+    html.dark .btn-secondary:hover{background:#1D4ED8}
+    html.dark .btn-tertiary{background:transparent;color:#60A5FA;border-color:#334155}
+    html.dark .btn-tertiary:hover{border-color:#60A5FA;background:rgba(96,165,250,.08)}
+    html.dark .card{background:#101828;border-color:#1E293B;box-shadow:0 1px 2px rgba(0,0,0,.4)}
+    html.dark .card-hover:hover{box-shadow:0 10px 30px -4px rgba(0,0,0,.55);border-color:rgba(96,165,250,.35)}
+    html.dark .field:focus{border-color:#60A5FA;box-shadow:0 0 0 3px rgba(96,165,250,.2)}
+    /* Smooth theme transition */
+    body,header,footer,.card,.btn{transition:background-color .25s ease,color .25s ease,border-color .25s ease}
     @media (prefers-reduced-motion: reduce){
       *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
         transition-duration:.01ms!important;scroll-behavior:auto!important}
@@ -106,36 +220,34 @@
   </style>
   {% block extra_head %}{% endblock %}
 </head>
-<body class="bg-brand-surface font-sans text-slate-800 antialiased selection:bg-brand-red selection:text-white" x-data="{ scrolled:false, mobileOpen:false }" @scroll.window="scrolled = window.scrollY > 10">
+<body class="bg-brand-surface font-sans text-slate-800 antialiased selection:bg-brand-red selection:text-white" x-data="{ scrolled:false, mobileOpen:false, ...themeState() }" @scroll.window="scrolled = window.scrollY > 10">
 
 {% with current_url=request.resolver_match.url_name %}
 {# ---------------- Top utility bar (reference design) ---------------- #}
 <div class="sticky top-0 z-50 bg-brand-blueDark py-2 px-4 text-xs text-white">
   <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 md:flex-row">
-    <!-- Left: live-plan announcement -->
+    <!-- Left: affiliate affiliation -->
     <div class="flex items-center gap-3">
-      <span class="inline-flex items-center gap-1.5 rounded-full bg-brand-red px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-white">
-        <span class="h-1.5 w-1.5 animate-ping rounded-full bg-white"></span> {% trans "Live Plan" %}
-      </span>
       <span class="text-slate-200">
         <strong class="font-semibold text-white">Vision 100DM35 (2026–2030)</strong> {% trans "Strategic Plan Finalized" %}
       </span>
       <a class="ml-1 text-[11px] font-medium text-slate-300 underline transition-colors hover:text-brand-gold"
          href="{% url 'vision' %}">{% trans "Explore Targets" %} →</a>
     </div>
-    <!-- Right: affiliate line, portal link, language switcher -->
+    <!-- Right: affiliate line, theme toggle, language switcher -->
     <div class="flex items-center gap-4 text-slate-300">
       <div class="hidden items-center gap-2 text-[11px] lg:flex">
         <i class="fa-solid fa-location-dot text-brand-terracotta"></i>
-        <span>{{ site.contact_address }}{% if site.contact_address %} • {% endif %}ECGBC Affiliated</span>
+        <span>{{ site.contact_address }}{% if site.contact_address %} • {% endif %}{% trans "ECGBC Affiliated" %}</span>
       </div>
       <div class="hidden h-3 w-px bg-blue-800 lg:block"></div>
-      <!-- Portal button links to the Staff Admin Portal -->
-      <a href="/admin-portal/login/"
-         class="flex items-center gap-1.5 rounded border border-blue-700/60 bg-blue-900/50 px-2 py-1 text-[11px] text-slate-200 transition hover:bg-blue-800/80 hover:text-white">
-        <i class="fa-solid fa-lock text-[10px] text-brand-gold"></i>
-        <span>{% trans "Staff & Hub Portal" %}</span>
-      </a>
+      <!-- Theme toggle (persisted, light default) -->
+      <button x-data="themeToggle()" @click="toggle()" :aria-label="dark ? 'Switch to light theme' : 'Switch to dark theme'"
+              class="flex items-center gap-1.5 rounded bg-slate-900/60 px-2 py-1 text-[11px] text-slate-200 transition hover:bg-slate-800/80">
+        <i x-show="!dark" class="fa-solid fa-moon text-brand-gold"></i>
+        <i x-show="dark" x-cloak class="fa-solid fa-sun text-brand-gold"></i>
+        <span x-text="dark ? '{% trans "Light" %}' : '{% trans "Dark" %}'"></span>
+      </button>
       <!-- Language switcher (English / አማርኛ / Afaan Oromoo) -->
       <div class="flex items-center gap-1 rounded bg-slate-900/60 px-2 py-0.5 text-[11px]">
         <i class="fa-solid fa-globe text-brand-blueLight text-[10px]"></i>
@@ -154,30 +266,30 @@
 </div>
 
 {# ---------------- Primary navigation (reference design) ---------------- #}
-<header class="sticky top-[33px] z-40 border-b border-slate-200/80 bg-white/95 shadow-sm backdrop-blur-md transition-all duration-200">
+<header class="sticky top-[33px] z-40 border-b border-slate-200/80 bg-white/95 shadow-sm backdrop-blur-md transition-all duration-200 dark:border-night-border dark:bg-night-900/95 dark:shadow-dark-soft">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="flex h-20 items-center justify-between">
+    <div class="flex h-24 items-center justify-between">
       <!-- Brand logos area -->
       <a aria-label="{{ site.site_name }}" class="group flex items-center gap-3.5 py-1" href="/">
         {% if site.logo %}
-          <div class="relative h-12 w-12 shrink-0 transition-transform duration-300 group-hover:scale-105">
+          <div class="relative h-20 w-20 shrink-0 transition-transform duration-300 group-hover:scale-105">
             <img src="{{ site.logo.url }}" alt="{{ site.site_name }}" class="h-full w-full object-contain">
           </div>
-          <div class="hidden border-l pl-3 sm:block">
-            <span class="block text-lg font-extrabold leading-tight text-brand-blue">{{ site.site_name }}</span>
-            <span class="block text-[11px] font-semibold text-brand-red">{{ site.site_tagline }}</span>
+          <div class="hidden border-l pl-3 sm:block dark:border-night-border">
+            <span class="block text-xl font-extrabold leading-tight text-brand-blue dark:text-night-blue">{{ site.site_name }}</span>
+            <span class="block text-xs font-semibold text-brand-red dark:text-brand-terracotta">{{ site|tfield:"site_tagline" }}</span>
           </div>
         {% else %}
-          <div class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand-blue font-extrabold text-white shadow-sm sm:hidden">HM</div>
+          <div class="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-brand-blue text-lg font-extrabold text-white shadow-sm sm:hidden">HM</div>
           <span class="hidden text-xl leading-tight sm:block">
-            <span class="font-extrabold text-brand-blue">HO-ME</span>
+            <span class="font-extrabold text-brand-blue dark:text-night-blue">HO-ME</span>
             <span class="font-geez font-bold text-brand-red"> | ሆሜ</span>
           </span>
         {% endif %}
       </a>
 
       <!-- Desktop navigation -->
-      <nav class="hidden items-center gap-6 text-sm font-medium text-slate-700 xl:flex" aria-label="Main navigation">
+      <nav class="hidden items-center gap-6 text-sm font-medium xl:flex" aria-label="Main navigation">
         <a class="nav-link transition-colors {% if current_url == 'about' %}nav-link-active{% endif %}"
            href="{% url 'about' %}" {% if current_url == 'about' %}aria-current="page"{% endif %}>{% trans "About Us" %}</a>
         <a class="nav-link transition-colors {% if current_url == 'what-we-do' %}nav-link-active{% endif %}"
@@ -186,7 +298,7 @@
            href="{% url 'where-we-work' %}" {% if current_url == 'where-we-work' %}aria-current="page"{% endif %}>{% trans "Where We Work" %}</a>
         <a class="nav-link transition-colors {% if current_url == 'vision' %}nav-link-active{% endif %}"
            href="{% url 'vision' %}" {% if current_url == 'vision' %}aria-current="page"{% endif %}>
-          <span class="mr-1.5 inline-block h-2 w-2 rounded-full bg-brand-red"></span> Vision 100DM35
+        Vision 100DM35
         </a>
         <a class="nav-link transition-colors {% if current_url == 'impact' %}nav-link-active{% endif %}"
            href="{% url 'impact' %}" {% if current_url == 'impact' %}aria-current="page"{% endif %}>{% trans "Impact &amp; Stories" %}</a>
@@ -196,14 +308,6 @@
 
       <!-- Right: CTA cluster -->
       <div class="flex items-center gap-2.5">
-        <a class="hidden items-center px-3.5 py-2 text-xs font-semibold text-brand-blue transition-colors hover:text-brand-blueDark md:inline-flex"
-           href="{% url 'get-involved' %}#pray">
-          <i class="fa-solid fa-hands-praying mr-1.5 text-brand-terracotta"></i> {% trans "Pray" %}
-        </a>
-        <a class="hidden items-center rounded-lg border border-slate-300 px-3 py-2 text-xs font-semibold text-slate-700 transition-colors hover:border-brand-blue hover:text-brand-blue lg:inline-flex"
-           href="{% url 'get-involved' %}#partner">
-          {% trans "Churches of Peace" %}
-        </a>
         <a class="inline-flex items-center gap-2 rounded-lg bg-brand-red px-4 py-2.5 text-xs font-bold tracking-wide text-white shadow-sm transition-all duration-200 hover:bg-brand-redDark hover:shadow-md"
            href="{% url 'get-involved' %}">
           <i class="fa-solid fa-heart"></i>
@@ -211,7 +315,7 @@
         </a>
         <!-- Mobile menu button -->
         <button @click="mobileOpen = !mobileOpen"
-          class="p-2 text-slate-600 transition-colors hover:text-brand-blue focus:outline-none xl:hidden"
+          class="p-2 text-slate-600 transition-colors hover:text-brand-blue focus:outline-none xl:hidden dark:text-night-300 dark:hover:text-night-blue"
           :aria-expanded="mobileOpen.toString()" aria-controls="mobile-menu"
           :aria-label="mobileOpen ? 'Close menu' : 'Open menu'">
           <i x-show="!mobileOpen" class="fa-solid fa-bars text-xl"></i>
@@ -230,8 +334,8 @@
        x-transition:leave-start="opacity-100 translate-y-0"
        x-transition:leave-end="opacity-0 -translate-y-2"
        @keydown.escape.window="mobileOpen = false"
-       class="border-b border-slate-200 bg-white px-6 pb-5 pt-3 shadow-lg xl:hidden">
-    <nav class="flex flex-col gap-1 text-sm font-medium text-slate-700">
+       class="border-b border-slate-200 bg-white px-6 pb-5 pt-3 shadow-lg xl:hidden dark:border-night-border dark:bg-night-900 dark:shadow-dark-card">
+    <nav class="flex flex-col gap-1 text-sm font-medium">
       <a class="mobile-nav-link {% if current_url == 'about' %}mobile-nav-link-active{% endif %}" href="{% url 'about' %}">{% trans "About Us" %}</a>
       <a class="mobile-nav-link {% if current_url == 'what-we-do' %}mobile-nav-link-active{% endif %}" href="{% url 'what-we-do' %}">{% trans "What We Do" %}</a>
       <a class="mobile-nav-link {% if current_url == 'where-we-work' %}mobile-nav-link-active{% endif %}" href="{% url 'where-we-work' %}">{% trans "Where We Work" %}</a>
@@ -239,15 +343,13 @@
       <a class="mobile-nav-link {% if current_url == 'impact' %}mobile-nav-link-active{% endif %}" href="{% url 'impact' %}">{% trans "Impact &amp; Stories" %}</a>
       <a class="mobile-nav-link {% if current_url == 'library' %}mobile-nav-link-active{% endif %}" href="{% url 'library' %}">{% trans "Library" %}</a>
       <div class="flex flex-col gap-2 pt-2">
-        <a class="w-full rounded-md border border-brand-blue bg-white py-2 text-center font-semibold text-brand-blue"
-           href="{% url 'get-involved' %}#partner">{% trans "Churches of Peace" %}</a>
         <a class="btn btn-primary w-full justify-center" href="{% url 'get-involved' %}">{% trans "Get Involved" %}</a>
         <!-- Language switcher for mobile -->
-        <form action="{% url 'set_language' %}" method="post" class="mt-1 flex items-center justify-center gap-2 rounded-md bg-brand-slateBg py-2">{% csrf_token %}
+        <form action="{% url 'set_language' %}" method="post" class="mt-1 flex items-center justify-center gap-2 rounded-md bg-brand-slateBg py-2 dark:bg-night-800">{% csrf_token %}
           <input type="hidden" name="next" value="{{ request.get_full_path }}">
-          <i class="fa-solid fa-globe text-brand-blue"></i>
+          <i class="fa-solid fa-globe text-brand-blue dark:text-night-blue"></i>
           <select name="language" aria-label="Language" onchange="this.form.submit()"
-                  class="cursor-pointer border-0 bg-transparent text-xs font-semibold text-slate-700 focus:ring-0">
+                  class="cursor-pointer border-0 bg-transparent text-xs font-semibold text-slate-700 dark:text-night-300 focus:ring-0">
             <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
             <option value="am" {% if LANGUAGE_CODE == 'am' %}selected{% endif %}>አማርኛ</option>
             <option value="om" {% if LANGUAGE_CODE == 'om' %}selected{% endif %}>Afaan Oromoo</option>
@@ -262,8 +364,8 @@
 {% if messages %}
 <div class="mx-auto max-w-7xl px-4 sm:px-6" role="status" aria-live="polite">
   {% for message in messages %}
-    <div class="mt-3 rounded-lg border bg-white px-4 py-3 text-sm shadow-soft
-                {% if message.tags == 'success' %}border-l-4 border-l-emerald-500 text-emerald-700{% elif message.tags == 'error' %}border-l-4 border-l-brand-red text-brand-redDark{% else %}border-slate-200{% endif %}">
+    <div class="mt-3 rounded-lg border bg-white px-4 py-3 text-sm shadow-soft dark:border-night-border dark:bg-night-card dark:text-night-200 dark:shadow-dark-soft
+                {% if message.tags == 'success' %}border-l-4 border-l-emerald-500 text-emerald-700 dark:text-emerald-400{% elif message.tags == 'error' %}border-l-4 border-l-brand-red text-brand-redDark dark:text-brand-terracotta{% else %}border-slate-200 dark:border-night-border{% endif %}">
       {{ message }}
     </div>
   {% endfor %}
@@ -274,10 +376,10 @@
   {% block content %}{% endblock %}
 </main>
 
-{# ---------------- Footer (reference design) ---------------- #}
-<footer class="border-t border-slate-800 bg-slate-900 pb-12 pt-16 text-slate-300">
+{# ---------------- Footer (reference design, dark-theme aware) ---------------- #}
+<footer class="border-t border-slate-800 bg-slate-900 pb-12 pt-16 text-slate-300 dark:border-night-border dark:bg-night-950 dark:text-night-300">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 gap-10 border-b border-slate-800 pb-12 md:grid-cols-2 lg:grid-cols-12">
+    <div class="grid grid-cols-1 gap-10 border-b border-slate-800 pb-12 md:grid-cols-2 lg:grid-cols-12 dark:border-night-border">
       <!-- Left: logos & summary -->
       <div class="space-y-4 lg:col-span-5">
         <div class="flex items-center gap-3">
@@ -288,56 +390,172 @@
           {% endif %}
           <span class="text-lg font-bold text-white">{{ site.site_name }}</span>
         </div>
-        <p class="max-w-sm pt-2 text-xs leading-relaxed text-slate-400">{{ site.footer_note }}</p>
-        <div class="flex items-center gap-2 pt-1 text-[11px] text-slate-400">
-          <i class="fa-solid fa-certificate text-brand-gold"></i>
-          <span>ECGBC Affiliated</span>
+        <p class="max-w-sm pt-2 text-xs leading-relaxed text-slate-400 dark:text-night-400">{{ site|tfield:"footer_note" }}</p>
+        <div class="flex items-center gap-2 pt-1 text-[11px] text-slate-400 dark:text-night-400">
+          <i class="fa-solid fa-certificate text-brand-gold dark:text-night-gold"></i>
+          <span>{% trans "ECGBC Affiliated" %}</span>
         </div>
       </div>
       <!-- Middle: quick nav -->
       <div class="lg:col-span-3">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-white">{% trans "Explore" %}</h4>
-        <ul class="grid grid-cols-2 gap-2 pt-2 text-xs text-slate-400">
-          <li><a class="transition hover:text-brand-gold" href="{% url 'about' %}">{% trans "About Us" %}</a></li>
-          <li><a class="transition hover:text-brand-gold" href="{% url 'what-we-do' %}">{% trans "What We Do" %}</a></li>
-          <li><a class="transition hover:text-brand-gold" href="{% url 'where-we-work' %}">{% trans "Where We Work" %}</a></li>
-          <li><a class="transition hover:text-brand-gold" href="{% url 'vision' %}">Vision 100DM35</a></li>
-          <li><a class="transition hover:text-brand-gold" href="{% url 'impact' %}">{% trans "Impact &amp; Stories" %}</a></li>
-          <li><a class="transition hover:text-brand-gold" href="{% url 'library' %}">{% trans "Resource Library" %}</a></li>
-          <li><a class="transition hover:text-brand-gold" href="{% url 'get-involved' %}">{% trans "Get Involved" %}</a></li>
-          <li><a class="transition hover:text-brand-gold" href="{% url 'transparency' %}">{% trans "Transparency" %}</a></li>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-white dark:text-night-blue">{% trans "Explore" %}</h4>
+        <ul class="grid grid-cols-2 gap-2 pt-2 text-xs text-slate-400 dark:text-night-400">
+          <li><a class="transition hover:text-brand-gold dark:hover:text-night-gold" href="{% url 'about' %}">{% trans "About Us" %}</a></li>
+          <li><a class="transition hover:text-brand-gold dark:hover:text-night-gold" href="{% url 'what-we-do' %}">{% trans "What We Do" %}</a></li>
+          <li><a class="transition hover:text-brand-gold dark:hover:text-night-gold" href="{% url 'where-we-work' %}">{% trans "Where We Work" %}</a></li>
+          <li><a class="transition hover:text-brand-gold dark:hover:text-night-gold" href="{% url 'vision' %}">Vision 100DM35</a></li>
+          <li><a class="transition hover:text-brand-gold dark:hover:text-night-gold" href="{% url 'impact' %}">{% trans "Impact &amp; Stories" %}</a></li>
+          <li><a class="transition hover:text-brand-gold dark:hover:text-night-gold" href="{% url 'library' %}">{% trans "Resource Library" %}</a></li>
+          <li><a class="transition hover:text-brand-gold dark:hover:text-night-gold" href="{% url 'get-involved' %}">{% trans "Get Involved" %}</a></li>
+          <li><a class="transition hover:text-brand-gold dark:hover:text-night-gold" href="{% url 'transparency' %}">{% trans "Transparency" %}</a></li>
         </ul>
       </div>
       <!-- Right: HQ + contact + newsletter -->
       <div class="space-y-3 lg:col-span-4">
-        <h4 class="text-xs font-bold uppercase tracking-wider text-white">{% trans "Contact" %}</h4>
-        <p class="text-xs leading-relaxed text-slate-400"><i class="fa-solid fa-location-dot mr-1.5 text-brand-red"></i>{{ site.contact_address }}</p>
-        <p class="text-xs text-slate-400"><i class="fa-solid fa-envelope mr-1.5 text-brand-blueLight"></i>{{ site.contact_email }}</p>
-        <p class="text-xs text-slate-400"><i class="fa-solid fa-phone mr-1.5 text-emerald-400"></i>{{ site.contact_phone }}</p>
+        <h4 class="text-xs font-bold uppercase tracking-wider text-white dark:text-night-blue">{% trans "Contact" %}</h4>
+        <p class="text-xs leading-relaxed text-slate-400 dark:text-night-400"><i class="fa-solid fa-location-dot mr-1.5 text-brand-red dark:text-brand-terracotta"></i>{{ site.contact_address }}</p>
+        <p class="text-xs text-slate-400 dark:text-night-400"><i class="fa-solid fa-envelope mr-1.5 text-brand-blueLight dark:text-night-blue"></i>{{ site.contact_email }}</p>
+        <p class="text-xs text-slate-400 dark:text-night-400"><i class="fa-solid fa-phone mr-1.5 text-emerald-400"></i>{{ site.contact_phone }}</p>
         <div class="flex gap-2 pt-2">
-          {% if site.social_facebook %}<a href="{{ site.social_facebook }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>{% endif %}
-          {% if site.social_x %}<a href="{{ site.social_x }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>{% endif %}
-          {% if site.social_instagram %}<a href="{{ site.social_instagram }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>{% endif %}
-          {% if site.social_youtube %}<a href="{{ site.social_youtube }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>{% endif %}
-          {% if site.social_linkedin %}<a href="{{ site.social_linkedin }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>{% endif %}
+          {% if site.social_facebook %}<a href="{{ site.social_facebook }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold dark:text-night-400 dark:hover:bg-white/5 dark:hover:text-night-gold" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>{% endif %}
+          {% if site.social_x %}<a href="{{ site.social_x }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold dark:text-night-400 dark:hover:bg-white/5 dark:hover:text-night-gold" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>{% endif %}
+          {% if site.social_instagram %}<a href="{{ site.social_instagram }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold dark:text-night-400 dark:hover:bg-white/5 dark:hover:text-night-gold" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>{% endif %}
+          {% if site.social_youtube %}<a href="{{ site.social_youtube }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold dark:text-night-400 dark:hover:bg-white/5 dark:hover:text-night-gold" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>{% endif %}
+          {% if site.social_linkedin %}<a href="{{ site.social_linkedin }}" class="rounded-lg p-2 text-slate-400 transition hover:bg-white/10 hover:text-brand-gold dark:text-night-400 dark:hover:bg-white/5 dark:hover:text-night-gold" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>{% endif %}
         </div>
       </div>
     </div>
-    <div class="flex flex-col items-center justify-between gap-4 pt-8 text-xs text-slate-500 md:flex-row">
+    <div class="flex flex-col items-center justify-between gap-4 pt-8 text-xs text-slate-500 md:flex-row dark:text-night-500">
       <div>© {% now "Y" %} {{ site.site_name }}. {% trans "All Rights Reserved." %}</div>
       <div class="flex flex-wrap items-center gap-4">
-        <a class="hover:text-slate-300" href="{{ site.privacy_policy_url }}">{% trans "Privacy Policy" %}</a>
+        <a class="hover:text-slate-300 dark:hover:text-night-300" href="{{ site.privacy_policy_url }}">{% trans "Privacy Policy" %}</a>
         <span>•</span>
-        <a class="hover:text-slate-300" href="{{ site.transparency_url }}">{% trans "Transparency" %}</a>
+        <a class="hover:text-slate-300 dark:hover:text-night-300" href="{{ site.transparency_url }}">{% trans "Transparency" %}</a>
         <span>•</span>
-        <span class="italic text-slate-400">{% trans "Security Notice: Field identities anonymized for frontline worker protection." %}</span>
+        <span class="italic text-slate-400 dark:text-night-400">{% trans "Security Notice: Field identities anonymized for frontline worker protection." %}</span>
       </div>
     </div>
   </div>
 </footer>
 
+{# ================= Floating chatbot (pre-defined Q&A, admin-managed) ================= #}
+{{ chatbot_faq|json_script:"chatbot-data" }}
+<div x-data="chatWidget()"
+     class="fixed bottom-5 right-5 z-50 font-sans"
+     :aria-open="open.toString()">
+  {# Bubble button #}
+  <button @click="open = !open" x-show="!open"
+          class="flex h-14 w-14 items-center justify-center rounded-full bg-brand-blue text-white shadow-lg transition-all duration-200 hover:scale-110 hover:bg-brand-blueDark dark:bg-blue-600 dark:hover:bg-blue-700"
+          :aria-label="'{% trans "Open chat helper" %}'">
+    <i class="fa-solid fa-comment-dots text-2xl"></i>
+  </button>
+  <button @click="open = false" x-show="open" x-cloak
+          class="flex h-14 w-14 items-center justify-center rounded-full bg-slate2-700 text-white shadow-lg transition-all dark:bg-night-700 dark:text-night-200"
+          :aria-label="'{% trans "Close chat helper" %}'">
+    <i class="fa-solid fa-xmark text-2xl"></i>
+  </button>
+
+  {# Chat panel #}
+  <div x-show="open" x-cloak x-transition:enter="transition ease-out duration-200"
+       x-transition:enter-start="opacity-0 translate-y-3"
+       x-transition:enter-end="opacity-100 translate-y-0"
+       class="absolute bottom-[76px] right-0 flex max-h-[70vh] w-80 flex-col overflow-hidden rounded-2xl border border-slate2-200 bg-white shadow-2xl sm:w-96 dark:border-night-border dark:bg-night-card">
+    {# Header #}
+    <div class="flex items-center gap-3 bg-brand-blueDark px-4 py-3 text-white dark:bg-night-900">
+      <span class="grid h-9 w-9 place-items-center rounded-full bg-white/15 text-sm">
+        <i class="fa-solid fa-robot"></i>
+      </span>
+      <div class="min-w-0">
+        <p class="text-sm font-bold">{% trans "HO-ME Assistant" %}</p>
+        <p class="text-[11px] text-blue-100 dark:text-night-300">{% trans "Answers from our pre-defined help topics" %}</p>
+      </div>
+    </div>
+    {# Messages #}
+    <div class="flex-1 space-y-3 overflow-y-auto px-4 py-4" aria-live="polite">
+      <template x-for="m in msgs" :key="m.id">
+        <div class="flex" :class="m.who==='user' ? 'justify-end' : 'justify-start'">
+          <div class="max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed whitespace-pre-line
+                      dark:bg-night-850 dark:text-night-100 dark:border dark:border-night-border" style="display:none"
+               :style="m.who==='user' ? 'display:block; background:#194F9E; color:#fff; border-radius:1rem 1rem 0.25rem 1rem'
+                                    : 'display:block; background:#F1F5F9; color:#1E293B; border-radius:1rem 1rem 1rem 0.25rem'">
+            <span x-text="m.text"></span>
+          </div>
+        </div>
+      </template>
+    </div>
+    {# Pre-defined question chips #}
+    <div class="flex flex-wrap gap-1.5 border-t border-slate2-200 px-3 py-2.5 dark:border-night-border">
+      <template x-for="(item, i) in faq" :key="i">
+        <button @click="ask(item.question)" x-show="i < 6"
+                class="rounded-full border border-brand-blueLight/60 px-2.5 py-1 text-[11px] font-semibold text-brand-blue transition hover:bg-blue-50 dark:border-night-border dark:text-night-blue dark:hover:bg-white/5"
+                x-text="item.q"></button>
+      </template>
+      <span x-show="faq.length === 0" x-cloak class="text-[11px] text-slate2-500 dark:text-night-400">{% trans "No help topics are configured yet — admins can add them in the portal." %}</span>
+    </div>
+    {# Input #}
+    <form @submit.prevent="send()" class="flex items-center gap-2 border-t border-slate2-200 px-3 py-2.5 dark:border-night-border">
+      <input x-model="input" autocomplete="off"
+             class="w-full rounded-xl border border-slate2-300 px-3 py-2 text-xs dark:border-night-border dark:bg-night-850 dark:text-night-100"
+             :placeholder="'{% trans "Type your question…" %}'">
+      <button class="rounded-xl bg-brand-red px-3 py-2 text-xs font-bold text-white transition hover:bg-brand-redDark dark:bg-brand-red dark:hover:bg-red-700">
+        {% trans "Send" %}
+      </button>
+    </form>
+  </div>
+</div>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
+  // ---------- Theme toggle: light default, persists to localStorage, applies to <html> ----------
+  function themeToggle() {
+    return {
+      dark: document.documentElement.classList.contains('dark'),
+      toggle() {
+        const next = !this.dark;
+        document.documentElement.classList.toggle('dark', next);
+        try { localStorage.setItem('theme', next ? 'dark' : 'light'); } catch (e) {}
+        this.dark = next;
+      },
+    };
+  }
+  // Shared state so body-level x-data can read it too
+  function themeState() { return { $themeDark: document.documentElement.classList.contains('dark') }; }
+
+  // ---------- Floating chatbot: pre-defined Q&A (admin-managed) ----------
+  function chatWidget() {
+    return {
+      open: false, input: '', msgs: [], faq: [], seq: 0,
+      fallback: '{% trans "I’m not sure about that one — try a question below, or email us at info@ho-me.org." %}',
+      init() {
+        const el = document.getElementById('chatbot-data');
+        try { this.faq = el ? JSON.parse(el.textContent) : []; } catch (e) { this.faq = []; }
+        this.push('bot', this.faq.length
+          ? "{% trans 'Welcome! Choose a question below or type your own.' %}"
+          : "{% trans 'Welcome! Admins can add pre-defined questions in the portal.' %}");
+      },
+      push(who, text) {
+        this.msgs.push({ who, text, id: ++this.seq });
+        this.$nextTick(() => {
+          const box = this.$el && this.$el.querySelector('.flex-1.overflow-y-auto');
+          if (box) box.scrollTop = box.scrollHeight;
+        });
+      },
+      ask(q) { this.push('user', q); const hit = this.faq.find((f) => f.q === q); this.push('bot', hit ? hit.a : this.fallback); },
+      send() {
+        const t = this.input.trim();
+        if (!t) return;
+        this.push('user', t); this.input = '';
+        const norm = t.toLowerCase();
+        let best = null, bestScore = 0;
+        this.faq.forEach((f) => {
+          let s = 0;
+          (f.kw || []).forEach((k) => { if (k && norm.includes(String(k).toLowerCase())) s += k.length; });
+          if (s > bestScore) { bestScore = s; best = f; }
+        });
+        this.push('bot', best ? best.a : this.fallback);
+      },
+    };
+  }
+
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.addEventListener('DOMContentLoaded', () => {
     AOS.init({ once: true, duration: prefersReduced ? 0 : 700, offset: 80 });

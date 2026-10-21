@@ -18,25 +18,25 @@
         <!-- Strategic badge -->
         <div class="inline-flex items-center gap-2.5 rounded-full border border-blue-200/80 bg-blue-50 px-3.5 py-1.5 shadow-sm">
           <span class="flex h-2 w-2 animate-ping rounded-full bg-brand-red"></span>
-          <span class="text-xs font-semibold uppercase tracking-wider text-brand-blue">Indigenous • Data-Driven • Church-Led</span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-brand-blue">{% trans "Indigenous • Data-Driven • Church-Led" %}</span>
         </div>
         <!-- Headline -->
         <h1 class="text-3xl font-black leading-[1.12] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
           {{ site.active_headline }}
         </h1>
         <!-- Subtitle -->
-        <p class="max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">{{ site.subheadline }}</p>
+        <p class="max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">{{ site|tfield:"subheadline" }}</p>
         <!-- Action CTAs -->
         <div class="flex flex-wrap items-center gap-4 pt-3">
           <a href="{{ site.hero_cta_url_1 }}"
              class="flex items-center gap-2 rounded-xl bg-brand-blue px-6 py-3.5 text-sm font-bold text-white shadow-md transition-all duration-200 hover:bg-brand-blueDark hover:shadow-lg">
-            <span>{{ site.hero_cta_text_1 }}</span>
+            <span>{{ site|tfield:"hero_cta_text_1" }}</span>
             <i class="fa-solid fa-arrow-trend-up"></i>
           </a>
           <a href="{{ site.hero_cta_url_2 }}"
              class="flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-6 py-3.5 text-sm font-semibold text-slate-700 shadow-sm transition-all duration-200 hover:bg-slate-50">
             <i class="fa-solid fa-diagram-project text-brand-red"></i>
-            <span>{{ site.hero_cta_text_2 }}</span>
+            <span>{{ site|tfield:"hero_cta_text_2" }}</span>
           </a>
         </div>
         <!-- Trust indicator -->
@@ -72,18 +72,17 @@
               <i class="fa-solid fa-circle-check mr-1 text-[9px]"></i>{% now "Y" %}
             </span>
           </div>
-          <!-- Interactive stage preview -->
-          <div class="my-6 space-y-3 rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50/70 to-slate-50 p-4" x-data="{ active:'{{ mcms_steps.first.key }}' }">
+          <!-- Interactive stage preview -->          <div class="my-6 space-y-3 rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50/70 to-slate-50 p-4" x-data="{ active:'{{ mcms_steps.first.key }}' }">
             <div class="flex items-center justify-between text-xs">
               <span class="font-bold text-slate-700">{% trans "Movement Cycle Status" %}</span>
               <span class="font-mono font-bold text-brand-blue">{{ mcms_steps.count }} {% trans "Steps" %}</span>
             </div>
             <div class="grid grid-cols-4 gap-1 text-center text-[10px] font-bold">
               {% for step in mcms_steps %}
-              <div class="py-1.5 {% if forloop.first %}rounded bg-brand-blue text-white shadow-sm{% elif forloop.counter == 2 %}rounded bg-brand-blue/80 text-white{% elif forloop.counter == 3 %}rounded bg-sky-600 text-white{% else %}rounded bg-sky-400 text-slate-900{% endif %}">{{ step.name|stringformat:"s"|truncatechars:10 }}</div>
+              <div class="py-1.5 {% if forloop.first %}rounded bg-brand-blue text-white shadow-sm{% elif forloop.counter == 2 %}rounded bg-brand-blue/80 text-white{% elif forloop.counter == 3 %}rounded bg-sky-600 text-white{% else %}rounded bg-sky-400 text-slate-900{% endif %}">{{ step|tfield:"name"|stringformat:"s"|truncatechars:10 }}</div>
               {% endfor %}
             </div>
-            <p class="text-[12px] italic leading-snug text-slate-600">{{ mcms_steps.first.short_line }}</p>
+            <p class="text-[12px] italic leading-snug text-slate-600">{{ mcms_steps.first|tfield:"short_line" }}</p>
           </div>
           <!-- Key metrics quick view -->
           <div class="grid grid-cols-2 gap-3 text-center">
@@ -114,11 +113,10 @@
   <div class="absolute inset-0 bg-gradient-to-r from-brand-blueDark/95 via-brand-blueDark/75 to-transparent"></div>
   <div class="relative mx-auto max-w-7xl px-4 py-28 sm:px-6" data-aos="fade-up">
     <div class="inline-flex items-center gap-2.5 rounded-full border border-blue-300/40 bg-white/10 px-3.5 py-1.5 backdrop-blur-sm">
-      <span class="flex h-2 w-2 animate-ping rounded-full bg-brand-red"></span>
-      <span class="text-xs font-semibold uppercase tracking-wider text-blue-100">Indigenous • Data-Driven • Church-Led</span>
+      <span class="flex h-2 w-2 animate-ping rounded-full bg-brand-red"></span>          <span class="text-xs font-semibold uppercase tracking-wider text-blue-100">{% trans "Indigenous • Data-Driven • Church-Led" %}</span>
     </div>
     <h1 class="mt-6 max-w-3xl text-3xl font-black leading-[1.12] tracking-tight sm:text-5xl lg:text-6xl">{{ site.active_headline }}</h1>
-    <p class="mt-6 max-w-2xl text-base leading-relaxed text-blue-100 sm:text-lg">{{ site.subheadline }}</p>
+    <p class="mt-6 max-w-2xl text-base leading-relaxed text-blue-100 sm:text-lg">{{ site|tfield:"subheadline" }}</p>
     <div class="mt-8 flex flex-wrap items-center gap-4">
       <a href="{{ site.hero_cta_url_1 }}" class="flex items-center gap-2 rounded-xl bg-brand-red px-6 py-3.5 text-sm font-bold text-white shadow-md transition hover:bg-brand-redDark">
         <span>{{ site.hero_cta_text_1 }}</span><i class="fa-solid fa-arrow-trend-up"></i>
@@ -195,22 +193,21 @@
       {% endfor %}
     </div>
     <!-- Dynamic content panel (CMS-driven descriptions) -->
-    {% for step in mcms_steps %}
-    <div x-show="active==='{{ step.key }}'" x-transition class="mx-auto max-w-5xl rounded-3xl border border-slate-200 bg-white p-6 shadow-card transition-all duration-300 sm:p-10" data-aos="fade-in">
+    {% for step in mcms_steps %}              <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-card transition-all duration-300 sm:p-10" x-show="active==='{{ step.key }}'" x-transition data-aos="fade-in">
       <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-12">
         <div class="space-y-4 lg:col-span-7">
           <div class="flex items-center gap-2">
             <span class="rounded-md bg-blue-100 px-3 py-1 text-xs font-bold uppercase text-brand-blue">Step 0{{ forloop.counter }}</span>
             <i data-lucide="{{ step.icon|default:'refresh-cw' }}" class="h-4 w-4 text-brand-blue"></i>
           </div>
-          <h3 class="text-2xl font-extrabold text-slate-900 sm:text-3xl">{{ step.name }}</h3>
-          <p class="text-sm leading-relaxed text-slate-600 sm:text-base">{{ step.description|default:step.short_line }}</p>
+          <h3 class="text-2xl font-extrabold text-slate-900 sm:text-3xl">{{ step|tfield:"name" }}</h3>
+                  <p class="text-sm leading-relaxed text-slate-600 sm:text-base">{% if step.description %}{{ step|tfield:"description" }}{% else %}{{ step|tfield:"short_line" }}{% endif %}</p>
           <a href="{% url 'what-we-do' %}" class="mt-2 inline-flex items-center gap-1 text-sm font-bold text-brand-blue hover:text-brand-red">
             {% trans "Learn more" %} <i class="fa-solid fa-arrow-right text-[10px]"></i>
           </a>
         </div>
         <div class="space-y-4 rounded-2xl border border-slate-200 bg-brand-slateBg p-6 lg:col-span-5">
-          <p class="text-xs italic leading-relaxed text-slate-600">&ldquo;{{ step.short_line }}&rdquo;</p>
+          <p class="text-xs italic leading-relaxed text-slate-600">&ldquo;{{ step|tfield:"short_line" }}&rdquo;</p>
           <div class="flex items-center justify-between text-xs pt-1">
             <span class="font-medium text-slate-500">{% trans "Standard Cycle Stage" %}</span>
             <a class="inline-flex items-center gap-1 font-bold text-brand-red hover:underline" href="{% url 'library' %}">
@@ -228,7 +225,7 @@
 <section class="bg-white py-20" data-aos="fade-up">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <div class="mx-auto mb-12 max-w-3xl text-center">
-      <span class="text-xs font-bold uppercase tracking-wider text-brand-blue">Strategic Pillars</span>
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-blue">{% trans "Strategic Pillars" %}</span>
       <h2 class="mt-1 text-3xl font-black tracking-tight text-slate-900 sm:text-4xl">{% trans "Our Four Pillars" %}</h2>
     </div>
     <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
@@ -240,8 +237,8 @@
           </div>
           <span class="rounded-full border border-blue-200 bg-blue-50 px-2.5 py-0.5 text-xs font-bold text-brand-blue">Pillar {{ forloop.counter }}</span>
         </div>
-        <h3 class="text-base font-bold text-slate-900">{{ p.title }}</h3>
-        <p class="mt-1 text-xs text-slate-500">{{ p.summary }}</p>
+        <h3 class="text-base font-bold text-slate-900">{{ p|tfield:"title" }}</h3>
+        <p class="mt-1 text-xs text-slate-500">{{ p|tfield:"summary" }}</p>
       </div>
       {% endfor %}
     </div>
@@ -268,8 +265,8 @@
           <div class="mb-3 flex items-center justify-between text-xs">
             <span class="rounded px-2 py-0.5 font-bold text-[11px] {% if forloop.counter == 2 %}bg-amber-100 text-amber-800{% elif forloop.counter == 3 %}bg-rose-100 text-brand-red{% else %}bg-blue-100 text-brand-blue{% endif %}">{{ s.get_kind_display }}{% if s.region %} · {{ s.region.name }}{% endif %}</span>
           </div>
-          <h3 class="text-base font-bold leading-snug text-slate-900 group-hover:text-brand-blue">{{ s.title }}</h3>
-          <p class="mt-2 text-xs leading-relaxed text-slate-600">{{ s.excerpt|truncatechars:120 }}</p>
+          <h3 class="text-base font-bold leading-snug text-slate-900 group-hover:text-brand-blue">{{ s|tfield:"title" }}</h3>
+          <p class="mt-2 text-xs leading-relaxed text-slate-600">{{ s|tfield:"excerpt"|truncatechars:120 }}</p>
           <div class="mt-auto pt-4"><span class="inline-flex items-center gap-1.5 text-xs font-bold text-brand-blue">{% trans "Read story" %} <i class="fa-solid fa-arrow-right text-[10px]"></i></span></div>
         </div>
       </a>

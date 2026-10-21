@@ -220,3 +220,509 @@ msgstr "ዳሽቦርድ"
 
 msgid "View site"
 msgstr ""
+
+msgid "2030 Target:"
+msgstr "የ2030 ኢላማ:"
+
+msgid ""
+"A repeating cycle of movement-building, every 3–5 years, every people group."
+msgstr "በየ3–5 ዓመቱ በየሕዝቡ ደጋግሞ የሚቀጥል የአገዛዝ ማሳደግ ዑደት።"
+
+msgid "About HO-ME"
+msgstr "ስለ ሆሜ"
+
+msgid "All"
+msgstr "ሁሉም"
+
+msgid "All Rights Reserved."
+msgstr "መብቱ በሕግ የተጠበቀ ነው።"
+
+msgid "All audiences"
+msgstr "ሁሉም ተሳታፊዎች"
+
+msgid "All categories"
+msgstr "ሁሉም ምድቦች"
+
+msgid "All languages"
+msgstr "ሁሉም ቋንቋዎች"
+
+msgid "All regions"
+msgstr "ሁሉም ክልሎች"
+
+msgid ""
+"All submissions are reviewed by our team. We never share your information "
+"with third parties."
+msgstr "ሁሉም ገቢዎች በቡድናችን ይገመገማሉ። መረጃዎችን ለሦስተኛ ወገኖች አንጋራም።"
+
+msgid "Amount"
+msgstr "መጠን"
+
+msgid "Answers from our pre-defined help topics"
+msgstr "ከተዘጋጁ የእገዛ ርዕሶች መልሶች"
+
+msgid "Anything you'd like us to know?"
+msgstr "እንዲያውቁን የሚፈልጉት ነገር አለ?"
+
+msgid "Apply to Serve"
+msgstr "ለአገልግሎት ተመዝገቡ"
+
+msgid "Back to all stories"
+msgstr "ወደ ሁሉም ታሪኮች ተመለስ"
+
+msgid "Baseline 2025:"
+msgstr "መነሻ 2025:"
+
+msgid "Catalytic Impact Across the Horn of Africa"
+msgstr "በሆርን ኦፍ አፍሪካ ላይ የተደረሰ ተጽዕኖ"
+
+msgid "Churches"
+msgstr "ሰበካ ቤቶች"
+
+msgid "Churches In Network"
+msgstr "በኔትዎርኩ ውስጥ ያሉ ሰበካ ቤቶች"
+
+msgid "Churches Multiplied"
+msgstr "የባዙ ሰበካ ቤቶች"
+
+msgid "Close chat helper"
+msgstr "የውይይት ረዳት ዝጋ"
+
+msgid "Close details"
+msgstr "ዝርዝር ዝጋ"
+
+msgid "Close form"
+msgstr "ፎርሙን ዝጋ"
+
+msgid "Current:"
+msgstr "የአሁን:"
+
+msgid "DMM Generations"
+msgstr "የDMM ወለዶች"
+
+msgid "Dark"
+msgstr "ጨለማ"
+
+msgid ""
+"Data independently verified through quarterly MEL reviews & regional Hub "
+"oversight councils."
+msgstr "ውሂቡ በየሩብ ዓመቱ በMEL ግምገማዎችና በክልላዊ ሀብ ቁጥጥር ባለሰቦች ነጻነት ተረጋግጧል።"
+
+msgid ""
+"Disciple-making movements multiply through four generations and beyond."
+msgstr "የደቀ መዝሙይነት እንቅስቃሴዎች በአራት ወለዶችና ከዛም ባለፉ ባዙ።"
+
+msgid "Distinctives"
+msgstr "ልዩ ባህሪያት"
+
+msgid "Download"
+msgstr "አውርድ"
+
+msgid "Download Guide"
+msgstr "መመሪያውን አውርድ"
+
+msgid "ECGBC Affiliated"
+msgstr "በECGBC የተገናኘ"
+
+msgid "Email"
+msgstr "ኢሜይል"
+
+msgid ""
+"Empower frontline workers with life support, tools, and Kingdom business "
+"capital."
+msgstr "የግሩ ሠራተኞችን በሕይወት ድጋፍ፣ በመሣሪያዎች እና በመንግሥት ንግድ በጀት አጽናን።"
+
+msgid "Engaged to Reached"
+msgstr "የተሳበሩ ወደ ተደረሱ"
+
+msgid "Evangelical Churches Fellowship of Ethiopia / ECGBC Partner"
+msgstr "የኢትዮጵያ ተስላ ሰበካ ቤቶች ተባባሪ / የECGBC አጋር"
+
+msgid ""
+"Every milestone represents a step forward in our story of growth, "
+"innovation, and impact."
+msgstr "እያንዳንዱ ድንጋገ በዕድገት፣ በአዲስ ፍጻሜ እና በተጽዕኖ ጉዞች ላይ ቀጣይ እርምጃ ነው።"
+
+msgid "Expanded under Vision 100DM35"
+msgstr "በVision 100DM35 ስር ተስፋፍቷል"
+
+msgid "Explore Targets"
+msgstr "ኢላማዎችን ጎብኝ"
+
+msgid "Explore milestone"
+msgstr "መስማተኛውን ጎብኝ"
+
+msgid "Explore our regions and hubs using the interactive map."
+msgstr "በመስተጋብር ካርታችን በኩል ክልሎችንና ሀቦችን ጎብኝ።"
+
+msgid "Financial Transparency"
+msgstr "የፋይናንስ ግልጽነት"
+
+msgid "Flexible availability"
+msgstr "ተለዋዋጭ የጊዜ ታቀዳሚ"
+
+msgid ""
+"For congregations ready to adopt an unreached people group and send vetted "
+"planters."
+msgstr "የማህበረ ክርስቲያናት ተዘጋጅተው የተዳከሙ ክርስቲያናት እንዲሰጥ በጋራ።"
+
+msgid "For receipts & questions:"
+msgstr "ለደረሰ ኪሳራዎችና ጥያቄዎች:"
+
+msgid "Founded 2003"
+msgstr "የተመሰረተው 2003"
+
+msgid "Four Pillars of HO-ME"
+msgstr "የሆመ አራት ዓምዶች"
+
+msgid "From the Field"
+msgstr "ከሜዳ"
+
+msgid "Full name"
+msgstr "ሙሉ ስም"
+
+msgid "GIVE"
+msgstr "ስጡ"
+
+msgid "Give"
+msgstr "ስጡ"
+
+msgid "Giving details will be published here — editable in the admin portal."
+msgstr "የልገሳ ዝርዝሮች እዚህ ይታያሉ — በአካባቢ አስተዳደር ገጽ ይስተካከላል።"
+
+msgid "Giving partner"
+msgstr "የመስጪ አጋር"
+
+msgid ""
+"Governed by an active Board of Trustees & compliant with Ethiopian civil "
+"society regulations."
+msgstr "በንቁ የባለቤት መድረክ የተቆጣጠረ እና ከኢትዮጵያ ሲቪል ሶሳይቲ ሕጎች ጋር ተገባቢ።"
+
+msgid "HO-ME Assistant"
+msgstr "ሆሜ ረዳት"
+
+msgid ""
+"HO-ME publishes annual impact and finance summaries. The Vision 100DM35 "
+"tracker shows live progress against our 2030 movement goals. For detailed "
+"statements, request access through the resource library or email %(email)s."
+msgstr ""
+"ሆሜ የዓመታዊ ተጽዕኖና የፋይናንስ ሪፖርቶችን ያስተላልፋል። የVision 100DM35 ተከታተያ በቀጥታ ያሳያል። ለዝርዝር"
+" መግለጫ መልእክት የመዳረሻ ጥያቄ አስገቡ ወይም %(email)s ይገቡ።"
+
+msgid ""
+"HO-ME respects your privacy. We collect only the information you give us "
+"through our forms (name, email, phone, applications) and use it solely to "
+"follow up on prayer, partnership, giving, volunteering and resource "
+"requests. We never sell your data. To correct or delete your data, contact "
+"%(email)s."
+msgstr ""
+"ሆሜ የእርስዎን ግላዊነት አክብራለች። በፎርሞቻችን የሰጡንን መረጃ ብቻ እንሰብሳለን እና ለጸሎት፣ ለአጋርነት፣ ለልገሳ፣ "
+"ለበቃሌት እና ለህዝብ ጥያቄዎች እንጠቀማለን። መረጃዎችን አንሽጣለን። ለማስተካከል ወይም ለማጥፋት %(email)s "
+"ያግኙን።"
+
+msgid "HOST Training School"
+msgstr "HOST ትምህርት ቤት"
+
+msgid "Hide channels"
+msgstr "ቻናሎችን ደብቅ"
+
+msgid "Historic transformation milestones"
+msgstr "ታሪካዊ የመቀየሪያ ድንጋጎች"
+
+msgid "Host a HOST school"
+msgstr "የHOST ትምህርት ቤት አስተናግድ"
+
+msgid "House Churches Planted"
+msgstr "የተተከሉ የቤት ሰበካ ቤቶች"
+
+msgid "How will you use this resource?"
+msgstr "ይህን መረጃ እንዴት ትጠቀማለህ?"
+
+msgid "Hub-specific prayer points"
+msgstr "የሀብ ላይ የጸሎት ፍኖቶች"
+
+msgid "Hubs"
+msgstr "ሀቦች"
+
+msgid "Impact &amp; Stories"
+msgstr "ተጽዕኖ እና ታሪኮች"
+
+msgid "In loving tribute"
+msgstr "በፍቅር ማስታወሻ"
+
+msgid "Indigenous • Data-Driven • Church-Led"
+msgstr "የሕዝብ ዝንባሌ • በውሂብ የተመሰረተ • በቤተ ክርስትያን የተመራ"
+
+msgid "Inquire as a Church"
+msgstr "በሰበካ ቤት ጥያቄ አስገቡ"
+
+msgid "Item"
+msgstr "አይነት"
+
+msgid ""
+"I’m not sure about that one — try a question below, or email us at info@ho-"
+"me.org."
+msgstr "ይህን ጥያቄ አልገባም — ከታች ያሉ ጥያቄዎች ይሞክሩ፣ ወይም በinfo@ho-me.org ያግኙን።"
+
+msgid ""
+"Join believers in daily frontier intercession for the peoples and hubs of "
+"the Horn."
+msgstr "ለሕዝቦችና ለሀቦች የዕለት የድንበር ጸሎት ከአማኞች ጋር ተቀላቀሉ።"
+
+msgid "Join Prayer Watch"
+msgstr "የጸሎት ጠባቂነት ተቀላቀሉ"
+
+msgid "Kingdom Business IGAs"
+msgstr "የመንግሥት ንግድ IGAs"
+
+msgid "Latest Impact Stories"
+msgstr "የቅርብ ጊዜ የተጽዕኖ ታሪኮች"
+
+msgid "Leadership"
+msgstr "መሪነት"
+
+msgid "Learn more"
+msgstr "የበለጠ ይወቁ"
+
+msgid "Light"
+msgstr "ብርሃን"
+
+msgid ""
+"Live movement indicators: baseline 2025 → current → 2030 target. Updated by "
+"our MEL team in the admin portal."
+msgstr ""
+"በቀጥታ የእንቅስቃሴ ማሳያዎች: መነሻ 2025 → የአሁን → የ2030 ኢላማ። በአካባቢያችን MEL ቡድን የተሻሻለ።"
+
+msgid "Milestone details"
+msgstr "የድንጋጌ ዝርዝር"
+
+msgid "Mission"
+msgstr "ተልዕኮ"
+
+msgid "Mobilize → Catalyze → Multiply → Sustain"
+msgstr "አነሳ → ተቀንጭብ → ባዝ → ጠብቅ"
+
+msgid "Monthly digest"
+msgstr "ወርሃዊ ማጠቃለያ"
+
+msgid "Movement Cycle Status"
+msgstr "የእንቅስቃሴ ዑደት ሁኔታ"
+
+msgid "News"
+msgstr "ዜና"
+
+msgid ""
+"News, field stories and testimonies — all safety-reviewed before publishing."
+msgstr "ዜናዎች፣ የሜዳ ታሪኮች እና ምስክርነቶች — ሁሉም በደህንነት ምርመራ ከታተመ በፊት።"
+
+msgid "No help topics are configured yet — admins can add them in the portal."
+msgstr "እስካሁን የእገዛ ርዕሶች አልተዘጋጁም — አስተዳዳሮች በበር ገጽ ያስገባሉ።"
+
+msgid "No indicators yet — MEL admins can add them in the admin portal."
+msgstr "እስካሁን ምላር አልተጨመረም — አስተዳዳሮች በበር ገጽ ያስገባሉ።"
+
+msgid "No resources match your filters."
+msgstr "በአግባቡ ከተረጋገጡ መረጃ አልተገኘም።"
+
+msgid "No stories match your filters."
+msgstr "ታሪኮች አልተገኙም።"
+
+msgid "Onboarding & training provided"
+msgstr "መግቢያ እና ትምህርት ተሰጥቷል"
+
+msgid "One-off commitment"
+msgstr "የአንድ ጊዜ በጋራ"
+
+msgid "Open Map in Google Maps"
+msgstr "ካርታውን በGoogle Maps ክፈት"
+
+msgid "Open chat helper"
+msgstr "የውይይት ረዳት ክፈት"
+
+msgid "Organization / church"
+msgstr "ድርጅት / ሰበካ ቤት"
+
+msgid "Other"
+msgstr "ሌላ"
+
+msgid "Our Core Values"
+msgstr "የእኛ ዋና እሴቶች"
+
+msgid "Our Four Pillars"
+msgstr "አራቱህ ዓምዶች"
+
+msgid "Our Journey — 2003 to Today"
+msgstr "ጉዞአ — 2003 እስከ ዛሬ"
+
+msgid "Our Movement Strategy"
+msgstr "የውይይት የእንቅስቃሴ ዘዴ"
+
+msgid "Our Story"
+msgstr "ታሪካችን"
+
+msgid "Our movement-building strategy among unreached peoples."
+msgstr "በአዳሪ ሕዝቦች መካከል የንቀጣ ማሳደግ ዘዴያችን።"
+
+msgid "Pastoral staff orientation"
+msgstr "የአለቃ ሠራተኛ መነሻ ትምህርት"
+
+msgid "Prayer Shield"
+msgstr "የጸሎት መቃየት"
+
+msgid "Prayer partner"
+msgstr "የጸሎት አጋር"
+
+msgid "Read story"
+msgstr "ታሪኩን አንብብ"
+
+msgid "Regional Hubs"
+msgstr "የክልላዊ ሀቦች"
+
+msgid "Regions and training hubs across the Horn of Africa."
+msgstr "በሆርን ኦፍ አፍሪካ ውስጥ ያሉ ክልሎች እና የሥልጠና ሀቦች።"
+
+msgid "Request Access"
+msgstr "መዳረሻ ስገባ"
+
+msgid "Request access"
+msgstr "መዳረሻ ጠይቅ"
+
+msgid "Scroll horizontally to explore the journey"
+msgstr "ጉዞውን ለማየት በአቀባዊ ተንሸራተች"
+
+msgid "Search resources…"
+msgstr "መረጃ ፈልግ…"
+
+msgid "Search stories…"
+msgstr "ታሪክ ፈልግ…"
+
+msgid ""
+"Security Notice: Field identities anonymized for frontline worker "
+"protection."
+msgstr "ደህንነት ማስታወሻ: የግሩት ሠራተኞች ማንነት ለደህንነታቸው ተደብቋል።"
+
+msgid "Send"
+msgstr "ላክ"
+
+msgid "Sending / mobilizing partner"
+msgstr "የሚላክ / አነሳሽ አጋር"
+
+msgid ""
+"Serve with your skills — training, administration, media, field logistics, "
+"and more."
+msgstr "በችሎታዎ አገልግሎት — ትምህርት፣ አስተዳደር፣ ሚዲያ፣ የሜዳ አማካር እና ተጨማሪ።"
+
+msgid "Shared missionary support"
+msgstr "የሚካፈል የሚሰፋ ሰለጠነህ ድጋፍ"
+
+msgid "Staff"
+msgstr "ሠራተኛ"
+
+msgid "Standard Cycle Stage"
+msgstr "MSC ዑደት ታቦታ መርሃ ግብር"
+
+msgid "Steps"
+msgstr "ደረጃዎች"
+
+msgid "Stories"
+msgstr "ታሪኮች"
+
+msgid "Strategic Pillars"
+msgstr "ስትራቴጂክ ዓምዶች"
+
+msgid "Strategic Plan Finalized"
+msgstr "ስትራቴጂክ ዕቅድ ተከናውኗል"
+
+msgid "Submit request"
+msgstr "ጥያቄ አስገቡ"
+
+msgid "Synod frontier mapping"
+msgstr "የሲኖድ ግሩት ሚቶ ታሪክ"
+
+msgid "Tags"
+msgstr "መለያዎች"
+
+msgid "Testimonies"
+msgstr "ምስክርነቶች"
+
+msgid "The MCMS Movement Cycle"
+msgstr "የMCMS እንቅስቃሴ ዑደት"
+
+msgid ""
+"The MCMS cycle, four pillars, DMM generations, HOST training, Kingdom "
+"business and digital ministry."
+msgstr ""
+"የMCMS ዑደት፣ አራት ዓምዶች፣ የDMM ወለዶች፣ የHOST ትምህርት፣ የመንግሥት ንግድ እና ዲጂታል አገልግሎት።"
+
+msgid ""
+"Training materials, research and tools — filter by category, language or "
+"audience."
+msgstr "የሥልጠና ባህል፣ ምርመራ እና መሣሪያዎች — በምድብ፣ በቋንቋ ወይም በተሳታፊ በማጣራት።"
+
+msgid "Two Decades of Measurable Fruit"
+msgstr "የሚከታተል ውጤት ሁለት ዐመት"
+
+msgid "Type your question…"
+msgstr "ጥያቄዎን ይጻፉ…"
+
+msgid "UPGs"
+msgstr "UPGዎች"
+
+msgid "UPGs Engaged"
+msgstr "የተነሳ UPGዎች"
+
+msgid "Verified by field MEL team"
+msgstr "በፍንድ ሜብ ቡድን የተረጋገጠ"
+
+msgid "Via local church DBS networks"
+msgstr "በአዳሪ ሰበካ ቤት DBS ኔትዎርክ"
+
+msgid "View"
+msgstr "ማየት"
+
+msgid "View Giving Channels"
+msgstr "የልገሳ ጭነት ማየት"
+
+msgid "View all"
+msgstr "ሁሉንም ማየት"
+
+msgid "Vision"
+msgstr "ራዕይ"
+
+msgid "Vision 100DM35 Tracker"
+msgstr "Vision 100DM35 ክትትል"
+
+msgid "Volunteer"
+msgstr "በቃሌት"
+
+msgid ""
+"We honour the founders, partners and praying churches whose faithfulness lit"
+" this movement. Editable from the admin portal's Tribute card set."
+msgstr ""
+"ታማኝነታቸው ይህን እንቅስቃሴ የበረበውን መሪዎችን፣ አጋሮችን እና ጸላኢ ሰበካ ቤቶችን እናከብራለን። በአካባቢ አስተዳደር"
+" ገጽ ይስተካከላል።"
+
+msgid "Weekly or monthly rhythm"
+msgstr "ሳምንታዊ ወይም ወርሃዊ ቁጥጥር"
+
+msgid "Weekly update"
+msgstr "ሳምንታዊ ወትሮ ማሻሻያ"
+
+msgid "Years of Ministry"
+msgstr "የአገልግሎት ዓመታት"
+
+msgid "downloads"
+msgstr "አወርድዎች"
+
+msgid "regional congregations"
+msgstr "የክልል መሰብሰቢያዎች"
+
+msgid ""
+"“%(x)s” requires approved access. Submit a request and our team will follow "
+"up."
+msgstr "“%(x)s” የሚካከል ፈጣን መዳረሻ። ጥያቄ አስገቡ እንይላለን።"
+
+msgid "Welcome! Choose a question below or type your own."
+msgstr "እንኳን ተከታ ደረጃልዎት! ከታች ጥያቄ ይምረጡ ወይም የራስዎን ጻፉ።"
+
+msgid "Welcome! Admins can add pre-defined questions in the portal."
+msgstr "እንኳን ተከታ ደረጃልዎት! አስተዳዳሮች በበር ገጽ ጥያቄዎች ያስገባሉ።"
