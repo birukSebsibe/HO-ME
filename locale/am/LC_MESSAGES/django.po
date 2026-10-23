@@ -28,7 +28,7 @@ msgid "Explore"
 msgstr "ይጎብኙ"
 
 msgid "Resources"
-msgstr ""
+msgstr "መርጃዎች"
 
 msgid "Contact"
 msgstr "ያግኙን"
@@ -550,6 +550,9 @@ msgstr "የእኛ ዋና እሴቶች"
 msgid "Our Four Pillars"
 msgstr "አራቱህ ዓምዶች"
 
+msgid "Our Partners"
+msgstr "የእኛ አጋሮች"
+
 msgid "Our Journey — 2003 to Today"
 msgstr "ጉዞአ — 2003 እስከ ዛሬ"
 
@@ -726,3 +729,179 @@ msgstr "እንኳን ተከታ ደረጃልዎት! ከታች ጥያቄ ይምረ
 
 msgid "Welcome! Admins can add pre-defined questions in the portal."
 msgstr "እንኳን ተከታ ደረጃልዎት! አስተዳዳሮች በበር ገጽ ጥያቄዎች ያስገባሉ።"
+
+msgid "Website status"
+msgstr "የድረ-ገጽ ሁኔታ"
+
+msgid "Live overview of site content, engagement and workflows."
+msgstr "የይዘት፣ ተሳትፎ እና ስራ ፍሳሽ የቀጥታ እይታ።"
+
+msgid "Items need attention"
+msgstr "ትኩረት የሚፈልጉ ነገሮች"
+
+msgid "All systems operational"
+msgstr "ሁሉም ስርዓቶች በሥራ ላይ"
+
+msgid "approved"
+msgstr "ጸድቋል"
+
+msgid "blocked"
+msgstr "ታግዷል"
+
+msgid "Pending safety reviews"
+msgstr "ምርመራ የሚጠብቁ"
+
+msgid "awaiting approval before publishing"
+msgstr "ከህትመት በፊት ፈቃድ በመጠባበቅ ላይ"
+
+msgid "published"
+msgstr "የታተመ"
+
+msgid "unpublished"
+msgstr "ያልታተመ"
+
+msgid "Pending access requests"
+msgstr "በመጠባበቅ ላይ ያሉ የመዳረሻ ጥያቄዎች"
+
+msgid "total"
+msgstr "በጠባበቂ"
+
+msgid "Submissions (30 days)"
+msgstr "የ30 ቀን ገቢዎች"
+
+msgid "prayer"
+msgstr "ጸሎት"
+
+msgid "churches"
+msgstr "ሰበካ ቤቶች"
+
+msgid "volunteers"
+msgstr "በቃሌቶች"
+
+msgid "Chatbot Q&A"
+msgstr "ቻትቦት ጥያቄ እና መልስ"
+
+msgid "active of"
+msgstr "ንቁ ከ"
+
+msgid "Content translations"
+msgstr "የይዘት ትርጉሞች"
+
+msgid "Amharic & Afaan Oromoo overrides"
+msgstr "በአማርኛ እና በኦሮሞ ቋንቋ መተካት"
+
+msgid "Region hubs"
+msgstr "የክልል ሀቦች"
+
+msgid "users"
+msgstr "ተጠቃሚዎች"
+
+msgid "Stories by safety status"
+msgstr "ታሪኮች በደህንነት ሁኔታ"
+
+msgid "Stories by kind"
+msgstr "ታሪኮች በዓይነት"
+
+msgid "Access requests by status"
+msgstr "የመዳረሻ ጥያቄዎች በሁኔታ"
+
+msgid "Resources by category"
+msgstr "መርጃዎች በምድብ"
+
+msgid "Submissions — last 14 days"
+msgstr "ገቢዎች — የመጨረሻዎቹ 14 ቀናት"
+
+msgid "MEL progress to 2030 (Vision 100DM35)"
+msgstr "የMEL እድገት ወደ 2030 (Vision 100DM35)"
+
+msgid "Recent submissions"
+msgstr "የቅርብ ጊዜ ገቢዎች"
+
+msgid ""
+"No submissions yet — form entries (prayer, partnership, volunteering, access"
+" requests) appear here."
+msgstr "እስካሁን ገቢ የለም — የፎርም መሙያዎች እዚህ ይታያሉ።"
+
+msgid "Quick actions"
+msgstr "ፈጣን ተግባራት"
+
+msgid "Approved"
+msgstr "ጸድቋል"
+
+msgid "Pending"
+msgstr "በመጠባበቅ ላይ"
+
+msgid "Denied"
+msgstr "ውድቅ ተደርጓል"
+
+msgid "Published"
+msgstr "የታተመ"
+
+msgid "Unpublished"
+msgstr "ያልታተመ"
+
+msgid "No data yet"
+msgstr "መረጃ የለም እስካሁን"
+
+msgid "Type"
+msgstr "ዓይነት"
+
+msgid "From"
+msgstr "ከ"
+
+msgid "Received"
+msgstr "የተቀበለ"
+
+msgid "Site settings"
+msgstr "የጣቢያ ቅንብሮች"
+
+msgid "MEL indicators"
+msgstr "የMEL መለኪያዎች"
+
+msgid "Access requests"
+msgstr "የመዳረሻ ጥያቄዎች"
+
+msgid "Audit events (24h)"
+msgstr "የትርከት መዝገብ (24 ሰዓት)"
+
+msgid "failed sign-ins"
+msgstr "ያልተሳኩ መግቢያዎች"
+
+msgid "Recent admin activity"
+msgstr "የቅርብ የአስተዳደር ተግባር"
+
+msgid "No activity recorded yet — sign-ins and content changes appear here."
+msgstr "እስካሁን ተግባር አልተመዘገበም — መግቢያዎችና የይዘት ለውጦች እዚህ ይታያሉ።"
+
+msgid "Time"
+msgstr "ጊዜ"
+
+msgid "Who"
+msgstr "ማን"
+
+msgid "Action"
+msgstr "ተግባር"
+
+msgid "Details"
+msgstr "ዝርዝሮች"
+
+msgid "View full audit log →"
+msgstr "ሙሉውን የትርከት መዝገብ መልክ →"
+
+msgid "Signed in"
+msgstr "ግቧል"
+
+msgid "Failed sign-in"
+msgstr "ያልተሳካ መግቢያ"
+
+msgid "Signed out"
+msgstr "ወጥቷል"
+
+msgid "Created"
+msgstr "ተፈጥሯል"
+
+msgid "Updated"
+msgstr "ተዘምኗል"
+
+msgid "Deleted"
+msgstr "ተሰርዟል"

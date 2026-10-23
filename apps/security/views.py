@@ -49,6 +49,29 @@ class HOMESecurityLoginView(HOMESecurityBrandingMixin, DjangoLoginView):
     form_class = HOMESecurityLoginForm
     extra_context = {"site_header": settings.ADMIN_SITE_HEADER}
 
+    def form_invalid(self, form):
+        # Audit: failed sign-in. When axes has locked the attempt out it also
+        # raises inside the view, so record that as a LOCKOUT event (the
+        # middleware skips its own lockout entry in that case).
+        from .audit import record
+        from .models import AuditLog
+        if getattr(self.request, "axes_locked_out", False):
+            record(
+                AuditLog.LOCKOUT,
+                username=self.request.POST.get("username", "")[:150],
+                request=self.request,
+                note="Blocked by brute-force protection (django-axes)",
+            )
+            self.request._audit_lockout_recorded = True
+        else:
+            record(
+                AuditLog.LOGIN_FAILED,
+                username=self.request.POST.get("username", "")[:150],
+                request=self.request,
+                note="Invalid credentials",
+            )
+        return super().form_invalid(form)
+
     def get_success_url(self):
         # Land on the admin dashboard after sign-in
         try:
@@ -74,6 +97,17 @@ class HOMESecurityPasswordResetView(HOMESecurityBrandingMixin, PasswordResetView
     success_url = reverse_lazy("security:password_reset_done")
     extra_context = {"site_header": settings.ADMIN_SITE_HEADER}
 
+    def form_valid(self, form):
+        # Audit: someone requested a password reset for this account.
+        from .audit import record
+        from .models import AuditLog
+        record(
+            AuditLog.PASSWORD_RESET_REQUESTED,
+            username=form.cleaned_data.get("username", "")[:150],
+            request=self.request,
+        )
+        return super().form_valid(form)
+
 
 class HOMESecurityPasswordResetDoneView(HOMESecurityBrandingMixin, PasswordResetDoneView):
     template_name = "security/password_reset_done.html"
@@ -84,6 +118,13 @@ class HOMESecurityPasswordResetConfirmView(HOMESecurityBrandingMixin, PasswordRe
     template_name = "security/password_reset_confirm.html"
     success_url = reverse_lazy("security:password_reset_complete")
     extra_context = {"site_header": settings.ADMIN_SITE_HEADER}
+
+    def form_valid(self, form):
+        # Audit: the password was actually changed via a reset link.
+        from .audit import record
+        from .models import AuditLog
+        record(AuditLog.PASSWORD_RESET, user=form.user, request=self.request)
+        return super().form_valid(form)
 
 
 class HOMESecurityPasswordResetCompleteView(HOMESecurityBrandingMixin, PasswordResetCompleteView):

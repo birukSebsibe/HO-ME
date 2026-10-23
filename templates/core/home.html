@@ -4,6 +4,37 @@
 
 {% block title %}{{ site.site_name }}{% endblock %}
 
+{% block extra_head %}
+<style>
+  /* ---- Partners: continuous auto-sliding marquee (no gaps, pauses on hover) ----
+     The track slides by exactly one .partner-set width; a tiny script clones the
+     set until the track is always wider than the viewport, so the loop never
+     shows empty space or a jump — even with only 1–2 partners. */
+  .partner-marquee{
+    overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+            mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+  }
+  .partner-track{
+    display:flex;
+    width:max-content;
+    animation:partnerScroll var(--partner-speed,28s) linear infinite;
+  }
+  .partner-set{display:flex}
+  .partner-set>.partner-card{margin-right:2.5rem}
+  .partner-marquee:hover .partner-track{animation-play-state:paused}
+  @keyframes partnerScroll{
+    from{transform:translateX(0)}
+    to{transform:translateX(var(--partner-shift,-50%))}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .partner-track{animation:none;flex-wrap:wrap;justify-content:center;width:100%}
+    .partner-track>.partner-set{flex-wrap:wrap;justify-content:center}
+    .partner-track .partner-card{margin-right:0;margin-bottom:1rem}
+  }
+</style>
+{% endblock %}
+
 {% block content %}
 {# ================= HERO (reference UI: light gradient + movement card) ================= #}
 {% if site.hero_variant == "A" %}
@@ -276,13 +307,40 @@
 </section>
 {% endif %}
 
-{# ===== Partners ===== #}
+{# ===== Partners: auto-sliding logo+name marquee (pauses on hover) ===== #}
 {% if partners %}
-<section class="border-t border-slate-200 bg-white py-12" data-aos="fade-up">
-  <div class="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-10 px-4 sm:px-6">
-    {% for p in partners %}
-      {% if p.logo %}<img src="{{ p.logo.url }}" alt="{{ p.name }}" class="h-10 w-auto opacity-60 transition hover:opacity-100">{% else %}<span class="font-semibold text-slate-500">{{ p.name }}</span>{% endif %}
-    {% endfor %}
+<section class="overflow-hidden border-t border-slate-200 bg-white py-12" data-aos="fade-up">
+  <div class="mx-auto mb-8 max-w-7xl px-4 sm:px-6">
+    <p class="text-center text-xs font-bold uppercase tracking-widest text-slate-400">{% trans "Our Partners" %}</p>
+  </div>
+  <div class="partner-marquee">
+    {# Track = partner set x2; a script clones sets until the track is wider than the viewport, then slides exactly one set width = continuous loop, no break. #}
+    <div class="partner-track">
+      <div class="partner-set">
+      {% for p in partners %}
+      <div class="partner-card group flex w-52 shrink-0 flex-col items-center gap-2.5 rounded-xl border border-slate-100 bg-white px-5 py-4 shadow-sm transition-all hover:border-brand-blue hover:shadow-card" title="{{ p.name }}">
+        {% if p.logo %}
+          <img src="{{ p.logo.url }}" alt="{{ p.name }}" class="h-14 w-auto max-w-full object-contain opacity-75 transition group-hover:opacity-100">
+        {% else %}
+          <div class="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-brand-blue text-lg font-extrabold text-white">{{ p.name|default:"?"|slice:":1" }}</div>
+        {% endif %}
+        <span class="line-clamp-2 min-h-8 text-center text-sm font-semibold leading-snug text-slate-600 transition group-hover:text-brand-blue">{{ p.name }}</span>
+      </div>
+      {% endfor %}
+      </div>
+      <div class="partner-set" aria-hidden="true">
+      {% for p in partners %}
+      <div class="partner-card group flex w-52 shrink-0 flex-col items-center gap-2.5 rounded-xl border border-slate-100 bg-white px-5 py-4 shadow-sm transition-all hover:border-brand-blue hover:shadow-card" title="{{ p.name }}" aria-hidden="true">
+        {% if p.logo %}
+          <img src="{{ p.logo.url }}" alt="" class="h-14 w-auto max-w-full object-contain opacity-75 transition group-hover:opacity-100">
+        {% else %}
+          <div class="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-brand-blue text-lg font-extrabold text-white">{{ p.name|default:"?"|slice:":1" }}</div>
+        {% endif %}
+        <span class="line-clamp-2 min-h-8 text-center text-sm font-semibold leading-snug text-slate-600 transition group-hover:text-brand-blue">{{ p.name }}</span>
+      </div>
+      {% endfor %}
+      </div>
+    </div>
   </div>
 </section>
 {% endif %}
@@ -290,6 +348,33 @@
 
 {% block extra_js %}
 <script>
+/* ---- Partners marquee: clone whole sets until the track is wider than the
+   viewport, then slide exactly one set width -> continuous loop, no break ---- */
+function initPartnerMarquee() {
+  document.querySelectorAll('.partner-marquee').forEach(function (m) {
+    var track = m.querySelector('.partner-track');
+    if (!track || track.children.length < 2) return;
+    var set = track.children[0];
+    if (!set || !set.children.length) return;
+    var setWidth = track.scrollWidth / 2; /* template renders exactly two sets */
+    if (!setWidth) return;
+    /* Need: track width - setWidth >= viewport width, so the -setWidth slide
+       always has content behind it (no gap, no jump). */
+    var guard = 0;
+    while (track.scrollWidth - setWidth < m.clientWidth && guard++ < 30) {
+      var clone = set.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    }
+    track.style.setProperty('--partner-shift', '-' + setWidth + 'px');
+    /* Constant visual speed (~55px/s) no matter how many partners exist */
+    track.style.setProperty('--partner-speed', Math.max(15, Math.round(setWidth / 55)) + 's');
+  });
+}
+document.addEventListener('DOMContentLoaded', initPartnerMarquee);
+window.addEventListener('load', initPartnerMarquee); /* after logos load */
+window.addEventListener('resize', initPartnerMarquee); /* wider screens may need more copies */
+
 function counterStrip() {
   return {
     counters: { churches: 0, years: 0, upgs: 0, hubs: 0, network: 0 },

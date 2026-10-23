@@ -6,4 +6,5 @@ class SecurityConfig(AppConfig):
     verbose_name = "HO-ME Admin Security"
 
     def ready(self):
-        pass
+        # Connect the audit-trail signal receivers (auth + content CRUD).
+        from . import audit  # noqa: F401

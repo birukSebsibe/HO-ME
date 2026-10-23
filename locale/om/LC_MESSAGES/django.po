@@ -546,6 +546,9 @@ msgstr "Garaa keenya nyata"
 msgid "Our Four Pillars"
 msgstr "Ujummoo afurii keenya"
 
+msgid "Our Partners"
+msgstr "Gargaartoota keenya"
+
 msgid "Our Journey — 2003 to Today"
 msgstr "Sooqaa — 2003 hanga ammaa"
 
@@ -719,3 +722,179 @@ msgstr "Baga nagaan keenya! Gaaffi duuba filadhu yookaan kiradhu."
 
 msgid "Welcome! Admins can add pre-defined questions in the portal."
 msgstr "Baga nagaan keenya! Admin sochiikiin gaaffi hundee."
+
+msgid "Website status"
+msgstr "Haala saayitii"
+
+msgid "Live overview of site content, engagement and workflows."
+msgstr "Ilaalcha jirtuu qabiyyee, hirmaannaa fi hojii."
+
+msgid "Items need attention"
+msgstr "Wantoota ilaalcha barbaadu"
+
+msgid "All systems operational"
+msgstr "Sirnoona upsani hundu"
+
+msgid "approved"
+msgstr "mirkaneeffame"
+
+msgid "blocked"
+msgstr "dhorkame"
+
+msgid "Pending safety reviews"
+msgstr "Miira atamsa jiru"
+
+msgid "awaiting approval before publishing"
+msgstr "eessa mirkaneessaaf jira"
+
+msgid "published"
+msgstr "maxxansame"
+
+msgid "unpublished"
+msgstr "maxxansa hin taasii"
+
+msgid "Pending access requests"
+msgstr "Gaaffii banqa hin murteefne"
+
+msgid "total"
+msgstr "hundaa"
+
+msgid "Submissions (30 days)"
+msgstr "Gargaarsa 30 guyyaa"
+
+msgid "prayer"
+msgstr "Duaa"
+
+msgid "churches"
+msgstr "waldoota"
+
+msgid "volunteers"
+msgstr "hojjetaa"
+
+msgid "Chatbot Q&A"
+msgstr "Caasluga gaaffii deebii"
+
+msgid "active of"
+msgstr "sochii irraa"
+
+msgid "Content translations"
+msgstr "Hiikkaa qabiyyee"
+
+msgid "Amharic & Afaan Oromoo overrides"
+msgstr "Afaan Oromoo fi Amharig dura kabeeffama"
+
+msgid "Region hubs"
+msgstr "Giddugala naannoo"
+
+msgid "users"
+msgstr "fayyadamtoota"
+
+msgid "Stories by safety status"
+msgstr "Seenoota haala nageenyaatiin"
+
+msgid "Stories by kind"
+msgstr "Seenoota gosaatiin"
+
+msgid "Access requests by status"
+msgstr "Gaaffii banqa haalaatiin"
+
+msgid "Resources by category"
+msgstr "Qabeenyoota gosaatiin"
+
+msgid "Submissions — last 14 days"
+msgstr "Gargaarsa — 14 guyyaa darban"
+
+msgid "MEL progress to 2030 (Vision 100DM35)"
+msgstr "Guddina MEL gara 2030 (Vision 100DM35)"
+
+msgid "Recent submissions"
+msgstr "Gargaarsa dhuma"
+
+msgid ""
+"No submissions yet — form entries (prayer, partnership, volunteering, access"
+" requests) appear here."
+msgstr "Gargaarsa hin jiru — komiin hundaaf etti argama."
+
+msgid "Quick actions"
+msgstr "Sochii gabbina"
+
+msgid "Approved"
+msgstr "Mirkaneesse"
+
+msgid "Pending"
+msgstr "Eessa"
+
+msgid "Denied"
+msgstr "Mudise"
+
+msgid "Published"
+msgstr "Maxxansame"
+
+msgid "Unpublished"
+msgstr "Maxxansa hin taasii"
+
+msgid "No data yet"
+msgstr "Odeeffannoo hin jiru"
+
+msgid "Type"
+msgstr "Gosa"
+
+msgid "From"
+msgstr "Irraa"
+
+msgid "Received"
+msgstr "Fudhate"
+
+msgid "Site settings"
+msgstr "Qindaa'ina saayitii"
+
+msgid "MEL indicators"
+msgstr "safarota MEL"
+
+msgid "Access requests"
+msgstr "Gaaffii banqa"
+
+msgid "Audit events (24h)"
+msgstr "Galmee sochii (sa'aatii 24)"
+
+msgid "failed sign-ins"
+msgstr "seensi hin milkoofne"
+
+msgid "Recent admin activity"
+msgstr "Sochii admin dhuma"
+
+msgid "No activity recorded yet — sign-ins and content changes appear here."
+msgstr "Sochii hin galmeefamne — seeni fi jijjiirama asii nyata."
+
+msgid "Time"
+msgstr "Yeroo"
+
+msgid "Who"
+msgstr "Eenyuu"
+
+msgid "Action"
+msgstr "Sochii"
+
+msgid "Details"
+msgstr "Ibsa"
+
+msgid "View full audit log →"
+msgstr "Galmee guutuu ilaali →"
+
+msgid "Signed in"
+msgstr "Seene"
+
+msgid "Failed sign-in"
+msgstr "Seensa hin milkoofne"
+
+msgid "Signed out"
+msgstr "Ba'e"
+
+msgid "Created"
+msgstr "Uumame"
+
+msgid "Updated"
+msgstr "Haaromame"
+
+msgid "Deleted"
+msgstr "Haaqame"

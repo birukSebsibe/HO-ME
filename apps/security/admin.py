@@ -45,6 +45,7 @@ from apps.accounts.models import (
 )
 
 from .admin_site import admin_site
+from .models import AuditLog
 
 
 # ---------------------------------------------------------------------------
@@ -403,3 +404,58 @@ class ContentTranslationAdmin(admin.ModelAdmin):
     @admin.display(description="Translation")
     def text_preview(self, obj):
         return (obj.text[:80] + "…") if len(obj.text) > 80 else obj.text
+
+
+# ---------------------------------------------------------------------------
+# Audit log — read-only trail of admin activity
+# ---------------------------------------------------------------------------
+
+ACTION_BADGE = {
+    "login": "b-approved",
+    "logout": "b-other",
+    "login_failed": "b-denied",
+    "lockout": "b-blocked",
+    "password_reset_requested": "b-pending",
+    "password_reset": "b-pending",
+    "create": "b-new",
+    "update": "b-new",
+    "delete": "b-denied",
+    "system": "b-other",
+}
+
+
+@admin.register(AuditLog, site=admin_site)
+class AuditLogAdmin(admin.ModelAdmin):
+    """'Audit log' section: every recorded sign-in and content change."""
+
+    list_display = ("timestamp", "who", "action_badge", "object_repr", "ip_address")
+    list_filter = ("action",)
+    search_fields = ("username", "object_repr", "note", "ip_address")
+    date_hierarchy = "timestamp"
+    list_select_related = ("user",)
+    actions = None
+
+    # Strictly read-only: entries must not be edited or erased from the UI
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    def get_readonly_fields(self, request, obj=None):
+        return [f.name for f in self.model._meta.fields]
+
+    @admin.display(description="Who", ordering="username")
+    def who(self, obj):
+        return obj.username or "—"
+
+    @admin.display(description="Action")
+    def action_badge(self, obj):
+        return format_html(
+            '<span class="badge {}">{}</span>',
+            ACTION_BADGE.get(obj.action, "b-other"),
+            obj.get_action_display(),
+        )

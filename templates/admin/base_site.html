@@ -3,8 +3,52 @@
 
 {# HO-ME: keep the admin's own chrome, but add the language switcher (English / አማርኛ / Afaan Oromoo) to the top-right userlinks row. #}
 
+{% block extrastyle %}
+{{ block.super }}
+<style>
+  /* ---- HO-ME admin chrome: professional branding ---- */
+  #header{
+    background:linear-gradient(90deg,#10366E 0%,#194F9E 70%,#2563EB 100%);
+    border-bottom:3px solid #E52424;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  #branding{display:flex;align-items:center;gap:.7rem}
+  #branding .brand-mark{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:9px;
+    background:#fff;color:#194F9E;font-weight:800;font-size:.95rem;letter-spacing:-.03em;
+    box-shadow:0 2px 6px rgba(0,0,0,.25);flex:none}
+  #branding img.brand-logo{display:inline-block;width:34px;height:34px;object-fit:contain;border-radius:9px;
+    background:#fff;padding:2px;box-shadow:0 2px 6px rgba(0,0,0,.25);flex:none}
+  #site-name{font-size:1rem!important;font-weight:800!important;letter-spacing:-.01em}
+  #site-name a{color:#fff!important}
+  #site-name a:hover{color:#F5C04E!important;text-decoration:none}
+  #user-tools a,#user-tools{color:#BFDBFE}
+  #user-tools a:hover{color:#F5C04E}
+  .module h2,.module caption{background:#194F9E!important;color:#fff!important;font-weight:700;letter-spacing:.02em}
+  #nav-sidebar .module caption,#nav-sidebar .module h2{color:#fff}
+  a:link,a:visited{color:#194F9E}
+  .dashboard #content{max-width:1400px}
+  /* Audit log badges (dashboard + audit changelist) */
+  .badge{display:inline-block;font-size:.68rem;font-weight:800;border-radius:9999px;padding:.15rem .6rem}
+  .b-pending{background:#FFFBEB;color:#B45309;border:1px solid #FDE68A}
+  .b-approved,.b-contacted{background:#ECFDF5;color:#047857;border:1px solid #A7F3D0}
+  .b-denied,.b-blocked{background:#FEF2F2;color:#B91C1C;border:1px solid #FECACA}
+  .b-new{background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE}
+  .b-other{background:#F1F5F9;color:#475569;border:1px solid #E2E8F0}
+  @media (prefers-reduced-motion: no-preference){
+    .button,a.button,input[type=submit]{transition:all .15s ease}
+  }
+</style>
+{% endblock %}
+
 {% block branding %}
-<h1 id="site-name"><a href="{% url 'admin_portal:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+<h1 id="site-name"><a href="{% url 'admin_portal:index' %}" style="display:inline-flex;align-items:center;gap:.55rem">
+  {% if site_logo_url %}
+    <img class="brand-logo" src="{{ site_logo_url }}" alt="{{ site_brand_name|default:'logo' }}">
+  {% else %}
+    <span class="brand-mark" aria-hidden="true">HM</span>
+  {% endif %}
+  <span>{{ site_header|default:_('Django administration') }}</span>
+</a></h1>
 {% endblock %}
 
 {% block userlinks %}

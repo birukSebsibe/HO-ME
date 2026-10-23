@@ -81,6 +81,8 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
+    # Audit trail: exposes the current request to audit signal receivers
+    "apps.security.middleware.AuditRequestMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     
     # django-axes must come after the auth middleware

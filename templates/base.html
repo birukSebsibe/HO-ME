@@ -112,7 +112,8 @@
 
     /* Desktop navigation links (reference: slate text → deep-blue hover) */
     .nav-link{position:relative;display:inline-flex;align-items:center;padding:.55rem .35rem;border-radius:.4rem;
-      color:#334155;font-weight:500;transition:color 200ms ease,background-color 200ms ease;gap:.55rem}
+      color:#334155;font-weight:500;transition:color 200ms ease,background-color 200ms ease;gap:.55rem;
+      white-space:nowrap}
     .nav-link:hover{color:var(--brand-blue)}
     .nav-link-active{color:var(--brand-blue);font-weight:600}
     .nav-link-active::before{content:'';width:.5rem;height:.5rem;border-radius:9999px;background:var(--accent-500);
@@ -268,7 +269,7 @@
 {# ---------------- Primary navigation (reference design) ---------------- #}
 <header class="sticky top-[33px] z-40 border-b border-slate-200/80 bg-white/95 shadow-sm backdrop-blur-md transition-all duration-200 dark:border-night-border dark:bg-night-900/95 dark:shadow-dark-soft">
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-    <div class="flex h-24 items-center justify-between">
+    <div class="flex h-24 flex-nowrap items-center justify-between gap-8">
       <!-- Brand logos area -->
       <a aria-label="{{ site.site_name }}" class="group flex items-center gap-3.5 py-1" href="/">
         {% if site.logo %}
@@ -289,7 +290,7 @@
       </a>
 
       <!-- Desktop navigation -->
-      <nav class="hidden items-center gap-6 text-sm font-medium xl:flex" aria-label="Main navigation">
+      <nav class="hidden flex-nowrap items-center gap-5 text-sm font-medium xl:flex" aria-label="Main navigation">
         <a class="nav-link transition-colors {% if current_url == 'about' %}nav-link-active{% endif %}"
            href="{% url 'about' %}" {% if current_url == 'about' %}aria-current="page"{% endif %}>{% trans "About Us" %}</a>
         <a class="nav-link transition-colors {% if current_url == 'what-we-do' %}nav-link-active{% endif %}"
@@ -297,9 +298,7 @@
         <a class="nav-link transition-colors {% if current_url == 'where-we-work' %}nav-link-active{% endif %}"
            href="{% url 'where-we-work' %}" {% if current_url == 'where-we-work' %}aria-current="page"{% endif %}>{% trans "Where We Work" %}</a>
         <a class="nav-link transition-colors {% if current_url == 'vision' %}nav-link-active{% endif %}"
-           href="{% url 'vision' %}" {% if current_url == 'vision' %}aria-current="page"{% endif %}>
-        Vision 100DM35
-        </a>
+           href="{% url 'vision' %}" {% if current_url == 'vision' %}aria-current="page"{% endif %}>Vision 100DM35</a>
         <a class="nav-link transition-colors {% if current_url == 'impact' %}nav-link-active{% endif %}"
            href="{% url 'impact' %}" {% if current_url == 'impact' %}aria-current="page"{% endif %}>{% trans "Impact &amp; Stories" %}</a>
         <a class="nav-link transition-colors {% if current_url == 'library' %}nav-link-active{% endif %}"
@@ -307,7 +306,7 @@
       </nav>
 
       <!-- Right: CTA cluster -->
-      <div class="flex items-center gap-2.5">
+      <div class="ml-auto flex shrink-0 items-center gap-2.5">
         <a class="inline-flex items-center gap-2 rounded-lg bg-brand-red px-4 py-2.5 text-xs font-bold tracking-wide text-white shadow-sm transition-all duration-200 hover:bg-brand-redDark hover:shadow-md"
            href="{% url 'get-involved' %}">
           <i class="fa-solid fa-heart"></i>
@@ -486,7 +485,7 @@
     {# Pre-defined question chips #}
     <div class="flex flex-wrap gap-1.5 border-t border-slate2-200 px-3 py-2.5 dark:border-night-border">
       <template x-for="(item, i) in faq" :key="i">
-        <button @click="ask(item.question)" x-show="i < 6"
+        <button @click="ask(item.q)" x-show="i < 6"
                 class="rounded-full border border-brand-blueLight/60 px-2.5 py-1 text-[11px] font-semibold text-brand-blue transition hover:bg-blue-50 dark:border-night-border dark:text-night-blue dark:hover:bg-white/5"
                 x-text="item.q"></button>
       </template>
